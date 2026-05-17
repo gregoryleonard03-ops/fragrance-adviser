@@ -494,16 +494,21 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   padding-top: 10px;
 }
 
+.result-links {
+  display: flex;
+  gap: 6px;
+}
 .result-link {
+  flex: 1;
   display: block;
   text-align: center;
   background: var(--sephora);
   color: var(--white);
   text-decoration: none;
-  padding: 10px 12px;
-  font-size: 10px;
+  padding: 10px 6px;
+  font-size: 9px;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   transition: background 0.15s;
 }

@@ -294,6 +294,16 @@ function showResults(recs) {
       ? `<div class="result-img-wrap"><img class="result-img" src="${r.image_url}" alt="${r.name}" onerror="this.parentElement.innerHTML='<div class=result-img-placeholder>${emoji}</div>'" /></div>`
       : `<div class="result-img-wrap"><div class="result-img-placeholder">${emoji}</div></div>`;
 
+    const query = encodeURIComponent(`${r.brand} ${r.name}`);
+    const stores = [
+      { label: 'Sephora',   href: `https://www.sephora.com/search?keyword=${query}` },
+      { label: 'Profumum',  href: `https://profumum.ru/catalog/?q=${query}` },
+      { label: 'Parfbar',   href: `https://parfbar.com/?s=${query}` },
+    ];
+    const storeLinks = stores.map(s =>
+      `<a class="result-link" href="${s.href}" target="_blank">${s.label}</a>`
+    ).join('');
+
     card.innerHTML = `
       ${imgHtml}
       <div class="result-body">
@@ -302,7 +312,7 @@ function showResults(recs) {
         <div class="result-name">${r.name}</div>
         ${price ? `<div class="result-price">${price}</div>` : ''}
         <div class="result-reason">${r.reason}</div>
-        <a class="result-link" href="${r.url}" target="_blank">Shop at Sephora</a>
+        <div class="result-links">${storeLinks}</div>
       </div>
     `;
 

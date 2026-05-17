@@ -1,0 +1,352 @@
+[
+  {
+    "id": "P378309",
+    "name": "Bleu de Chanel Eau de Parfum",
+    "brand": "Chanel",
+    "price": 155,
+    "description": "A woody, aromatic fragrance for men that expresses freedom and sensuality. An ode to masculine elegance with fresh citrus opening, warm heart of incense and a deep sandalwood base.",
+    "notes": ["bergamot", "lemon", "mint", "incense", "ginger", "nutmeg", "jasmine", "sandalwood", "cedar", "vetiver", "amber"],
+    "url": "https://www.sephora.com/search?keyword=Bleu+de+Chanel+Eau+de+Parfum",
+    "image_url": ""
+  },
+  {
+    "id": "P379483",
+    "name": "Sauvage Eau de Parfum",
+    "brand": "Dior",
+    "price": 165,
+    "description": "A radically fresh fragrance inspired by wide-open spaces. Powerful freshness with bergamot from Calabria, woody warmth from Ambroxan and Madagascar pepper. Bold, noble, wild.",
+    "notes": ["bergamot", "pepper", "sichuan pepper", "lavender", "star anise", "ambroxan", "cedar", "labdanum"],
+    "url": "https://www.sephora.com/search?keyword=Dior+Sauvage+Eau+de+Parfum",
+    "image_url": ""
+  },
+  {
+    "id": "P411355",
+    "name": "Black Orchid Eau de Parfum",
+    "brand": "Tom Ford",
+    "price": 210,
+    "description": "A luxurious and sensual fragrance with rich dark accords. Black orchid, dark chocolate, black truffle and bergamot create a darkly seductive signature. A lavish blend of black orchids and exotic woods.",
+    "notes": ["black truffle", "bergamot", "black orchid", "ylang-ylang", "dark chocolate", "patchouli", "sandalwood", "vetiver", "amber"],
+    "url": "https://www.sephora.com/search?keyword=Tom+Ford+Black+Orchid",
+    "image_url": ""
+  },
+  {
+    "id": "P422741",
+    "name": "Tobacco Vanille Eau de Parfum",
+    "brand": "Tom Ford",
+    "price": 295,
+    "description": "A rich oriental fragrance evoking the gentleman's club. Warm tobacco leaf and vanilla combine with aromatic spices for a deeply cozy, sensual scent. Rich, warming, comforting.",
+    "notes": ["tobacco leaf", "vanilla", "cocoa", "dried fruit", "tonka bean", "tobacco flower", "spice"],
+    "url": "https://www.sephora.com/search?keyword=Tom+Ford+Tobacco+Vanille",
+    "image_url": ""
+  },
+  {
+    "id": "P438941",
+    "name": "Oud Wood Eau de Parfum",
+    "brand": "Tom Ford",
+    "price": 285,
+    "description": "Rare oud wood is blended with smoky rosewood, cardamom, sandalwood, vetiver and amber. An exotic and sensual wood fragrance with unexpected warmth and depth. Intense and mysterious.",
+    "notes": ["oud", "rosewood", "cardamom", "sandalwood", "vetiver", "amber", "tonka bean"],
+    "url": "https://www.sephora.com/search?keyword=Tom+Ford+Oud+Wood",
+    "image_url": ""
+  },
+  {
+    "id": "P312891",
+    "name": "Wood Sage & Sea Salt Cologne",
+    "brand": "Jo Malone London",
+    "price": 160,
+    "description": "Earthy ambrette and woody sage are beautifully lifted by sea salt. A wild and effortless scent inspired by windswept cliffs meeting the ocean. Fresh, marine, and lightly salty.",
+    "notes": ["ambrette seed", "sage", "sea salt", "mineral", "grapefruit"],
+    "url": "https://www.sephora.com/search?keyword=Jo+Malone+Wood+Sage+Sea+Salt",
+    "image_url": ""
+  },
+  {
+    "id": "P312892",
+    "name": "Peony & Blush Suede Cologne",
+    "brand": "Jo Malone London",
+    "price": 160,
+    "description": "An English floral with unexpected suede warmth. Peony, red apple and rose are anchored by soft suede. Romantic yet modern, delicate yet bold. A feminine signature that is utterly unique.",
+    "notes": ["peony", "red apple", "rose", "suede", "jasmine"],
+    "url": "https://www.sephora.com/search?keyword=Jo+Malone+Peony+Blush+Suede",
+    "image_url": ""
+  },
+  {
+    "id": "P312893",
+    "name": "Lime Basil & Mandarin Cologne",
+    "brand": "Jo Malone London",
+    "price": 155,
+    "description": "A surprisingly sensuous interpretation of an English herb garden. Peppery basil and aromatic white thyme shift mysteriously against the freshness of lime and mandarin. Light, clean, vibrant.",
+    "notes": ["lime", "basil", "mandarin", "white thyme", "vetiver"],
+    "url": "https://www.sephora.com/search?keyword=Jo+Malone+Lime+Basil+Mandarin",
+    "image_url": ""
+  },
+  {
+    "id": "P424918",
+    "name": "Gypsy Water Eau de Parfum",
+    "brand": "Byredo",
+    "price": 235,
+    "description": "Inspired by the fascination of gypsy folklore. Fresh bergamot, juniper berries and pine needles open into a heart of incense, orris and sandalwood. A free-spirited woody fragrance.",
+    "notes": ["bergamot", "lemon", "pepper", "juniper berries", "pine needles", "incense", "orris", "sandalwood", "amber"],
+    "url": "https://www.sephora.com/search?keyword=Byredo+Gypsy+Water",
+    "image_url": ""
+  },
+  {
+    "id": "P424919",
+    "name": "Mojave Ghost Eau de Parfum",
+    "brand": "Byredo",
+    "price": 235,
+    "description": "Inspired by the resilience of a rare desert flower surviving in the Mojave. Ambrette and magnolia bloom over sandalwood and the ghost flower accord. Airy, woody, floral, completely unique.",
+    "notes": ["ambrette seed", "magnolia", "sapodilla", "violet", "sandalwood", "cedarwood", "ambergris"],
+    "url": "https://www.sephora.com/search?keyword=Byredo+Mojave+Ghost",
+    "image_url": ""
+  },
+  {
+    "id": "P424920",
+    "name": "Bal d'Afrique Eau de Parfum",
+    "brand": "Byredo",
+    "price": 235,
+    "description": "A celebration of Africa, inspired by a bohemian journey. Bergamot and African marigold open into cedar, violet and neroli, resting on musky vetiver and white musk. Vibrant, warm, earthy.",
+    "notes": ["bergamot", "african marigold", "neroli", "violet", "cedar", "vetiver", "musk"],
+    "url": "https://www.sephora.com/search?keyword=Byredo+Bal+Afrique",
+    "image_url": ""
+  },
+  {
+    "id": "P391823",
+    "name": "Replica Beach Walk Eau de Toilette",
+    "brand": "Maison Margiela",
+    "price": 155,
+    "description": "The scent of a perfect summer afternoon on the French Riviera. Bergamot, sea notes and coconut milk create a bright, carefree and sunny fragrance. Marine, fresh, and beautifully warm.",
+    "notes": ["bergamot", "sea notes", "coconut milk", "heliotrope", "white musk", "solar"],
+    "url": "https://www.sephora.com/search?keyword=Maison+Margiela+Replica+Beach+Walk",
+    "image_url": ""
+  },
+  {
+    "id": "P391824",
+    "name": "Replica Jazz Club Eau de Toilette",
+    "brand": "Maison Margiela",
+    "price": 155,
+    "description": "The scent of a New York jazz club at night. Pink pepper, neroli and lemon open into tobacco leaf, vetiver and vanilla. A smooth, warm and sensual evening fragrance with character.",
+    "notes": ["pink pepper", "neroli", "lemon", "rum", "tobacco leaf", "vetiver", "vanilla", "musk"],
+    "url": "https://www.sephora.com/search?keyword=Maison+Margiela+Replica+Jazz+Club",
+    "image_url": ""
+  },
+  {
+    "id": "P391825",
+    "name": "Replica Flower Market Eau de Toilette",
+    "brand": "Maison Margiela",
+    "price": 155,
+    "description": "The scent of a Parisian flower market on a fresh morning. Lilac, rose and peony are lifted by green leaf accord and soft musk. A vibrant, fresh and luminous floral fragrance.",
+    "notes": ["lilac", "rose", "peony", "green leaves", "white musk", "iris"],
+    "url": "https://www.sephora.com/search?keyword=Maison+Margiela+Replica+Flower+Market",
+    "image_url": ""
+  },
+  {
+    "id": "P391826",
+    "name": "Replica Lazy Sunday Morning Eau de Toilette",
+    "brand": "Maison Margiela",
+    "price": 155,
+    "description": "The soft, powdery scent of clean linen on a lazy Sunday. Iris, white musk and peony create an airy and light fragrance. Clean, gentle, powdery and deeply comforting.",
+    "notes": ["iris", "peony", "white musk", "clean linen", "powdery", "soft"],
+    "url": "https://www.sephora.com/search?keyword=Maison+Margiela+Replica+Lazy+Sunday+Morning",
+    "image_url": ""
+  },
+  {
+    "id": "P299889",
+    "name": "Black Opium Eau de Parfum",
+    "brand": "Yves Saint Laurent",
+    "price": 115,
+    "description": "A rock'n'roll fragrance with a sweet, addictive character. Coffee, vanilla and white flowers create an intense, feminine and sensual signature. Energizing and mysterious.",
+    "notes": ["coffee", "vanilla", "white flowers", "patchouli", "cedar"],
+    "url": "https://www.sephora.com/search?keyword=YSL+Black+Opium+Eau+de+Parfum",
+    "image_url": ""
+  },
+  {
+    "id": "P441932",
+    "name": "Libre Eau de Parfum",
+    "brand": "Yves Saint Laurent",
+    "price": 110,
+    "description": "A fragrance of freedom and femininity. Lavender from Provence and Moroccan orange blossom are blended with Madagascar vanilla. A bold and liberating signature.",
+    "notes": ["lavender", "orange blossom", "vanilla", "musk", "jasmine", "cedar"],
+    "url": "https://www.sephora.com/search?keyword=YSL+Libre+Eau+de+Parfum",
+    "image_url": ""
+  },
+  {
+    "id": "P441933",
+    "name": "Mon Paris Eau de Parfum",
+    "brand": "Yves Saint Laurent",
+    "price": 105,
+    "description": "A fruity floral fragrance inspired by an amorous adventure in Paris. Raspberry, strawberry and white flowers on a base of patchouli and white musk. Playful, sweet, romantic.",
+    "notes": ["raspberry", "strawberry", "pear", "peony", "white flowers", "patchouli", "white musk"],
+    "url": "https://www.sephora.com/search?keyword=YSL+Mon+Paris+Eau+de+Parfum",
+    "image_url": ""
+  },
+  {
+    "id": "P384219",
+    "name": "Terre d'Hermès Eau de Parfum",
+    "brand": "Hermès",
+    "price": 145,
+    "description": "A dialogue between land and sky. Citrus freshness of orange and grapefruit transitions to woody, mineral depth of vetiver, flint and benzoin. Earthy, powerful, deeply masculine.",
+    "notes": ["orange", "grapefruit", "flint", "pepper", "cedar", "vetiver", "benzoin"],
+    "url": "https://www.sephora.com/search?keyword=Hermes+Terre+d+Hermes+Eau+de+Parfum",
+    "image_url": ""
+  },
+  {
+    "id": "P384220",
+    "name": "Un Jardin sur le Nil Eau de Toilette",
+    "brand": "Hermès",
+    "price": 130,
+    "description": "An ode to the banks of the Nile. Green lotus, osmanthus and sycamore fig create a fresh, watery and exotic fragrance. Light, serene and luminous — a garden floating on water.",
+    "notes": ["grapefruit", "lotus", "osmanthus", "sycamore fig", "green mango", "fresh water", "reed"],
+    "url": "https://www.sephora.com/search?keyword=Hermes+Un+Jardin+sur+le+Nil",
+    "image_url": ""
+  },
+  {
+    "id": "P222927",
+    "name": "Coco Mademoiselle Intense Eau de Parfum",
+    "brand": "Chanel",
+    "price": 165,
+    "description": "A modern, sensual Oriental fragrance. Vibrant and audacious with bergamot and orange opening, rose and jasmine heart, patchouli and vetiver depth. Bold, free and intensely feminine.",
+    "notes": ["bergamot", "orange", "rose", "jasmine", "patchouli", "vetiver", "white musk", "opoponax"],
+    "url": "https://www.sephora.com/search?keyword=Chanel+Coco+Mademoiselle+Intense",
+    "image_url": ""
+  },
+  {
+    "id": "P222928",
+    "name": "N°5 Eau de Parfum",
+    "brand": "Chanel",
+    "price": 175,
+    "description": "The timeless floral aldehyde that changed perfumery forever. Ylang-ylang and neroli open to a floral heart of rose and jasmine over warm sandalwood and vanilla. Iconic, pure feminine.",
+    "notes": ["ylang-ylang", "neroli", "aldehyde", "rose", "jasmine", "iris", "sandalwood", "vanilla", "amber"],
+    "url": "https://www.sephora.com/search?keyword=Chanel+No+5+Eau+de+Parfum",
+    "image_url": ""
+  },
+  {
+    "id": "P441021",
+    "name": "Miss Dior Eau de Parfum",
+    "brand": "Dior",
+    "price": 140,
+    "description": "A floral chypre fragrance — the scent of love. Grasse rose absolute and peony bloom over patchouli and white musk. Fresh, romantic and joyful with a timeless feminine elegance.",
+    "notes": ["peony", "grasse rose", "patchouli", "white musk", "mandarin"],
+    "url": "https://www.sephora.com/search?keyword=Dior+Miss+Dior+Eau+de+Parfum",
+    "image_url": ""
+  },
+  {
+    "id": "P441022",
+    "name": "J'adore Eau de Parfum",
+    "brand": "Dior",
+    "price": 135,
+    "description": "The luminous floral signature of Dior femininity. Ylang-ylang, Damascus rose and jasmine create a rich, opulent and beautiful scent. Voluptuous, radiant, absolutely feminine.",
+    "notes": ["ylang-ylang", "damascus rose", "jasmine", "bergamot", "peach", "sandalwood"],
+    "url": "https://www.sephora.com/search?keyword=Dior+Jadore+Eau+de+Parfum",
+    "image_url": ""
+  },
+  {
+    "id": "P394812",
+    "name": "Bloom Eau de Parfum",
+    "brand": "Gucci",
+    "price": 115,
+    "description": "A floral abundance that celebrates the power of nature. Tuberose, jasmine and rangoon creeper create a rich yet pure and natural floral fragrance. Fresh, intense and alive.",
+    "notes": ["tuberose", "jasmine", "rangoon creeper", "sandalwood"],
+    "url": "https://www.sephora.com/search?keyword=Gucci+Bloom+Eau+de+Parfum",
+    "image_url": ""
+  },
+  {
+    "id": "P281197",
+    "name": "Flowerbomb Eau de Parfum",
+    "brand": "Viktor&Rolf",
+    "price": 125,
+    "description": "An explosion of flowers — the antidote to negativity. Freesia, rose, jasmine and patchouli in a warm oriental base. A powerful, sweet and feminine fragrance that blooms on skin.",
+    "notes": ["bergamot", "freesia", "jasmine", "rose", "orchid", "patchouli", "vanilla", "musk"],
+    "url": "https://www.sephora.com/search?keyword=Viktor+Rolf+Flowerbomb+Eau+de+Parfum",
+    "image_url": ""
+  },
+  {
+    "id": "P261956",
+    "name": "Acqua di Giò Eau de Parfum",
+    "brand": "Giorgio Armani",
+    "price": 120,
+    "description": "Inspired by the sea and the sky of Pantelleria island. An aquatic freshness of bergamot, marine accord and rosemary leads to woody base. A timeless, masculine aquatic fragrance.",
+    "notes": ["bergamot", "marine accord", "rosemary", "patchouli", "incense", "amber"],
+    "url": "https://www.sephora.com/search?keyword=Armani+Acqua+di+Gio+Eau+de+Parfum",
+    "image_url": ""
+  },
+  {
+    "id": "P261957",
+    "name": "Sì Eau de Parfum",
+    "brand": "Giorgio Armani",
+    "price": 110,
+    "description": "A modern feminine elegance inspired by the Italian way of living. Blackcurrant, rose and freesia on a warm vanilla and ambroxan base. Sensual, free, strong and feminine.",
+    "notes": ["blackcurrant", "freesia", "rose", "ambroxan", "vanilla", "musk"],
+    "url": "https://www.sephora.com/search?keyword=Armani+Si+Eau+de+Parfum",
+    "image_url": ""
+  },
+  {
+    "id": "P392041",
+    "name": "Daisy Eau de Toilette",
+    "brand": "Marc Jacobs",
+    "price": 80,
+    "description": "A fresh, youthful and feminine fragrance as joyful as a field of daisies. Violet, jasmine and gardenia over musk and white woods. Pure, innocent and beautifully simple.",
+    "notes": ["violet leaves", "jasmine", "gardenia", "musk", "white wood", "vanilla"],
+    "url": "https://www.sephora.com/search?keyword=Marc+Jacobs+Daisy+Eau+de+Toilette",
+    "image_url": ""
+  },
+  {
+    "id": "P449203",
+    "name": "Her Eau de Parfum",
+    "brand": "Burberry",
+    "price": 105,
+    "description": "A fruity floral fragrance inspired by London's free-spirited modern girl. Vivid red fruits, jasmine and violet create a playful yet sophisticated signature. Fresh, juicy, feminine.",
+    "notes": ["red berry", "raspberry", "jasmine", "violet", "musk", "ambrette"],
+    "url": "https://www.sephora.com/search?keyword=Burberry+Her+Eau+de+Parfum",
+    "image_url": ""
+  },
+  {
+    "id": "P397112",
+    "name": "La Vie Est Belle Eau de Parfum",
+    "brand": "Lancôme",
+    "price": 105,
+    "description": "Life is beautiful — a universal declaration of happiness. Iris, praline and sweet patchouli create a warm, uplifting and feminine fragrance. Optimistic, radiant, absolutely joyful.",
+    "notes": ["black currant", "pear", "iris", "jasmine", "praline", "patchouli", "vanilla", "sandalwood"],
+    "url": "https://www.sephora.com/search?keyword=Lancome+La+Vie+Est+Belle+Eau+de+Parfum",
+    "image_url": ""
+  },
+  {
+    "id": "P489201",
+    "name": "Bright Crystal Eau de Toilette",
+    "brand": "Versace",
+    "price": 75,
+    "description": "A sensual and luminous fragrance like a precious gemstone. Yuzu, pomegranate and peony bloom over lotus and magnolia on a base of amber musk. Fresh, feminine and effortlessly elegant.",
+    "notes": ["yuzu", "pomegranate", "peony", "lotus", "magnolia", "amber", "musk"],
+    "url": "https://www.sephora.com/search?keyword=Versace+Bright+Crystal+Eau+de+Toilette",
+    "image_url": ""
+  },
+  {
+    "id": "P482901",
+    "name": "Good Girl Eau de Parfum",
+    "brand": "Carolina Herrera",
+    "price": 120,
+    "description": "An opulent floral oriental with a dual personality — good and bad. Jasmine and tuberose bloom over a seductive base of cocoa, coffee and tonka bean. Daring, addictive, feminine.",
+    "notes": ["jasmine", "tuberose", "cocoa", "coffee", "tonka bean", "sandalwood", "amber", "vetiver"],
+    "url": "https://www.sephora.com/search?keyword=Carolina+Herrera+Good+Girl+Eau+de+Parfum",
+    "image_url": ""
+  },
+  {
+    "id": "P399021",
+    "name": "For Her Eau de Parfum",
+    "brand": "Narciso Rodriguez",
+    "price": 110,
+    "description": "A skin-close musk fragrance, clean and sensual. Rose, peony and musc create a uniquely intimate and personal scent that feels like a second skin. Minimalist, elegant, unforgettable.",
+    "notes": ["rose", "peony", "musk", "cedar", "sandalwood", "amber"],
+    "url": "https://www.sephora.com/search?keyword=Narciso+Rodriguez+For+Her+Eau+de+Parfum",
+    "image_url": ""
+  },
+  {
+    "id": "P392811",
+    "name": "Aventus Eau de Parfum",
+    "brand": "Creed",
+    "price": 435,
+    "description": "Inspired by the tumultuous life of Emperor Napoleon Bonaparte. Pineapple, birch and blackcurrant open to rose and jasmine, settling on oakmoss, ambergris and musk. Bold, masculine, legendary.",
+    "notes": ["pineapple", "bergamot", "blackcurrant", "apple", "birch", "rose", "jasmine", "oakmoss", "ambergris", "musk", "vanilla"],
+    "url": "https://www.sephora.com/search?keyword=Creed+Aventus+Eau+de+Parfum",
+    "image_url": ""
+  }
+]

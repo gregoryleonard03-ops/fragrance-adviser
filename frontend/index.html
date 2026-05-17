@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fragrance Finder — Sephora</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<div id="app">
+
+  <!-- ===== Intro ===== -->
+  <div id="screen-intro" class="screen active">
+    <div class="topbar">
+      <span class="topbar-logo">Sephora</span>
+      <span class="topbar-dot"></span>
+      <span class="topbar-sub">Fragrance Finder</span>
+    </div>
+    <div class="intro-content">
+      <div class="intro-ornament">— ✦ —</div>
+      <h2 class="intro-title">Discover your<br><em>signature scent</em></h2>
+      <div class="intro-line"></div>
+      <p class="intro-sub">Answer 10 questions and we'll find 5 fragrances<br>perfectly matched to your taste, occasion &amp; budget.</p>
+      <button class="btn-primary" onclick="startQuiz()">Begin ›</button>
+    </div>
+  </div>
+
+  <!-- ===== Quiz ===== -->
+  <div id="screen-quiz" class="screen">
+    <div class="topbar">
+      <span class="topbar-logo">Sephora</span>
+      <span class="topbar-dot"></span>
+      <span class="topbar-sub">Fragrance Finder</span>
+    </div>
+    <div class="quiz-progress-bar-wrap">
+      <div class="progress-row">
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-label" id="progress-text">1 / 10</div>
+      </div>
+    </div>
+    <div class="quiz-body">
+      <div class="question-wrap" id="question-wrap">
+        <h2 class="question-title" id="question-title"></h2>
+        <p class="question-hint" id="question-hint"></p>
+        <div class="cards-grid" id="cards-grid"></div>
+      </div>
+      <div class="quiz-nav">
+        <button class="btn-back" id="btn-back" onclick="prevQuestion()">← Back</button>
+        <button class="btn-next" id="btn-next" onclick="nextQuestion()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Loading ===== -->
+  <div id="screen-loading" class="screen">
+    <div class="topbar">
+      <span class="topbar-logo">Sephora</span>
+      <span class="topbar-dot"></span>
+      <span class="topbar-sub">Fragrance Finder</span>
+    </div>
+    <div class="loading-content">
+      <div class="loading-ornament">✦ ✦ ✦</div>
+      <p>Curating your selection...</p>
+    </div>
+  </div>
+
+  <!-- ===== Results ===== -->
+  <div id="screen-results" class="screen">
+    <div class="topbar">
+      <span class="topbar-logo">Sephora</span>
+      <span class="topbar-dot"></span>
+      <span class="topbar-sub">Fragrance Finder</span>
+    </div>
+    <div class="results-header">
+      <div class="results-ornament">— ✦ —</div>
+      <h2>Your Selection</h2>
+      <p class="results-subtitle">5 fragrances matched to you</p>
+    </div>
+    <div class="results-grid" id="results-grid"></div>
+    <div class="results-footer">
+      <button class="btn-restart" onclick="restart()">Start Over</button>
+    </div>
+  </div>
+
+</div>
+<script src="/static/app.js"></script>
+</body>
+</html>

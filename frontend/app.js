@@ -304,12 +304,17 @@ function showResults(recs) {
       `<a class="result-link" href="${s.href}" target="_blank">${s.label}</a>`
     ).join('');
 
+    const accordsHtml = r.accords && r.accords.length
+      ? `<div class="result-accords">${r.accords.slice(0, 4).map(a => `<span class="accord-tag">${a}</span>`).join('')}</div>`
+      : '';
+
     card.innerHTML = `
       ${imgHtml}
       <div class="result-body">
         <div class="result-num">Pick #${i + 1}</div>
         <div class="result-brand">${r.brand}</div>
         <div class="result-name">${r.name}</div>
+        ${accordsHtml}
         ${price ? `<div class="result-price">${price}</div>` : ''}
         <div class="result-reason">${r.reason}</div>
         <div class="result-links">${storeLinks}</div>

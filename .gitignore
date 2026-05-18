@@ -7,3 +7,4 @@ venv/
 .venv/
 .DS_Store
 tmp/
+fragrances_combined.json

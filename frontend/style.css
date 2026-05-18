@@ -494,6 +494,21 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   padding-top: 10px;
 }
 
+.result-accords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+.accord-tag {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid var(--border);
+  color: var(--text2);
+}
 .result-links {
   display: flex;
   gap: 6px;

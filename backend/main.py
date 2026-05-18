@@ -11,7 +11,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from matcher import recommend
+from matcher_db import recommend_from_db
 
 app = FastAPI(title="Fragrance Adviser")
 
@@ -52,7 +52,7 @@ def health():
 @app.post("/api/recommend")
 def get_recommendations(answers: Answers):
     try:
-        results = recommend(answers.model_dump(), top_n=5)
+        results = recommend_from_db(answers.model_dump(), store="sephora", top_n=5)
         return {"recommendations": results}
     except FileNotFoundError as e:
         raise HTTPException(status_code=503, detail=str(e))

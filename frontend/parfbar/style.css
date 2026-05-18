@@ -63,6 +63,7 @@ body { font-family: "Inter", "Helvetica Neue", Arial, sans-serif; }
   letter-spacing: 0.24em;
   color: var(--charcoal);
   text-transform: uppercase;
+  text-decoration: none;
 }
 
 .topbar-dot {

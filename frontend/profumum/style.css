@@ -54,6 +54,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   letter-spacing: 0.22em;
   color: var(--white);
   text-transform: uppercase;
+  text-decoration: none;
 }
 
 .topbar-dot {

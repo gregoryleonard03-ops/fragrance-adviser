@@ -18,7 +18,7 @@ const QUESTIONS = [
     id: 'budget',
     title: 'Какой у вас бюджет?',
     hint: '',
-    multi: false,
+    multi: true,
     cols: 4,
     options: [
       { value: '$50-100',  emoji: '💛', label: '$50–100' },
@@ -31,7 +31,7 @@ const QUESTIONS = [
     id: 'occasion',
     title: 'Для какого случая?',
     hint: '',
-    multi: false,
+    multi: true,
     cols: 4,
     options: [
       { value: 'daily',    emoji: '☀️', label: 'Каждый день' },
@@ -44,7 +44,7 @@ const QUESTIONS = [
     id: 'season',
     title: 'Для какого сезона?',
     hint: '',
-    multi: false,
+    multi: true,
     cols: 3,
     options: [
       { value: 'summer', emoji: '☀️', label: 'Лето', sub: 'Жара, море' },
@@ -73,7 +73,7 @@ const QUESTIONS = [
     id: 'longevity',
     title: 'Насколько стойкий аромат нужен?',
     hint: '',
-    multi: false,
+    multi: true,
     cols: 3,
     options: [
       { value: 'light',  emoji: '🌬️', label: 'Лёгкий',      sub: '2–4 часа' },
@@ -85,7 +85,7 @@ const QUESTIONS = [
     id: 'sillage',
     title: 'Какой шлейф предпочитаете?',
     hint: '',
-    multi: false,
+    multi: true,
     cols: 3,
     options: [
       { value: 'subtle',  emoji: '🤫', label: 'Незаметный',  sub: 'Только для вас' },
@@ -114,7 +114,7 @@ const QUESTIONS = [
     id: 'vibe',
     title: 'Какой вайб вам подходит?',
     hint: '',
-    multi: false,
+    multi: true,
     cols: 3,
     options: [
       { value: 'forest', emoji: '🌲', label: 'Лес',           sub: 'Хвоя, земля, кора' },
@@ -129,7 +129,7 @@ const QUESTIONS = [
     id: 'style',
     title: 'Нишевое или хит?',
     hint: '',
-    multi: false,
+    multi: true,
     cols: 3,
     options: [
       { value: 'niche',       emoji: '🎭', label: 'Нишевое',       sub: 'Необычное и редкое' },
@@ -340,6 +340,5 @@ function showError(msg) {
 }
 
 function restart() {
-  Object.keys(answers).forEach(k => delete answers[k]);
-  startQuiz();
+  window.location.href = '/';
 }

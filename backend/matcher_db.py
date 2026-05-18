@@ -126,9 +126,10 @@ def _score(item: dict, answers: dict) -> int:
             if kw in all_notes:
                 score += 3
 
-    # ── Vibe → accords ──────────────────────────────────────
-    vibe = answers.get("vibe")
-    if vibe:
+    # ── Vibe → accords (handles list or str) ────────────────
+    vibe_raw = answers.get("vibe")
+    vibes = vibe_raw if isinstance(vibe_raw, list) else ([vibe_raw] if vibe_raw else [])
+    for vibe in vibes:
         for accord in VIBE_ACCORDS.get(vibe, []):
             if accord.lower() in item_accords:
                 score += 4
@@ -139,15 +140,17 @@ def _score(item: dict, answers: dict) -> int:
         for accord in BRANCH_ACCORDS.get(branch, []):
             if accord.lower() in item_accords:
                 score += 4
-        sub_type = answers.get("sub_type")
-        if sub_type:
+        sub_raw = answers.get("sub_type")
+        sub_types = sub_raw if isinstance(sub_raw, list) else ([sub_raw] if sub_raw else [])
+        for sub_type in sub_types:
             for accord in BRANCH_ACCORDS.get(sub_type, []):
                 if accord.lower() in item_accords:
                     score += 3
 
-    # ── Season → accords ────────────────────────────────────
-    season = answers.get("season")
-    if season:
+    # ── Season → accords (handles list or str) ──────────────
+    season_raw = answers.get("season")
+    seasons = season_raw if isinstance(season_raw, list) else ([season_raw] if season_raw else [])
+    for season in seasons:
         for accord in SEASON_ACCORDS.get(season, []):
             if accord.lower() in item_accords:
                 score += 2
@@ -165,17 +168,36 @@ def _score(item: dict, answers: dict) -> int:
 
 def _build_reason(item: dict, answers: dict, store: str) -> str:
     parts = []
-    accords = item.get("accords") or []
-    if accords:
-        parts.append(f"Аккорды: {', '.join(accords[:3])}.")
-    vibe = answers.get("vibe") or answers.get("branch")
+    all_notes = " ".join([
+        item.get("top_notes", ""),
+        item.get("middle_notes", ""),
+        item.get("base_notes", ""),
+    ]).lower()
+    matched_notes = [kw for nk in (answers.get("notes") or [])
+                     for kw in NOTE_KEYWORDS.get(nk, []) if kw in all_notes]
+    if matched_notes:
+        parts.append(f"Ноты: {', '.join(matched_notes[:3])}.")
+
+    item_accords = [a.lower() for a in (item.get("accords") or [])]
+    vibe_raw = answers.get("vibe") or answers.get("branch")
+    vibe = vibe_raw[0] if isinstance(vibe_raw, list) and vibe_raw else vibe_raw
     if vibe:
-        parts.append(f"Подходит под настроение «{vibe}».")
-    if store == "parfbar":
-        parts.append("Можно купить на Parfbar.")
-    else:
-        parts.append("Найти на Sephora.")
-    return " ".join(parts)
+        matched_accords = [a for a in VIBE_ACCORDS.get(vibe, []) + BRANCH_ACCORDS.get(vibe, [])
+                           if a.lower() in item_accords]
+        if matched_accords:
+            parts.append(f"Вайб: {', '.join(matched_accords[:2])}.")
+        elif not parts and item.get("accords"):
+            parts.append(f"Аккорды: {', '.join(item['accords'][:3])}.")
+    elif item.get("accords"):
+        parts.append(f"Аккорды: {', '.join(item['accords'][:3])}.")
+
+    brands = answers.get("brands") or []
+    if any(b.lower() in (item.get("brand", "")).lower() for b in brands):
+        parts.append("Твой бренд.")
+
+    store_label = {"sephora": "Найти на Sephora", "parfbar": "Купить на Parfbar", "profumum": "Купить на Profumum.ru"}
+    parts.append(store_label.get(store, "Найти в магазине") + ".")
+    return " ".join(parts[:3])
 
 
 def recommend_from_db(answers: dict, store: str = "sephora", top_n: int = 5) -> list[dict]:
@@ -205,7 +227,11 @@ def recommend_from_db(answers: dict, store: str = "sephora", top_n: int = 5) -> 
             scored.append((s, item))
 
     scored.sort(key=lambda x: -x[0])
-    top50 = scored[:50]
+    if store in ("parfbar", "profumum") and store_lookup:
+        top50 = [(s, i) for s, i in scored
+                 if _parfbar_key(i.get("brand", ""), i.get("name", "")) in store_lookup][:50]
+    else:
+        top50 = scored[:50]
     results = []
     seen = set()
 

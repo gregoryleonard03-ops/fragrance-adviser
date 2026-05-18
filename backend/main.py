@@ -30,19 +30,19 @@ app.mount("/static", StaticFiles(directory=str(FRONTEND)), name="static")
 class Answers(BaseModel):
     # Sephora fields
     gender: str = ""
-    budget: str = ""
-    occasion: str = ""
-    season: str = ""
+    budget: list[str] = []
+    occasion: list[str] = []
+    season: list[str] = []
     notes: list[str] = []
-    longevity: str = ""
-    sillage: str = ""
+    longevity: list[str] = []
+    sillage: list[str] = []
     brands: list[str] = []
-    vibe: str = ""
-    style: str = ""
+    vibe: list[str] = []
+    style: list[str] = []
     # Parfbar branching fields
     branch: str = ""
-    sub_type: str = ""
-    intensity: str = ""
+    sub_type: list[str] = []
+    intensity: list[str] = []
 
 
 # ── Страницы ─────────────────────────────────────────────────────────────────

@@ -26,7 +26,7 @@ const BUDGET_STEP = {
   id: 'budget',
   title: 'Какой бюджет тебе комфортен?',
   hint: '',
-  multi: false,
+  multi: true,
   cols: 4,
   options: [
     { value: 'budget_1', emoji: '💛', label: 'До 2 500 ₽' },
@@ -43,7 +43,7 @@ const BRANCHES = {
       id: 'sub_type',
       title: 'Какая свежесть тебе ближе?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 3,
       options: [
         { value: 'marine',   emoji: '🌊', label: 'Морская',               sub: 'Соль, океан, бриз' },
@@ -57,7 +57,7 @@ const BRANCHES = {
       id: 'vibe',
       title: 'Какой вайб тебе нравится?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 3,
       options: [
         { value: 'luxury_hotel',          emoji: '🏨', label: 'Luxury hotel' },
@@ -86,7 +86,7 @@ const BRANCHES = {
       id: 'intensity',
       title: 'Насколько заметным должен быть аромат?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 4,
       options: [
         { value: 'very_light', emoji: '🌬️', label: 'Очень лёгкий' },
@@ -99,7 +99,7 @@ const BRANCHES = {
       id: 'occasion',
       title: 'Где ты будешь носить аромат?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 3,
       options: [
         { value: 'daily',        emoji: '☀️', label: 'Каждый день' },
@@ -117,7 +117,7 @@ const BRANCHES = {
       id: 'sub_type',
       title: 'Что тебя согревает?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 3,
       options: [
         { value: 'vanilla_cream',  emoji: '🍦', label: 'Ваниль и крем',   sub: 'Сладкая, кремовая' },
@@ -131,7 +131,7 @@ const BRANCHES = {
       id: 'vibe',
       title: 'Какой вайб тебе нравится?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 3,
       options: [
         { value: 'sunday_morning',    emoji: '☕', label: 'Sunday morning at home' },
@@ -160,7 +160,7 @@ const BRANCHES = {
       id: 'intensity',
       title: 'Насколько плотным должен быть аромат?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 4,
       options: [
         { value: 'airy',        emoji: '🌬️', label: 'Лёгкий и воздушный' },
@@ -173,7 +173,7 @@ const BRANCHES = {
       id: 'occasion',
       title: 'Когда ты будешь носить аромат?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 3,
       options: [
         { value: 'daily',        emoji: '☀️', label: 'Каждый день' },
@@ -191,7 +191,7 @@ const BRANCHES = {
       id: 'sub_type',
       title: 'Что тебе ближе?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 3,
       options: [
         { value: 'leather',     emoji: '🖤', label: 'Кожа',              sub: 'Тёмная, животная' },
@@ -205,7 +205,7 @@ const BRANCHES = {
       id: 'vibe',
       title: 'Какой вайб тебе нравится?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 3,
       options: [
         { value: 'mafia_luxury',   emoji: '🕴️', label: 'Mafia luxury' },
@@ -234,7 +234,7 @@ const BRANCHES = {
       id: 'intensity',
       title: 'Насколько тяжёлым должен быть аромат?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 4,
       options: [
         { value: 'light_sexy', emoji: '💋', label: 'Лёгкий sexy' },
@@ -247,7 +247,7 @@ const BRANCHES = {
       id: 'occasion',
       title: 'Когда ты будешь носить аромат?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 3,
       options: [
         { value: 'date',        emoji: '🌹', label: 'Свидания' },
@@ -265,7 +265,7 @@ const BRANCHES = {
       id: 'sub_type',
       title: 'Какая luxury эстетика тебе ближе?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 3,
       options: [
         { value: 'old_money',     emoji: '🏛️', label: 'Old money',          sub: 'Классика, патина, история' },
@@ -279,7 +279,7 @@ const BRANCHES = {
       id: 'vibe',
       title: 'Как аромат должен ощущаться?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 3,
       options: [
         { value: 'expensive_calm',      emoji: '🧘', label: 'Дорого и спокойно' },
@@ -308,7 +308,7 @@ const BRANCHES = {
       id: 'intensity',
       title: 'Насколько универсальным должен быть аромат?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 4,
       options: [
         { value: 'max_universal', emoji: '🌐', label: 'Максимально универсальный' },
@@ -321,7 +321,7 @@ const BRANCHES = {
       id: 'occasion',
       title: 'Где ты будешь носить аромат?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 3,
       options: [
         { value: 'work',         emoji: '💼', label: 'Работа' },
@@ -339,7 +339,7 @@ const BRANCHES = {
       id: 'sub_type',
       title: 'Что тебя привлекает в нишевой парфюмерии?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 3,
       options: [
         { value: 'unusual',     emoji: '🧪', label: 'Необычные ингредиенты', sub: 'То, чего нет в масс-маркете' },
@@ -353,7 +353,7 @@ const BRANCHES = {
       id: 'vibe',
       title: 'Какой вайб тебе нравится?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 3,
       options: [
         { value: 'art_gallery',     emoji: '🖼️', label: 'Art gallery opening' },
@@ -382,7 +382,7 @@ const BRANCHES = {
       id: 'intensity',
       title: 'Насколько авторским должен быть аромат?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 4,
       options: [
         { value: 'wearable_odd', emoji: '🎯', label: 'Носибельный, но необычный' },
@@ -395,7 +395,7 @@ const BRANCHES = {
       id: 'occasion',
       title: 'Для кого / для чего этот аромат?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 3,
       options: [
         { value: 'collection',  emoji: '📦', label: 'Для себя, как коллекция' },
@@ -413,7 +413,7 @@ const BRANCHES = {
       id: 'sub_type',
       title: 'Какой тип «кожного» аромата?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 3,
       options: [
         { value: 'clean_musk',   emoji: '🤍', label: 'Чистый мускус',       sub: 'Нейтральный, прозрачный' },
@@ -427,7 +427,7 @@ const BRANCHES = {
       id: 'vibe',
       title: 'Какой вайб тебе нравится?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 3,
       options: [
         { value: 'second_skin',     emoji: '🤍', label: 'Second skin' },
@@ -456,7 +456,7 @@ const BRANCHES = {
       id: 'intensity',
       title: 'Насколько тихим должен быть аромат?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 3,
       options: [
         { value: 'skin_close',  emoji: '🌫️', label: 'Едва слышный',       sub: 'Только ты знаешь' },
@@ -468,7 +468,7 @@ const BRANCHES = {
       id: 'occasion',
       title: 'Когда ты будешь носить аромат?',
       hint: '',
-      multi: false,
+      multi: true,
       cols: 3,
       options: [
         { value: 'daily',        emoji: '☀️', label: 'Каждый день' },
@@ -673,7 +673,7 @@ function showResults(recs) {
         <div class="result-name">${r.name}</div>
         ${price ? `<div class="result-price">${price}</div>` : ''}
         <div class="result-reason">${r.reason}</div>
-        <a class="result-link" href="${r.url}" target="_blank">Купить на Profumum.ru</a>
+        <a class="result-link" href="${r.url}" target="_blank">Купить на Parfbar</a>
       </div>
     `;
 
@@ -696,8 +696,5 @@ function showError(msg) {
 }
 
 function restart() {
-  Object.keys(answers).forEach(k => delete answers[k]);
-  currentBranch = null;
-  currentStep = 0;
-  startQuiz();
+  window.location.href = '/';
 }

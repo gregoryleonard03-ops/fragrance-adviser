@@ -1,90 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fragrance Finder — Sephora</title>
-  <link rel="stylesheet" href="/static/style.css" />
+  <title>Fragrance Finder</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      background: #0d0d0d;
+      color: #fff;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .hero {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .hero-ornament {
+      font-size: 13px;
+      letter-spacing: 0.3em;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: #b89a6a;
+    }
+    .hero-sub {
+      font-size: 14px;
+      color: #888;
+      letter-spacing: 0.05em;
+    }
+    .stores {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      max-width: 860px;
+    }
+    .store-card {
+      flex: 1;
+      min-width: 220px;
+      max-width: 280px;
+      text-decoration: none;
+      border: 1px solid #2a2a2a;
+      padding: 36px 28px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.2s, transform 0.15s;
+      cursor: pointer;
+      background: #111;
+    }
+    .store-card:hover {
+      transform: translateY(-3px);
+    }
+    .store-card.sephora { border-color: #d4145a33; }
+    .store-card.sephora:hover { border-color: #d4145a; }
+    .store-card.parfbar { border-color: #ffffff22; }
+    .store-card.parfbar:hover { border-color: #fff; }
+    .store-card.profumum { border-color: #2d5a3d55; }
+    .store-card.profumum:hover { border-color: #4a9e6a; }
+
+    .store-logo {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .store-card.sephora .store-logo { color: #d4145a; }
+    .store-card.parfbar .store-logo { color: #fff; }
+    .store-card.profumum .store-logo { color: #4a9e6a; }
+
+    .store-desc {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.5;
+      letter-spacing: 0.03em;
+    }
+    .store-action {
+      margin-top: 8px;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #444;
+    }
+    .store-card.sephora .store-action { color: #d4145a88; }
+    .store-card.parfbar .store-action { color: #ffffff66; }
+    .store-card.profumum .store-action { color: #4a9e6a88; }
+  </style>
 </head>
 <body>
-<div id="app">
-
-  <!-- ===== Intro ===== -->
-  <div id="screen-intro" class="screen active">
-    <div class="topbar">
-      <span class="topbar-logo">Sephora</span>
-      <span class="topbar-dot"></span>
-      <span class="topbar-sub">Fragrance Finder</span>
-    </div>
-    <div class="intro-content">
-      <div class="intro-ornament">— ✦ —</div>
-      <h2 class="intro-title">Discover your<br><em>signature scent</em></h2>
-      <div class="intro-line"></div>
-      <p class="intro-sub">Answer 10 questions and we'll find 5 fragrances<br>perfectly matched to your taste, occasion &amp; budget.</p>
-      <button class="btn-primary" onclick="startQuiz()">Begin ›</button>
-    </div>
+  <div class="hero">
+    <div class="hero-ornament">— ✦ —</div>
+    <h1 class="hero-title">Найди свой<br><em>аромат</em></h1>
+    <p class="hero-sub">Выбери магазин и пройди квиз</p>
   </div>
 
-  <!-- ===== Quiz ===== -->
-  <div id="screen-quiz" class="screen">
-    <div class="topbar">
-      <span class="topbar-logo">Sephora</span>
-      <span class="topbar-dot"></span>
-      <span class="topbar-sub">Fragrance Finder</span>
-    </div>
-    <div class="quiz-progress-bar-wrap">
-      <div class="progress-row">
-        <div class="progress-track">
-          <div class="progress-fill" id="progress-fill"></div>
-        </div>
-        <div class="progress-label" id="progress-text">1 / 10</div>
-      </div>
-    </div>
-    <div class="quiz-body">
-      <div class="question-wrap" id="question-wrap">
-        <h2 class="question-title" id="question-title"></h2>
-        <p class="question-hint" id="question-hint"></p>
-        <div class="cards-grid" id="cards-grid"></div>
-      </div>
-      <div class="quiz-nav">
-        <button class="btn-back" id="btn-back" onclick="prevQuestion()">← Back</button>
-        <button class="btn-next" id="btn-next" onclick="nextQuestion()">Next →</button>
-      </div>
-    </div>
-  </div>
+  <div class="stores">
+    <a class="store-card sephora" href="/sephora">
+      <div class="store-logo">Sephora</div>
+      <div class="store-desc">Мировой каталог. Квиз на английском, 10 вопросов.</div>
+      <div class="store-action">Начать →</div>
+    </a>
 
-  <!-- ===== Loading ===== -->
-  <div id="screen-loading" class="screen">
-    <div class="topbar">
-      <span class="topbar-logo">Sephora</span>
-      <span class="topbar-dot"></span>
-      <span class="topbar-sub">Fragrance Finder</span>
-    </div>
-    <div class="loading-content">
-      <div class="loading-ornament">✦ ✦ ✦</div>
-      <p>Curating your selection...</p>
-    </div>
-  </div>
+    <a class="store-card parfbar" href="/parfbar">
+      <div class="store-logo">Parfbar</div>
+      <div class="store-desc">Российский магазин распивов. Квиз на русском, 7 вопросов.</div>
+      <div class="store-action">Начать →</div>
+    </a>
 
-  <!-- ===== Results ===== -->
-  <div id="screen-results" class="screen">
-    <div class="topbar">
-      <span class="topbar-logo">Sephora</span>
-      <span class="topbar-dot"></span>
-      <span class="topbar-sub">Fragrance Finder</span>
-    </div>
-    <div class="results-header">
-      <div class="results-ornament">— ✦ —</div>
-      <h2>Your Selection</h2>
-      <p class="results-subtitle">5 fragrances matched to you</p>
-    </div>
-    <div class="results-grid" id="results-grid"></div>
-    <div class="results-footer">
-      <button class="btn-restart" onclick="restart()">Start Over</button>
-    </div>
+    <a class="store-card profumum" href="/profumum">
+      <div class="store-logo">Profumum.ru</div>
+      <div class="store-desc">Нишевая парфюмерия. Квиз на русском, 10 вопросов.</div>
+      <div class="store-action">Начать →</div>
+    </a>
   </div>
-
-</div>
-<script src="/static/app.js"></script>
 </body>
 </html>

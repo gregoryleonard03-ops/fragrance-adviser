@@ -6,7 +6,8 @@ import json
 from pathlib import Path
 
 _DB = None
-_PARFBAR = None  # key: lower(brand)+lower(name)
+_PARFBAR = None
+_PROFUMUM = None
 
 DATA_DIR = Path(__file__).parent / "data"
 
@@ -27,12 +28,12 @@ def _parfbar_key(brand: str, name: str) -> str:
     return (brand_l + name_l).replace(" ", "")
 
 
-def _load_parfbar() -> dict[str, dict]:
+def _load_parfbar() -> dict:
     global _PARFBAR
     if _PARFBAR is None:
-        parfbar_path = DATA_DIR / "fragrances_parfbar.json"
-        if parfbar_path.exists():
-            items = json.loads(parfbar_path.read_text())
+        path = DATA_DIR / "fragrances_parfbar.json"
+        if path.exists():
+            items = json.loads(path.read_text())
             _PARFBAR = {}
             for item in items:
                 key = _parfbar_key(item.get("brand", ""), item.get("name", ""))
@@ -40,6 +41,21 @@ def _load_parfbar() -> dict[str, dict]:
         else:
             _PARFBAR = {}
     return _PARFBAR
+
+
+def _load_profumum() -> dict:
+    global _PROFUMUM
+    if _PROFUMUM is None:
+        path = DATA_DIR / "fragrances_profumum.json"
+        if path.exists():
+            items = json.loads(path.read_text())
+            _PROFUMUM = {}
+            for item in items:
+                key = _parfbar_key(item.get("brand", ""), item.get("name", ""))
+                _PROFUMUM[key] = item
+        else:
+            _PROFUMUM = {}
+    return _PROFUMUM
 
 
 # ── Keyword maps ────────────────────────────────────────────────────────────
@@ -172,16 +188,19 @@ def recommend_from_db(answers: dict, store: str = "sephora", top_n: int = 5) -> 
     else:
         candidates = db
 
-    # Pre-load parfbar catalog for bonus scoring
-    parfbar_lookup = _load_parfbar() if store == "parfbar" else {}
+    # Pre-load store catalog for bonus scoring
+    store_lookup = {}
+    if store == "parfbar":
+        store_lookup = _load_parfbar()
+    elif store == "profumum":
+        store_lookup = _load_profumum()
 
     # Score
     scored = []
     for item in candidates:
         s = _score(item, answers)
         if s > 0:
-            # Bonus: item is available in parfbar catalog → prioritise it
-            if parfbar_lookup and _parfbar_key(item.get("brand",""), item.get("name","")) in parfbar_lookup:
+            if store_lookup and _parfbar_key(item.get("brand",""), item.get("name","")) in store_lookup:
                 s += 15
             scored.append((s, item))
 
@@ -198,18 +217,24 @@ def recommend_from_db(answers: dict, store: str = "sephora", top_n: int = 5) -> 
             continue
         seen.add(key)
 
-        q = f"{brand}+{name}".replace(" ", "+")
+        q = (brand + " " + name).replace(" ", "+")
         price = None
         url = ""
 
         if store == "parfbar":
-            lookup_key = _parfbar_key(brand, name)
-            parfbar_item = parfbar_lookup.get(lookup_key)
-            if parfbar_item:
-                price = parfbar_item.get("price")
-                url = parfbar_item.get("url", f"https://parfbar.com/?s={q}")
+            catalog_item = store_lookup.get(_parfbar_key(brand, name))
+            if catalog_item:
+                price = catalog_item.get("price")
+                url = catalog_item.get("url", f"https://parfbar.com/?s={q}")
             else:
                 url = f"https://parfbar.com/?s={q}"
+        elif store == "profumum":
+            catalog_item = store_lookup.get(_parfbar_key(brand, name))
+            if catalog_item:
+                price = catalog_item.get("price")
+                url = catalog_item.get("url", f"https://profumum.ru/catalog/?q={q}")
+            else:
+                url = f"https://profumum.ru/catalog/?q={q}"
         else:
             url = f"https://www.sephora.com/search?keyword={q}"
 

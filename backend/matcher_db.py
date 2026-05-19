@@ -310,12 +310,15 @@ def _score_catalog_item(catalog_item: dict, db_item, answers: dict):
     if isinstance(selected_notes, str):
         selected_notes = [selected_notes]
     for note_key in selected_notes:
+        bd_notes["max_possible"] += 3
+        matched_any = False
         for kw in NOTE_KEYWORDS.get(note_key, []):
-            bd_notes["max_possible"] += 3
             if kw in all_notes:
-                bd_notes["score"] += 3
                 if kw not in bd_notes["matched_keywords"]:
                     bd_notes["matched_keywords"].append(kw)
+                matched_any = True
+        if matched_any:
+            bd_notes["score"] += 3
 
     # Vibe → accords
     vibe_raw = answers.get("vibe")

@@ -2,23 +2,32 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --cream: #f8f4ee;
-  --cream2: #f0e8dc;
-  --white: #ffffff;
-  --black: #0d0d0d;
-  --charcoal: #2c2c2c;
-  --gray: #888888;
-  --gray-light: #ddd8d0;
-  --sephora: #d4145a;
-  --sephora-dark: #a80e47;
-  --gold: #b89a6a;
-  --gold-light: #d4b98a;
+  --bg:           #0e0e0e;
+  --bg2:          #171717;
+  --bg3:          #1e1e1e;
+  --white:        #ffffff;
+  --text:         #f0ebe4;
+  --text2:        #aaaaaa;
+  --gray:         #666666;
+  --gray-light:   #2c2c2c;
+  --accent:       #d4145a;
+  --accent-dark:  #a80e47;
+  --gold:         #b89a6a;
+  --gold-light:   #d4b98a;
+
+  /* aliases for template compatibility */
+  --cream:        var(--bg);
+  --cream2:       var(--bg2);
+  --black:        #0a0a0a;
+  --charcoal:     var(--text);
+  --sephora:      var(--accent);
+  --sephora-dark: var(--accent-dark);
 }
 
 html, body {
   height: 100%;
-  background: var(--cream);
-  color: var(--black);
+  background: var(--bg);
+  color: var(--text);
   overflow: hidden;
 }
 
@@ -36,7 +45,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
 }
 .screen.active { display: flex; }
 
-/* ===== Top bar — Sephora nod ===== */
+/* ===== Top bar ===== */
 .topbar {
   width: 100%;
   height: 44px;
@@ -46,6 +55,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   justify-content: center;
   flex-shrink: 0;
   gap: 12px;
+  border-bottom: 1px solid #1a1a1a;
 }
 
 .topbar-logo {
@@ -61,7 +71,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--sephora);
+  background: var(--accent);
 }
 
 .topbar-sub {
@@ -72,7 +82,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
 }
 
 /* ===== Intro ===== */
-#screen-intro { justify-content: center; }
+#screen-intro { justify-content: center; background: var(--bg); }
 
 .intro-content {
   text-align: center;
@@ -86,7 +96,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   color: var(--gold);
   letter-spacing: 0.3em;
   margin-bottom: 32px;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 .intro-title {
@@ -95,7 +105,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   font-weight: 400;
   letter-spacing: -0.01em;
   line-height: 1.1;
-  color: var(--black);
+  color: var(--text);
   margin-bottom: 20px;
 }
 
@@ -109,12 +119,12 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   height: 1px;
   background: var(--gold);
   margin: 24px auto;
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
 .intro-sub {
   font-size: 14px;
-  color: var(--gray);
+  color: var(--text2);
   line-height: 1.7;
   margin-bottom: 48px;
   font-weight: 300;
@@ -125,7 +135,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: var(--sephora);
+  background: var(--accent);
   color: var(--white);
   border: none;
   padding: 16px 48px;
@@ -138,7 +148,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   font-family: inherit;
 }
 .btn-primary:hover {
-  background: var(--sephora-dark);
+  background: var(--accent-dark);
   transform: translateY(-2px);
 }
 
@@ -148,7 +158,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   flex-direction: column;
   padding: 0;
   overflow: hidden;
-  background: var(--cream);
+  background: var(--bg);
 }
 #screen-quiz.active { display: flex; }
 
@@ -177,7 +187,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
 .progress-fill {
   position: absolute;
   left: 0; top: 0; bottom: 0;
-  background: var(--sephora);
+  background: var(--accent);
   transition: width 0.4s ease;
 }
 
@@ -213,7 +223,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   font-size: 34px;
   font-weight: 400;
   font-style: italic;
-  color: var(--black);
+  color: var(--text);
   margin-bottom: 6px;
   line-height: 1.2;
 }
@@ -229,7 +239,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
 /* ===== Cards ===== */
 .cards-grid {
   display: grid;
-  gap: 10px;
+  gap: 8px;
   animation: fadeUp 0.28s ease;
   padding-bottom: 4px;
 }
@@ -243,11 +253,11 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
 }
 
 .card {
-  background: var(--white);
+  background: var(--bg2);
   border: 1px solid var(--gray-light);
   padding: 18px 14px;
   cursor: pointer;
-  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+  transition: border-color 0.15s, background 0.15s;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -259,13 +269,13 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
 
 .card:hover {
   border-color: var(--gold);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  background: var(--bg3);
 }
 
 .card.selected {
-  border-color: var(--sephora);
-  background: var(--white);
-  box-shadow: inset 0 0 0 1px var(--sephora);
+  border-color: var(--accent);
+  background: var(--bg3);
+  box-shadow: inset 0 0 0 1px var(--accent);
 }
 
 .card.selected::after {
@@ -274,7 +284,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   top: 0; left: 0;
   width: 3px;
   height: 100%;
-  background: var(--sephora);
+  background: var(--accent);
 }
 
 .card-emoji { font-size: 28px; line-height: 1; }
@@ -282,7 +292,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
 .card-label {
   font-size: 13px;
   font-weight: 600;
-  color: var(--charcoal);
+  color: var(--text);
   line-height: 1.3;
 }
 
@@ -292,7 +302,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   line-height: 1.4;
 }
 
-.card.selected .card-label { color: var(--sephora); }
+.card.selected .card-label { color: var(--accent); }
 
 /* ===== Nav ===== */
 .quiz-nav {
@@ -317,11 +327,11 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   transition: all 0.15s;
   font-family: inherit;
 }
-.btn-back:hover { border-color: var(--charcoal); color: var(--charcoal); }
+.btn-back:hover { border-color: #555; color: var(--text2); }
 .btn-back:disabled { opacity: 0.3; cursor: default; }
 
 .btn-next {
-  background: var(--sephora);
+  background: var(--accent);
   color: var(--white);
   border: none;
   padding: 12px 32px;
@@ -333,11 +343,11 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   transition: background 0.15s, transform 0.15s;
   font-family: inherit;
 }
-.btn-next:hover { background: var(--sephora-dark); transform: translateY(-1px); }
+.btn-next:hover { background: var(--accent-dark); transform: translateY(-1px); }
 .btn-next:disabled { opacity: 0.35; cursor: default; transform: none; }
 
 /* ===== Loading ===== */
-#screen-loading { background: var(--cream); justify-content: center; }
+#screen-loading { background: var(--bg); justify-content: center; }
 
 .loading-content {
   text-align: center;
@@ -363,7 +373,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   font-family: "Georgia", serif;
   font-size: 18px;
   font-style: italic;
-  color: var(--gray);
+  color: var(--text2);
   letter-spacing: 0.04em;
 }
 
@@ -374,13 +384,13 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   gap: 0;
   justify-content: flex-start;
   align-items: stretch;
-  background: var(--cream);
+  background: var(--bg);
 }
 
 .results-header {
   text-align: center;
   padding: 40px 48px 32px;
-  background: var(--cream);
+  background: var(--bg);
 }
 
 .results-ornament {
@@ -388,7 +398,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   color: var(--gold);
   letter-spacing: 0.3em;
   margin-bottom: 16px;
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .results-header h2 {
@@ -397,7 +407,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   font-weight: 400;
   font-style: italic;
   margin-bottom: 10px;
-  color: var(--black);
+  color: var(--text);
 }
 
 .results-subtitle {
@@ -424,11 +434,11 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
 }
 
 .result-card {
-  background: var(--white);
+  background: var(--bg2);
   transition: background 0.15s;
   animation: fadeUp 0.4s ease both;
 }
-.result-card:hover { background: #fffdf9; }
+.result-card:hover { background: var(--bg3); }
 .result-card:nth-child(1) { animation-delay: 0.04s; }
 .result-card:nth-child(2) { animation-delay: 0.08s; }
 .result-card:nth-child(3) { animation-delay: 0.12s; }
@@ -438,7 +448,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
 .result-img-wrap {
   width: 100%;
   aspect-ratio: 1;
-  background: var(--cream);
+  background: var(--bg3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -447,13 +457,13 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
 }
 
 .result-img { width: 100%; height: 100%; object-fit: cover; }
-.result-img-placeholder { font-size: 56px; opacity: 0.35; }
+.result-img-placeholder { font-size: 56px; opacity: 0.3; }
 
 .result-body { padding: 14px 14px 18px; }
 
 .result-num {
   font-size: 9px;
-  color: var(--sephora);
+  color: var(--accent);
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -474,7 +484,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   font-size: 14px;
   font-weight: 400;
   font-style: italic;
-  color: var(--black);
+  color: var(--text);
   line-height: 1.3;
   margin-bottom: 8px;
 }
@@ -482,7 +492,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
 .result-price {
   font-size: 14px;
   font-weight: 700;
-  color: var(--black);
+  color: var(--text);
   margin-bottom: 10px;
 }
 
@@ -491,44 +501,24 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   color: var(--gray);
   line-height: 1.6;
   margin-bottom: 14px;
-  border-top: 1px solid var(--cream2);
+  border-top: 1px solid var(--gray-light);
   padding-top: 10px;
 }
 
-.result-accords {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin-bottom: 8px;
-}
-.accord-tag {
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 3px 8px;
-  border: 1px solid var(--border);
-  color: var(--text2);
-}
-.result-links {
-  display: flex;
-  gap: 6px;
-}
 .result-link {
-  flex: 1;
   display: block;
   text-align: center;
-  background: var(--sephora);
+  background: var(--accent);
   color: var(--white);
   text-decoration: none;
-  padding: 10px 6px;
-  font-size: 9px;
+  padding: 10px 12px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   transition: background 0.15s;
 }
-.result-link:hover { background: var(--sephora-dark); }
+.result-link:hover { background: var(--accent-dark); }
 
 .results-footer {
   text-align: center;
@@ -548,7 +538,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
   transition: all 0.15s;
   font-family: inherit;
 }
-.btn-restart:hover { border-color: var(--sephora); color: var(--sephora); }
+.btn-restart:hover { border-color: var(--accent); color: var(--accent); }
 
 /* ===== Animations ===== */
 @keyframes fadeUp {

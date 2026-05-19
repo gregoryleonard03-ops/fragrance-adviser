@@ -45,10 +45,10 @@ const BUDGET_STEP = {
   multi: true,
   cols: 4,
   options: [
-    { value: 'budget_1', emoji: '💛', label: 'До 10 000 ₽' },
-    { value: 'budget_2', emoji: '🥈', label: '10 – 20k ₽' },
-    { value: 'budget_3', emoji: '🥇', label: '20 – 40k ₽' },
-    { value: 'budget_4', emoji: '💎', label: '40 000+ ₽' },
+    { value: 'budget_1', emoji: '💛', label: 'До 15 000 ₽' },
+    { value: 'budget_2', emoji: '🥈', label: '15 – 30k ₽' },
+    { value: 'budget_3', emoji: '🥇', label: '30 – 50k ₽' },
+    { value: 'budget_4', emoji: '💎', label: '50 000+ ₽' },
   ],
 };
 

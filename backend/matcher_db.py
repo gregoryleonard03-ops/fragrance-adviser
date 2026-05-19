@@ -12,6 +12,28 @@ _PROFUMUM = None
 
 DATA_DIR = Path(__file__).parent / "data"
 
+BUDGET_RANGES = {
+    "parfbar": {
+        "budget_1": (0,     2500),
+        "budget_2": (2500,  4000),
+        "budget_3": (4000,  6000),
+        "budget_4": (6000,  float("inf")),
+    },
+    "profumum": {
+        "budget_1": (0,     15000),
+        "budget_2": (15000, 30000),
+        "budget_3": (30000, 50000),
+        "budget_4": (50000, float("inf")),
+    },
+}
+
+
+def _price_ok(price, price_filters: list) -> bool:
+    """True if price falls within any selected budget range, or no filter is active."""
+    if not price_filters or price is None:
+        return True
+    return any(lo <= price < hi for lo, hi in price_filters)
+
 
 def _load_db() -> list[dict]:
     global _DB
@@ -513,6 +535,13 @@ def _recommend_catalog(answers: dict, store: str, top_n: int) -> list[dict]:
     catalog = _load_parfbar() if store == "parfbar" else _load_profumum()
     db_lookup = _load_db_lookup()
 
+    # Build price filter from selected budget tiers
+    budget_vals = answers.get("budget", [])
+    if isinstance(budget_vals, str):
+        budget_vals = [budget_vals]
+    store_ranges = BUDGET_RANGES.get(store, {})
+    price_filters = [store_ranges[b] for b in budget_vals if b in store_ranges]
+
     scored = []
     for key, catalog_item in catalog.items():
         db_item = db_lookup.get(key)
@@ -528,6 +557,10 @@ def _recommend_catalog(answers: dict, store: str, top_n: int) -> list[dict]:
         if s <= 0:
             continue
 
+        price = catalog_item.get("price")
+        if not _price_ok(price, price_filters):
+            continue
+
         name = catalog_item.get("name", "")
         brand = catalog_item.get("brand", "")
         key = f"{brand}|{name}".lower()
@@ -535,7 +568,6 @@ def _recommend_catalog(answers: dict, store: str, top_n: int) -> list[dict]:
             continue
         seen.add(key)
 
-        price = catalog_item.get("price")
         url = catalog_item.get("url", "")
         if not url:
             q = (brand + " " + name).replace(" ", "+")

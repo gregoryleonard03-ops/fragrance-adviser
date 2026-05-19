@@ -822,8 +822,12 @@ function showDetails(idx) {
       `Совпали: ${seasonMatched}`));
   }
 
-  rows.push(detailRow('⭐', 'Бренд', d.brand.score,
-    d.brand.matched ? `${r.brand} — твой выбор` : 'Бренд не выбирался'));
+  if (d.occasion && d.occasion.occasion_values.length > 0) {
+    const occStr = d.occasion.occasion_values.join(', ');
+    const occMatched = d.occasion.matched_accords.length ? d.occasion.matched_accords.join(', ') : 'нет совпадений';
+    rows.push(detailRow('🎯', 'Повод', d.occasion.score,
+      `Выбрано: ${occStr} → совпали: ${occMatched}`));
+  }
 
   const accordsHtml = r.accords && r.accords.length
     ? `<div class="details-accords">Все аккорды аромата: ${r.accords.join(', ')}</div>`

@@ -122,6 +122,30 @@ NOTE_KEYWORDS: dict[str, list[str]] = {
                  "мускус", "кашмеран", "кашемировое дерево"],
 }
 
+OCCASION_ACCORDS: dict[str, list[str]] = {
+    "daily":         ["Fresh", "Clean", "Citrus", "Aromatic"],
+    "office":        ["Fresh", "Powdery", "Clean", "Woody"],
+    "work":          ["Fresh", "Powdery", "Clean", "Woody"],
+    "date":          ["Oriental", "Amber", "Floral", "Musky"],
+    "romantic":      ["Oriental", "Amber", "Floral", "Musky"],
+    "party":         ["Spicy", "Oriental", "Fruity", "Smoky"],
+    "night_city":    ["Oriental", "Smoky", "Spicy", "Leathery"],
+    "summer_night":  ["Aquatic", "Citrus", "Amber", "Musky"],
+    "summer_trip":   ["Aquatic", "Citrus", "Fresh", "Marine"],
+    "autumn_winter": ["Warm", "Spicy", "Woody", "Amber"],
+    "cozy_evening":  ["Vanilla", "Warm", "Gourmand", "Amber"],
+    "special":       ["Oriental", "Floral", "Amber", "Spicy"],
+    "evening":       ["Oriental", "Amber", "Spicy", "Floral"],
+    "sport":         ["Fresh", "Citrus", "Aquatic", "Aromatic"],
+    "restaurants":   ["Floral", "Woody", "Spicy", "Musky"],
+    "travel":        ["Fresh", "Citrus", "Woody", "Clean"],
+    "collection":    ["Resinous", "Incense", "Earthy", "Smoky"],
+    "impress":       ["Resinous", "Incense", "Spicy", "Leathery"],
+    "connoisseurs":  ["Incense", "Earthy", "Oud", "Resinous"],
+    "bed_scent":     ["Musky", "Vanilla", "Powdery", "Soft"],
+    "just_because":  ["Musky", "Clean", "Fresh", "Citrus"],
+}
+
 VIBE_ACCORDS: dict[str, list[str]] = {
     "forest": ["Woody", "Green", "Earthy", "Herbal"],
     "beach":  ["Marine", "Aquatic", "Fresh", "Sea"],
@@ -310,7 +334,7 @@ def _score_catalog_item(catalog_item: dict, db_item, answers: dict):
     bd_vibe     = {"score": 0, "max_possible": 0, "vibe_values": [], "matched_accords": []}
     bd_sub_type = {"score": 0, "max_possible": 0, "sub_type_values": [], "matched_accords": []}
     bd_season   = {"score": 0, "max_possible": 0, "matched_accords": []}
-    bd_brand    = {"score": 0, "matched": False}
+    bd_occasion = {"score": 0, "max_possible": 0, "occasion_values": [], "matched_accords": []}
 
     item_accords = [a.lower() for a in (db_item.get("accords") or [])] if db_item else []
     db_notes_str = ""
@@ -389,17 +413,21 @@ def _score_catalog_item(catalog_item: dict, db_item, answers: dict):
                 if accord not in bd_season["matched_accords"]:
                     bd_season["matched_accords"].append(accord)
 
-    # Brand bonus
-    brands = answers.get("brands") or []
-    if isinstance(brands, str):
-        brands = [brands]
-    item_brand = (catalog_item.get("brand") or "").lower()
-    if any(b.lower() in item_brand or item_brand in b.lower() for b in brands):
-        bd_brand["score"] = 5
-        bd_brand["matched"] = True
+    # Occasion → accords
+    occasion_raw = answers.get("occasion")
+    occasions = occasion_raw if isinstance(occasion_raw, list) else ([occasion_raw] if occasion_raw else [])
+    bd_occasion["occasion_values"] = occasions
+    for occ in occasions:
+        occ_accords = OCCASION_ACCORDS.get(occ, [])
+        bd_occasion["max_possible"] += len(occ_accords) * 2
+        for accord in occ_accords:
+            if accord.lower() in item_accords:
+                bd_occasion["score"] += 2
+                if accord not in bd_occasion["matched_accords"]:
+                    bd_occasion["matched_accords"].append(accord)
 
     total = (bd_branch["score"] + bd_notes["score"] + bd_vibe["score"] +
-             bd_sub_type["score"] + bd_season["score"] + bd_brand["score"])
+             bd_sub_type["score"] + bd_season["score"] + bd_occasion["score"])
 
     if not db_item and total == 0:
         total = -1
@@ -411,7 +439,7 @@ def _score_catalog_item(catalog_item: dict, db_item, answers: dict):
         "vibe":     bd_vibe,
         "sub_type": bd_sub_type,
         "season":   bd_season,
-        "brand":    bd_brand,
+        "occasion": bd_occasion,
     }
     return total, breakdown
 

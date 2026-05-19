@@ -487,6 +487,7 @@ const BRANCHES = {
 let currentBranch = null;
 let currentStep = 0; // 0 = step1, 1–6 = branch steps
 const answers = {};
+let currentRecs = null;
 
 function currentQuestion() {
   if (currentStep === 0) return STEP1;
@@ -646,6 +647,7 @@ async function submitQuiz() {
 const PLACEHOLDERS = ['🌸', '🌿', '🍋', '🪸', '🌹', '🍑', '🌊', '🕯️', '✨', '🌙'];
 
 function showResults(recs) {
+  currentRecs = recs;
   const grid = document.getElementById('results-grid');
   grid.innerHTML = '';
 
@@ -673,7 +675,10 @@ function showResults(recs) {
         <div class="result-name">${r.name}</div>
         ${price ? `<div class="result-price">${price}</div>` : ''}
         <div class="result-reason">${r.reason}</div>
-        <a class="result-link" href="${r.url}" target="_blank">Купить на Profumum.ru</a>
+        <div class="result-actions">
+          <a class="result-link" href="${r.url}" target="_blank">Купить на Profumum.ru</a>
+          <button class="result-details-btn" onclick="showDetails(${i})">Details</button>
+        </div>
       </div>
     `;
 
@@ -697,4 +702,138 @@ function showError(msg) {
 
 function restart() {
   window.location.href = '/';
+}
+
+// ── Score details modal ───────────────────────────────────────────────────────
+
+function ensureDetailsStyles() {
+  if (document.getElementById('details-styles')) return;
+  const s = document.createElement('style');
+  s.id = 'details-styles';
+  s.textContent = `
+    #details-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.75);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 1000; padding: 16px;
+    }
+    .details-modal {
+      background: #1a1a1a; border: 1px solid #333; border-radius: 16px;
+      max-width: 480px; width: 100%; max-height: 82vh; overflow-y: auto;
+      padding: 24px; color: #eee;
+    }
+    .details-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 20px; gap: 12px;
+    }
+    .details-brand { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+    .details-name  { font-size: 17px; font-weight: 600; margin-top: 3px; }
+    .details-total { font-size: 24px; font-weight: 700; color: #c9a96e; white-space: nowrap; }
+    .details-row {
+      border-radius: 10px; padding: 11px 14px; margin-bottom: 7px;
+      border: 1px solid transparent;
+    }
+    .details-row.hit  { background: #1c251c; border-color: #2d4530; }
+    .details-row.miss { background: #181818; border-color: #252525; opacity: 0.55; }
+    .details-row-top  { display: flex; justify-content: space-between; align-items: center; }
+    .details-label { font-size: 13px; font-weight: 500; }
+    .details-score { font-size: 14px; font-weight: 700; color: #c9a96e; }
+    .details-desc  { font-size: 12px; color: #777; margin-top: 4px; line-height: 1.4; }
+    .details-accords {
+      font-size: 12px; color: #555; margin-top: 16px; padding-top: 14px;
+      border-top: 1px solid #262626;
+    }
+    .details-close {
+      display: block; width: 100%; margin-top: 20px; padding: 12px;
+      background: #242424; border: 1px solid #3a3a3a; border-radius: 10px;
+      color: #ccc; font-size: 15px; cursor: pointer;
+    }
+    .details-close:hover { background: #2e2e2e; color: #fff; }
+    .result-actions { display: flex; gap: 8px; align-items: stretch; margin-top: 12px; }
+    .result-actions .result-link { flex: 1; margin-top: 0; }
+    .result-details-btn {
+      padding: 10px 14px; background: transparent;
+      border: 1px solid #3a3a3a; border-radius: 8px; color: #888;
+      font-size: 13px; cursor: pointer; white-space: nowrap; flex-shrink: 0;
+    }
+    .result-details-btn:hover { border-color: #777; color: #eee; }
+  `;
+  document.head.appendChild(s);
+}
+
+function showDetails(idx) {
+  ensureDetailsStyles();
+  const r = currentRecs[idx];
+  const d = r.score_details;
+  if (!d) return;
+
+  function detailRow(emoji, label, score, desc) {
+    const cls = score > 0 ? 'hit' : 'miss';
+    return `
+      <div class="details-row ${cls}">
+        <div class="details-row-top">
+          <span class="details-label">${emoji} ${label}</span>
+          <span class="details-score">+${score} бал.</span>
+        </div>
+        <div class="details-desc">${desc}</div>
+      </div>`;
+  }
+
+  const rows = [];
+
+  const branchMatched = d.branch.matched_accords.length ? d.branch.matched_accords.join(', ') : 'нет совпадений';
+  rows.push(detailRow('🌿', 'Направление (ветка)', d.branch.score,
+    `Целевые аккорды ветки: ${branchMatched}`));
+
+  const notesMatched = d.notes.matched_keywords.length ? d.notes.matched_keywords.join(', ') : 'нет совпадений';
+  rows.push(detailRow('🎵', 'Ноты', d.notes.score,
+    `Найдено в аромате: ${notesMatched}`));
+
+  const vibeStr = d.vibe.vibe_values.length ? d.vibe.vibe_values.join(', ') : '—';
+  const vibeMatched = d.vibe.matched_accords.length ? d.vibe.matched_accords.join(', ') : 'нет совпадений';
+  rows.push(detailRow('✨', 'Вайб', d.vibe.score,
+    `Выбрано: ${vibeStr} → совпали: ${vibeMatched}`));
+
+  if (d.sub_type.sub_type_values.length > 0) {
+    const stStr = d.sub_type.sub_type_values.join(', ');
+    const stMatched = d.sub_type.matched_accords.length ? d.sub_type.matched_accords.join(', ') : 'нет совпадений';
+    rows.push(detailRow('🎯', 'Уточнение', d.sub_type.score,
+      `Выбрано: ${stStr} → совпали: ${stMatched}`));
+  }
+
+  if (d.season.max_possible > 0) {
+    const seasonMatched = d.season.matched_accords.length ? d.season.matched_accords.join(', ') : 'нет совпадений';
+    rows.push(detailRow('❄️', 'Сезон', d.season.score,
+      `Совпали: ${seasonMatched}`));
+  }
+
+  rows.push(detailRow('⭐', 'Бренд', d.brand.score,
+    d.brand.matched ? `${r.brand} — твой выбор` : 'Бренд не выбирался'));
+
+  const accordsHtml = r.accords && r.accords.length
+    ? `<div class="details-accords">Все аккорды аромата: ${r.accords.join(', ')}</div>`
+    : '';
+
+  const overlay = document.createElement('div');
+  overlay.id = 'details-overlay';
+  overlay.innerHTML = `
+    <div class="details-modal">
+      <div class="details-header">
+        <div>
+          <div class="details-brand">${r.brand}</div>
+          <div class="details-name">${r.name}</div>
+        </div>
+        <div class="details-total">${d.total} бал.</div>
+      </div>
+      ${rows.join('')}
+      ${accordsHtml}
+      <button class="details-close" onclick="closeDetails()">Закрыть</button>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeDetails(); });
+}
+
+function closeDetails() {
+  const el = document.getElementById('details-overlay');
+  if (el) el.remove();
 }

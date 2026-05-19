@@ -281,17 +281,19 @@ def _score(item: dict, answers: dict) -> int:
     return score
 
 
-def _score_catalog_item(catalog_item: dict, db_item, answers: dict) -> int:
-    """Score a catalog item using DB accords (if found) plus Russian notes from catalog."""
-    score = 0
+def _score_catalog_item(catalog_item: dict, db_item, answers: dict):
+    """Score a catalog item. Returns (total_score, breakdown_dict) tuple."""
+    bd_branch   = {"score": 0, "max_possible": 0, "matched_accords": []}
+    bd_notes    = {"score": 0, "max_possible": 0, "matched_keywords": []}
+    bd_vibe     = {"score": 0, "max_possible": 0, "vibe_values": [], "matched_accords": []}
+    bd_sub_type = {"score": 0, "max_possible": 0, "sub_type_values": [], "matched_accords": []}
+    bd_season   = {"score": 0, "max_possible": 0, "matched_accords": []}
+    bd_brand    = {"score": 0, "matched": False}
 
-    # Use DB accords if available
     item_accords = [a.lower() for a in (db_item.get("accords") or [])] if db_item else []
-
-    # Build full notes text: DB notes + catalog Russian notes
-    db_notes = ""
+    db_notes_str = ""
     if db_item:
-        db_notes = " ".join([
+        db_notes_str = " ".join([
             db_item.get("top_notes", ""),
             db_item.get("middle_notes", ""),
             db_item.get("base_notes", ""),
@@ -301,35 +303,66 @@ def _score_catalog_item(catalog_item: dict, db_item, answers: dict) -> int:
         catalog_item.get("middle_notes", ""),
         catalog_item.get("base_notes", ""),
     ])
-    all_notes = (db_notes + " " + catalog_notes).lower()
+    all_notes = (db_notes_str + " " + catalog_notes).lower()
 
     # Notes match (EN + RU)
     selected_notes = answers.get("notes") or []
     if isinstance(selected_notes, str):
         selected_notes = [selected_notes]
-    score += _score_notes(all_notes, selected_notes)
+    for note_key in selected_notes:
+        for kw in NOTE_KEYWORDS.get(note_key, []):
+            bd_notes["max_possible"] += 3
+            if kw in all_notes:
+                bd_notes["score"] += 3
+                if kw not in bd_notes["matched_keywords"]:
+                    bd_notes["matched_keywords"].append(kw)
 
     # Vibe → accords
     vibe_raw = answers.get("vibe")
     vibes = vibe_raw if isinstance(vibe_raw, list) else ([vibe_raw] if vibe_raw else [])
+    bd_vibe["vibe_values"] = vibes
     for vibe in vibes:
         accords = VIBE_ACCORDS.get(vibe) or BRANCH_VIBE_ACCORDS.get(vibe) or []
-        score += _score_accords(item_accords, accords, 4)
+        bd_vibe["max_possible"] += len(accords) * 4
+        for accord in accords:
+            if accord.lower() in item_accords:
+                bd_vibe["score"] += 4
+                if accord not in bd_vibe["matched_accords"]:
+                    bd_vibe["matched_accords"].append(accord)
 
     # Branch → accords
     branch = answers.get("branch")
     if branch:
-        score += _score_accords(item_accords, BRANCH_ACCORDS.get(branch, []), 4)
+        branch_accords = BRANCH_ACCORDS.get(branch, [])
+        bd_branch["max_possible"] = len(branch_accords) * 4
+        for accord in branch_accords:
+            if accord.lower() in item_accords:
+                bd_branch["score"] += 4
+                bd_branch["matched_accords"].append(accord)
+
         sub_raw = answers.get("sub_type")
         sub_types = sub_raw if isinstance(sub_raw, list) else ([sub_raw] if sub_raw else [])
+        bd_sub_type["sub_type_values"] = sub_types
         for sub_type in sub_types:
-            score += _score_accords(item_accords, SUB_TYPE_ACCORDS.get(sub_type, []), 3)
+            st_accords = SUB_TYPE_ACCORDS.get(sub_type, [])
+            bd_sub_type["max_possible"] += len(st_accords) * 3
+            for accord in st_accords:
+                if accord.lower() in item_accords:
+                    bd_sub_type["score"] += 3
+                    if accord not in bd_sub_type["matched_accords"]:
+                        bd_sub_type["matched_accords"].append(accord)
 
     # Season → accords
     season_raw = answers.get("season")
     seasons = season_raw if isinstance(season_raw, list) else ([season_raw] if season_raw else [])
     for season in seasons:
-        score += _score_accords(item_accords, SEASON_ACCORDS.get(season, []), 2)
+        s_accords = SEASON_ACCORDS.get(season, [])
+        bd_season["max_possible"] += len(s_accords) * 2
+        for accord in s_accords:
+            if accord.lower() in item_accords:
+                bd_season["score"] += 2
+                if accord not in bd_season["matched_accords"]:
+                    bd_season["matched_accords"].append(accord)
 
     # Brand bonus
     brands = answers.get("brands") or []
@@ -337,14 +370,25 @@ def _score_catalog_item(catalog_item: dict, db_item, answers: dict) -> int:
         brands = [brands]
     item_brand = (catalog_item.get("brand") or "").lower()
     if any(b.lower() in item_brand or item_brand in b.lower() for b in brands):
-        score += 5
+        bd_brand["score"] = 5
+        bd_brand["matched"] = True
 
-    # Ensure items without DB match can still appear if notes match
-    if not db_item and score == 0:
-        # Give a small base so it can rank among no-match items
-        score = -1
+    total = (bd_branch["score"] + bd_notes["score"] + bd_vibe["score"] +
+             bd_sub_type["score"] + bd_season["score"] + bd_brand["score"])
 
-    return score
+    if not db_item and total == 0:
+        total = -1
+
+    breakdown = {
+        "total":    total,
+        "branch":   bd_branch,
+        "notes":    bd_notes,
+        "vibe":     bd_vibe,
+        "sub_type": bd_sub_type,
+        "season":   bd_season,
+        "brand":    bd_brand,
+    }
+    return total, breakdown
 
 
 def _build_reason(item: dict, answers: dict, store: str, catalog_item=None) -> str:
@@ -469,15 +513,15 @@ def _recommend_catalog(answers: dict, store: str, top_n: int) -> list[dict]:
     scored = []
     for key, catalog_item in catalog.items():
         db_item = db_lookup.get(key)
-        s = _score_catalog_item(catalog_item, db_item, answers)
-        scored.append((s, catalog_item, db_item))
+        s, breakdown = _score_catalog_item(catalog_item, db_item, answers)
+        scored.append((s, breakdown, catalog_item, db_item))
 
     scored.sort(key=lambda x: -x[0])
 
     results = []
     seen = set()
 
-    for s, catalog_item, db_item in scored:
+    for s, breakdown, catalog_item, db_item in scored:
         if s <= 0:
             continue
 
@@ -499,14 +543,15 @@ def _recommend_catalog(answers: dict, store: str, top_n: int) -> list[dict]:
         reason = _build_reason(source_item, answers, store, catalog_item)
 
         results.append({
-            "name":      name,
-            "brand":     brand,
-            "price":     price,
-            "image_url": catalog_item.get("image_url", ""),
-            "url":       url,
-            "score":     s,
-            "accords":   (db_item.get("accords") or []) if db_item else [],
-            "reason":    reason,
+            "name":         name,
+            "brand":        brand,
+            "price":        price,
+            "image_url":    catalog_item.get("image_url", ""),
+            "url":          url,
+            "score":        s,
+            "accords":      (db_item.get("accords") or []) if db_item else [],
+            "reason":       reason,
+            "score_details": breakdown,
         })
 
         if len(results) == top_n:

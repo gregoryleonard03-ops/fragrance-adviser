@@ -25,12 +25,12 @@ const STEP1 = {
   multi: false,
   cols: 3,
   options: [
-    { value: 'fresh_clean',    emoji: '🌊', label: 'Свежий и чистый',        sub: 'Свежий, лёгкий, чистый' },
-    { value: 'warm_cozy',      emoji: '🕯️', label: 'Тёплый и уютный',        sub: 'Тёплый, уютный, обволакивающий' },
-    { value: 'dark_sexy',      emoji: '🖤', label: 'Тёмный и чувственный',   sub: 'Тёмный, чувственный, мощный' },
-    { value: 'elegant_luxury', emoji: '👑', label: 'Элегантная роскошь',     sub: 'Статусный, изысканный, дорогой' },
-    { value: 'artistic_niche', emoji: '🎭', label: 'Авторский нишевый',      sub: 'Авторский, редкий, концептуальный' },
-    { value: 'soft_skin',      emoji: '🤍', label: 'Кожный аромат',          sub: 'Тихий, интимный, вторая кожа' },
+    { value: 'fresh_clean',    emoji: '🌊', label: 'Fresh Clean',     sub: 'Свежий, лёгкий, чистый' },
+    { value: 'warm_cozy',      emoji: '🕯️', label: 'Warm Cozy',       sub: 'Тёплый, уютный, обволакивающий' },
+    { value: 'dark_sexy',      emoji: '🖤', label: 'Dark Sexy',        sub: 'Тёмный, чувственный, мощный' },
+    { value: 'elegant_luxury', emoji: '👑', label: 'Elegant Luxury',   sub: 'Статусный, изысканный, дорогой' },
+    { value: 'artistic_niche', emoji: '🎭', label: 'Artistic Niche',   sub: 'Авторский, редкий, концептуальный' },
+    { value: 'soft_skin',      emoji: '🤍', label: 'Soft Skin Scent',  sub: 'Тихий, интимный, вторая кожа' },
   ],
 };
 

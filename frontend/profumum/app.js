@@ -1,5 +1,21 @@
 const API = '';
 
+(function initTheme() {
+  const saved = localStorage.getItem('parfindo-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  function syncBtn() {
+    const btn = document.getElementById('theme-toggle-btn');
+    if (btn) btn.textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? '☀' : '☽';
+  }
+  window.toggleTheme = function() {
+    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('parfindo-theme', next);
+    syncBtn();
+  };
+  document.addEventListener('DOMContentLoaded', syncBtn);
+})();
+
 // ── Step 1: main direction ────────────────────────────────────────────────────
 
 const STEP1 = {

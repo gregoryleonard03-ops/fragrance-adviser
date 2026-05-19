@@ -80,10 +80,16 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
 }
 
 /* ===== Intro ===== */
-#screen-intro { justify-content: center; background: var(--bg); }
+#screen-intro { justify-content: flex-start; background: var(--bg); }
 
 .intro-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  width: 100%;
   max-width: 560px;
   padding: 0 32px;
   animation: fadeUp 0.8s ease;
@@ -566,4 +572,35 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Theme toggle ===== */
+.theme-toggle {
+  position: fixed;
+  right: 14px;
+  top: 8px;
+  z-index: 9999;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: none;
+  border: 1px solid #333;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, color 0.2s;
+}
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ===== Light theme ===== */
+:root[data-theme="light"] {
+  --bg:         #f8f4ee;
+  --bg2:        #f0e8dc;
+  --bg3:        #e8ddd0;
+  --text:       #0d0d0d;
+  --text2:      #4a4a4a;
+  --gray-light: #ddd8d0;
 }

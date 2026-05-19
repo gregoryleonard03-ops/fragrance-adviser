@@ -1,20 +1,20 @@
 const API = '';
 
-(function initTheme() {
-  const saved = localStorage.getItem('parfindo-theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', saved);
-  function syncBtn() {
-    const btn = document.getElementById('theme-toggle-btn');
-    if (btn) btn.textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? '☀' : '☽';
-  }
-  window.toggleTheme = function() {
-    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('parfindo-theme', next);
-    syncBtn();
-  };
-  document.addEventListener('DOMContentLoaded', syncBtn);
-})();
+// Theme management
+document.documentElement.setAttribute('data-theme', localStorage.getItem('parfindo-theme') || 'dark');
+
+function toggleTheme() {
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('parfindo-theme', next);
+  const btn = document.getElementById('theme-toggle-btn');
+  if (btn) btn.textContent = next === 'dark' ? '☀' : '☽';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const btn = document.getElementById('theme-toggle-btn');
+  if (btn) btn.textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? '☀' : '☽';
+});
 
 // ── Step 1: main direction ────────────────────────────────────────────────────
 

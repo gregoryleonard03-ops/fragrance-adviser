@@ -571,6 +571,43 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
 }
 .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
 
+/* ===== Mobile ===== */
+@media (max-width: 680px) {
+  #app {
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .quiz-progress-bar-wrap {
+    padding: 14px 20px 0;
+  }
+
+  .quiz-body {
+    padding: 18px 20px 14px;
+  }
+
+  .question-title {
+    font-size: 24px;
+    margin-bottom: 4px;
+  }
+
+  .question-hint {
+    margin-bottom: 18px;
+  }
+
+  .quiz-nav {
+    padding-top: 14px;
+  }
+
+  .btn-back {
+    padding: 10px 16px;
+  }
+
+  .btn-next {
+    padding: 12px 24px;
+  }
+}
+
 /* ===== Light theme ===== */
 :root[data-theme="light"] {
   --bg:         #f8f4ee;

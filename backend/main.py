@@ -7,7 +7,7 @@ from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
@@ -45,22 +45,24 @@ class Answers(BaseModel):
     intensity: list[str] = []
 
 
+NO_CACHE = {"Cache-Control": "no-cache, no-store, must-revalidate", "Pragma": "no-cache"}
+
 # ── Страницы ─────────────────────────────────────────────────────────────────
 @app.get("/")
 def index():
-    return FileResponse(str(FRONTEND / "index.html"))
+    return FileResponse(str(FRONTEND / "index.html"), headers=NO_CACHE)
 
 @app.get("/sephora")
 def sephora_page():
-    return FileResponse(str(FRONTEND / "sephora" / "index.html"))
+    return FileResponse(str(FRONTEND / "sephora" / "index.html"), headers=NO_CACHE)
 
 @app.get("/parfbar")
 def parfbar_page():
-    return FileResponse(str(FRONTEND / "parfbar" / "index.html"))
+    return FileResponse(str(FRONTEND / "parfbar" / "index.html"), headers=NO_CACHE)
 
 @app.get("/profumum")
 def profumum_page():
-    return FileResponse(str(FRONTEND / "profumum" / "index.html"))
+    return FileResponse(str(FRONTEND / "profumum" / "index.html"), headers=NO_CACHE)
 
 
 # ── Healthcheck ───────────────────────────────────────────────────────────────

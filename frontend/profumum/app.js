@@ -73,12 +73,13 @@ const GIFT_ROUTING = {
   title: 'Кому выбираешь аромат?',
   hint: '',
   multi: false,
-  cols: 2,
+  cols: 3,
   options: [
-    { value: 'romantic', emoji: '💑', label: 'Romantic',   sub: 'Девушке / жене / парню / мужу' },
-    { value: 'friend',   emoji: '👥', label: 'Другу',       sub: 'Подруге, другу, коллеге, родителям' },
-    { value: 'safe',     emoji: '🎁', label: 'Safe pick',   sub: 'Не знаю вкус — нужен безопасный выбор' },
-    { value: 'intro',    emoji: '🌟', label: 'Intro niche', sub: 'Хочу познакомить с нишевой парфюмерией' },
+    { value: 'romantic',  emoji: '💑', label: 'Romantic',             sub: 'Девушке / жене / парню / мужу' },
+    { value: 'friend',    emoji: '👥', label: 'Другу',                 sub: 'Подруге, другу, родителям' },
+    { value: 'colleague', emoji: '👔', label: 'Коллеге / Начальнику', sub: 'Рабочий подарок' },
+    { value: 'safe',      emoji: '🎁', label: 'Safe pick',             sub: 'Не знаю вкус — нужен безопасный выбор' },
+    { value: 'intro',     emoji: '🌟', label: 'Intro niche',           sub: 'Хочу познакомить с нишевой парфюмерией' },
   ],
 };
 
@@ -238,6 +239,43 @@ const GIFT_BRANCHES = {
       { value: 'niche_wearable', emoji: '⚖️', label: 'Чуть интереснее обычного' },
       { value: 'unusual',        emoji: '🎯', label: 'Уже ощущается как ниша' },
       { value: 'rare',           emoji: '💎', label: 'Редкий и необычный' },
+    ]},
+    GIFT_BUDGET_STEP,
+  ],
+
+  colleague: [
+    { id: 'gift_gender', title: 'Кому подарок?', multi: false, cols: 2, options: [
+      { value: 'female', emoji: '👩', label: 'Женщина' },
+      { value: 'male',   emoji: '👨', label: 'Мужчина' },
+    ]},
+    { id: 'gift_familiarity', title: 'Кто этот человек?', multi: false, cols: 3, options: [
+      { value: 'colleague', emoji: '👔', label: 'Коллега',           sub: 'Работаем вместе на равных' },
+      { value: 'boss',      emoji: '👑', label: 'Начальник',         sub: 'Мой руководитель / директор' },
+      { value: 'partner',   emoji: '🤝', label: 'Деловой партнёр',  sub: 'Клиент или бизнес-партнёр' },
+    ]},
+    { id: 'gift_style', title: 'Какая атмосфера у этого человека?', hint: 'Можно выбрать несколько', multi: true, cols: 2, options: [
+      { value: 'classic',  emoji: '🏛️', label: 'Классика и статус',       sub: 'Всегда в костюме, сдержанный' },
+      { value: 'luxury',   emoji: '💎', label: 'Luxury',                   sub: 'Дорогие вещи, премиум' },
+      { value: 'minimal',  emoji: '✨', label: 'Современный минималист',   sub: 'Чистый стиль, без лишнего' },
+      { value: 'creative', emoji: '🎨', label: 'Творческий',               sub: 'Нестандартный, свободный' },
+    ]},
+    { id: 'gift_vibe', title: 'Какой аромат подойдёт для рабочей обстановки?', hint: 'Можно выбрать несколько', multi: true, cols: 2, options: [
+      { value: 'elegant_luxury', emoji: '👑', label: 'Elegant Luxury', sub: 'Статусный, дорогой' },
+      { value: 'fresh_clean',    emoji: '🌊', label: 'Fresh Clean',    sub: 'Свежий, ненавязчивый' },
+      { value: 'warm_cozy',      emoji: '🕯️', label: 'Warm Cozy',      sub: 'Тёплый, запоминающийся' },
+      { value: 'soft_skin',      emoji: '🤍', label: 'Soft Skin',      sub: 'Деликатный, ненавязчивый' },
+    ]},
+    { id: 'gift_effect', title: 'Что должен транслировать этот подарок?', hint: 'Можно выбрать несколько', multi: true, cols: 2, options: [
+      { value: 'status',       emoji: '👑', label: 'Уважение и статус',  sub: 'Серьёзный, дорогой жест' },
+      { value: 'complimentary',emoji: '💬', label: 'Запомниться',        sub: 'Выделиться среди других' },
+      { value: 'cozy',         emoji: '🌿', label: 'Уместность',         sub: 'Профессионально и тактично' },
+      { value: 'memorable',    emoji: '🎭', label: 'Вкус и культуру',    sub: 'Показать свою насмотренность' },
+    ]},
+    { id: 'gift_boldness', title: 'Насколько необычным может быть выбор?', multi: false, cols: 4, options: [
+      { value: 'safe',           emoji: '🛡️', label: 'Безопасный',          sub: 'Не хочу рисковать' },
+      { value: 'niche_wearable', emoji: '⚖️', label: 'Чуть интереснее масс-маркета' },
+      { value: 'unusual',        emoji: '🎯', label: 'Нишевый, но элегантный' },
+      { value: 'rare',           emoji: '💎', label: 'Редкий эксклюзив',    sub: 'Точно запомнится' },
     ]},
     GIFT_BUDGET_STEP,
   ],

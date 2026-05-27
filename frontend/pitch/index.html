@@ -99,14 +99,61 @@
     </div>
   </section>
 
-  <!-- 5. Big number -->
+  <!-- 5. Economics table -->
   <section class="slide" data-slide="5" data-title="Рост выручки">
     <div class="slide-inner">
       <div class="slide-tag">04 · Экономика</div>
-      <div class="bignum">1,6 – 3 млн&nbsp;₽</div>
-      <p class="slide-sub">Потенциальный рост выручки</p>
-      <p class="slide-body">Внедрение AI-квиза может значительно увеличить выручку Profumum.ru, улучшая конверсию и обеспечивая дополнительный доход от продаж нишевого парфюма.</p>
-      <p class="slide-math">Пример расчёта: 6 000 посетителей/мес × средний чек 25 000 ₽ × рост конверсии на 2% = <strong>+3 000 000 ₽/год</strong></p>
+      <h2 class="slide-title">Потенциальная <em>выручка</em></h2>
+      <p class="slide-sub">Дополнительный доход · средний чек 25 000 ₽</p>
+      <table class="econ-table">
+        <thead>
+          <tr>
+            <th class="econ-corner">конв.&nbsp;↓&nbsp;/&nbsp;посет.&nbsp;→</th>
+            <th>3 000<span class="econ-th-sub">/мес</span></th>
+            <th>5 000<span class="econ-th-sub">/мес</span></th>
+            <th>7 000<span class="econ-th-sub">/мес</span></th>
+            <th>10 000<span class="econ-th-sub">/мес</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="econ-row-label">+1%</td>
+            <td>750 000 ₽</td>
+            <td>1,25 млн ₽</td>
+            <td>1,75 млн ₽</td>
+            <td class="econ-md">2,5 млн ₽</td>
+          </tr>
+          <tr>
+            <td class="econ-row-label">+2%</td>
+            <td>1,5 млн ₽</td>
+            <td class="econ-md">2,5 млн ₽</td>
+            <td class="econ-md">3,5 млн ₽</td>
+            <td class="econ-hi">5,0 млн ₽</td>
+          </tr>
+          <tr>
+            <td class="econ-row-label">+3%</td>
+            <td class="econ-md">2,25 млн ₽</td>
+            <td class="econ-md">3,75 млн ₽</td>
+            <td class="econ-hi">5,25 млн ₽</td>
+            <td class="econ-hi">7,5 млн ₽</td>
+          </tr>
+          <tr>
+            <td class="econ-row-label">+4%</td>
+            <td class="econ-md">3,0 млн ₽</td>
+            <td class="econ-hi">5,0 млн ₽</td>
+            <td class="econ-hi">7,0 млн ₽</td>
+            <td class="econ-top">10 млн ₽</td>
+          </tr>
+          <tr>
+            <td class="econ-row-label">+5%</td>
+            <td class="econ-md">3,75 млн ₽</td>
+            <td class="econ-hi">6,25 млн ₽</td>
+            <td class="econ-top">8,75 млн ₽</td>
+            <td class="econ-top">12,5 млн ₽</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="slide-math">Формула: посетители/мес × чек × рост конверсии · средняя конверсия нишевых магазинов: 0,5–2%</p>
     </div>
   </section>
 
@@ -207,10 +254,66 @@
     </div>
   </section>
 
-  <!-- 10. Уникальное предложение -->
-  <section class="slide" data-slide="10" data-title="Уникальное предложение">
+  <!-- 10. Виджет -->
+  <section class="slide" data-slide="10" data-title="Виджет на сайте">
     <div class="slide-inner">
-      <div class="slide-tag">09 · Позиционирование</div>
+      <div class="slide-tag">09 · Виджет</div>
+      <h2 class="slide-title">Встроенный <em>виджет</em></h2>
+      <p class="slide-sub">Один скрипт — квиз на вашем сайте</p>
+      <div class="mock-wrap">
+        <div class="mock-browser">
+          <div class="mock-bar">
+            <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+            <span class="mock-url">profumum.ru/catalog</span>
+          </div>
+          <div class="mock-content">
+            <div class="mock-site-header">
+              <div class="mock-line" style="width:42%;height:11px;margin-bottom:7px"></div>
+              <div class="mock-line" style="width:63%"></div>
+            </div>
+            <div class="mock-products">
+              <div class="mock-product-card"></div>
+              <div class="mock-product-card"></div>
+              <div class="mock-product-card"></div>
+            </div>
+            <div class="mock-widget">
+              <div class="mock-widget-header">✦&nbsp;&nbsp;Подобрать аромат</div>
+              <div class="mock-widget-body">
+                <div class="mock-progress"><div class="mock-progress-fill"></div></div>
+                <div class="mock-q">Какой вайб тебе ближе?</div>
+                <div class="mock-chips">
+                  <span>🌊 Fresh</span>
+                  <span class="mock-chip-active">🖤 Dark Sexy</span>
+                  <span>🕯️ Warm</span>
+                </div>
+                <div class="mock-actions"><span class="mock-next-btn">Далее →</span></div>
+              </div>
+            </div>
+            <div class="mock-fab">✦</div>
+          </div>
+        </div>
+        <div class="mock-features">
+          <div class="col">
+            <div class="col-title">Без переделки сайта</div>
+            <p class="col-text">Один тег &lt;script&gt; — квиз появляется как кнопка или встроенный блок. Никаких изменений в шаблоне.</p>
+          </div>
+          <div class="col">
+            <div class="col-title">Два режима</div>
+            <p class="col-text">Плавающая кнопка (FAB) внизу страницы — или iframe в любом месте каталога.</p>
+          </div>
+          <div class="col">
+            <div class="col-title">Под ваш стиль</div>
+            <p class="col-text">Настраиваем цвета, шрифт и логотип под брендбук Profumum.ru — без доп. оплаты.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. Уникальное предложение -->
+  <section class="slide" data-slide="11" data-title="Уникальное предложение">
+    <div class="slide-inner">
+      <div class="slide-tag">10 · Позиционирование</div>
       <h2 class="slide-title">Уникальное <em>предложение</em></h2>
       <p class="slide-sub">Инновационное позиционирование</p>
       <div class="highlight">
@@ -219,10 +322,10 @@
     </div>
   </section>
 
-  <!-- 11. Связь -->
-  <section class="slide" data-slide="11" data-title="Связь с нами">
+  <!-- 12. Связь -->
+  <section class="slide" data-slide="12" data-title="Связь с нами">
     <div class="slide-inner">
-      <div class="slide-tag">10 · Контакты</div>
+      <div class="slide-tag">11 · Контакты</div>
       <h2 class="slide-title">Связь <em>с нами</em></h2>
       <p class="slide-body">Начните с пилота и откройте потенциал AI-подбора ароматов для вашего бизнеса.</p>
       <div class="contacts">

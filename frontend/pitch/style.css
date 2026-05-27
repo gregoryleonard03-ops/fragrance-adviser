@@ -456,6 +456,124 @@ body {
 }
 .cta-demo:hover { border-color: var(--accent); }
 
+/* ===== Economics table ===== */
+.econ-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 3px;
+  margin-top: 28px;
+  font-variant-numeric: tabular-nums;
+}
+.econ-table thead th {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: 10px 14px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.econ-corner {
+  text-align: left !important;
+  font-size: 9px !important;
+  letter-spacing: 0.06em !important;
+  color: var(--text3) !important;
+}
+.econ-th-sub {
+  display: block;
+  font-size: 9px;
+  color: var(--text3);
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 400;
+  margin-top: 2px;
+}
+.econ-table tbody td {
+  padding: 12px 16px;
+  text-align: center;
+  font-size: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  white-space: nowrap;
+}
+.econ-row-label {
+  font-size: 13px !important;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent) !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  text-align: right !important;
+  padding-right: 16px !important;
+}
+.econ-md { background: rgba(184,154,106,0.14) !important; color: var(--text) !important; }
+.econ-hi { background: rgba(184,154,106,0.28) !important; color: var(--text) !important; font-weight: 600; }
+.econ-top { background: rgba(184,154,106,0.46) !important; color: var(--accent-strong) !important; font-weight: 700; }
+
+/* ===== Widget mockup ===== */
+.mock-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 36px;
+  align-items: start;
+}
+.mock-features { display: flex; flex-direction: column; gap: 18px; }
+.mock-browser {
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.mock-bar {
+  background: var(--bg-elev);
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-bottom: 1px solid var(--border);
+}
+.mock-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--border2);
+  display: inline-block;
+  flex-shrink: 0;
+}
+.mock-url { margin-left: 10px; font-size: 10px; color: var(--text3); letter-spacing: 0.03em; }
+.mock-content { padding: 16px; position: relative; min-height: 220px; }
+.mock-site-header { margin-bottom: 12px; }
+.mock-line { height: 8px; background: var(--border); border-radius: 2px; margin-bottom: 6px; opacity: 0.4; }
+.mock-products { display: grid; grid-template-columns: repeat(3,1fr); gap: 7px; margin-bottom: 12px; }
+.mock-product-card { height: 52px; background: var(--bg-elev); border: 1px solid var(--border); border-radius: 3px; opacity: 0.45; }
+.mock-widget { border: 1px solid var(--accent); background: var(--bg); border-radius: 6px; overflow: hidden; }
+.mock-widget-header {
+  background: var(--accent); color: #0e0e0e;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+  padding: 7px 12px; text-transform: uppercase;
+}
+.mock-widget-body { padding: 11px; }
+.mock-progress { height: 2px; background: var(--border); border-radius: 1px; margin-bottom: 9px; }
+.mock-progress-fill { width: 28%; height: 100%; background: var(--accent); border-radius: 1px; }
+.mock-q { font-size: 11px; color: var(--text); margin-bottom: 9px; line-height: 1.4; }
+.mock-chips { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 9px; }
+.mock-chips span { font-size: 9px; padding: 3px 7px; border: 1px solid var(--border2); color: var(--text2); border-radius: 3px; }
+.mock-chip-active { border-color: var(--accent) !important; color: var(--accent) !important; background: var(--accent-soft); }
+.mock-actions { text-align: right; }
+.mock-next-btn { font-size: 9px; color: var(--accent); letter-spacing: 0.1em; }
+.mock-fab {
+  position: absolute; bottom: 14px; right: 14px;
+  width: 34px; height: 34px;
+  background: var(--accent); color: #0e0e0e;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700;
+  box-shadow: 0 2px 12px rgba(184,154,106,0.4);
+}
+
 /* ===== Mobile ===== */
 @media (max-width: 760px) {
   .slide { padding: 90px 22px 50px; }
@@ -479,4 +597,10 @@ body {
   .cta-primary, .cta-secondary { padding: 16px 24px; text-align: center; }
   .slide-cover .logo-big { width: 140px; }
   .highlight { padding: 20px 22px; font-size: 15px; }
+  .econ-table { border-spacing: 2px; }
+  .econ-table thead th { font-size: 9px; padding: 7px 6px; }
+  .econ-table tbody td { padding: 8px 6px; font-size: 11px; }
+  .econ-row-label { font-size: 10px !important; padding-right: 6px !important; }
+  .mock-wrap { grid-template-columns: 1fr; }
+  .mock-content { min-height: 180px; }
 }

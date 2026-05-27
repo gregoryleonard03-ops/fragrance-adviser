@@ -4,7 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-AI-powered fragrance quiz that asks 10 questions and recommends 5 perfumes from Sephora. No external AI APIs — matching is done locally via keyword scoring. Built as a web prototype.
+**Aroma Match** — AI-платформа персонального подбора парфюма. Продаётся владельцам нишевых магазинов (текущий клиент — Profumum.ru). Без внешних AI API — матчинг локальный по ключевым словам.
+
+Главная страница (`/`) — бренд Aroma Match, две карточки: «Profumum — Квиз» (→ `/profumum`) и «О продукте» (→ `/pitch` — продающая презентация в виде scroll-snap HTML-слайдов).
+
+Sephora и Parfbar остались как рабочие прототипы по прямым URL (`/sephora`, `/parfbar`), но **скрыты с главной** — на будущее, для тестов и потенциальной активации.
+
+Брендинг: `frontend/assets/logo_am.png` (вариант лого №5 — AM с распылителем). Единый золотой акцент `--accent` через CSS-переменные: `#b89a6a` (тёмная тема), `#8a7045` (светлая). Тумблер темы ☀/☽ синхронизируется через `localStorage.parfindo-theme` на всех страницах. Внутри квиза Profumum остаётся локальный зелёный `#4a9e6a` — не трогаем.
 
 ## Running the project
 
@@ -35,13 +41,27 @@ backend/
   data/
     fragrances.json — fragrance catalog (35 entries, manually curated)
 
-frontend/           — vanilla JS SPA, no build step
-  index.html        — 4 screens: intro / quiz / loading / results
-  app.js            — QUESTIONS array + quiz logic + fetch to /api/recommend
-  style.css         — luxury fragrance aesthetic with Sephora red (#d4145a) accents
+frontend/           — vanilla JS, no build step
+  index.html        — Aroma Match home: 2 cards + theme toggle + logo
+  assets/
+    logo_am.png     — AM logo (transparent PNG, used everywhere)
+  pitch/            — sales presentation (11 slides, scroll-snap)
+    index.html
+    style.css
+    app.js
+  profumum/         — main customer quiz (RU, 7 questions)
+  sephora/          — hidden prototype (EN, 10 questions) — direct URL only
+  parfbar/          — hidden prototype (RU, 7 questions) — direct URL only
 ```
 
-Static files are served via FastAPI at `/static/*` — HTML references them as `/static/style.css` and `/static/app.js` (absolute paths, not relative).
+Routes in `backend/main.py`:
+- `/` → home
+- `/pitch` → presentation page
+- `/pitch/aroma-match.pdf` → original PDF download
+- `/profumum`, `/sephora`, `/parfbar` → quiz pages
+- `/api/recommend/{profumum|sephora|parfbar}` → matching API
+
+Static files are served via FastAPI at `/static/*` — HTML references them as `/static/assets/logo_am.png`, `/static/pitch/style.css` etc. (absolute paths).
 
 ## How matching works
 

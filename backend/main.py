@@ -64,6 +64,18 @@ def parfbar_page():
 def profumum_page():
     return FileResponse(str(FRONTEND / "profumum" / "index.html"), headers=NO_CACHE)
 
+@app.get("/pitch")
+def pitch_page():
+    return FileResponse(str(FRONTEND / "pitch" / "index.html"), headers=NO_CACHE)
+
+@app.get("/pitch/aroma-match.pdf")
+def pitch_pdf():
+    return FileResponse(
+        str(Path(__file__).parent.parent / "Aroma Match.pdf"),
+        media_type="application/pdf",
+        filename="Aroma Match.pdf",
+    )
+
 
 # ── Healthcheck ───────────────────────────────────────────────────────────────
 @app.get("/api/health")

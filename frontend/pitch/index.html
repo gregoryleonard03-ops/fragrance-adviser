@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aroma Match — Презентация</title>
+  <link rel="stylesheet" href="/static/pitch/style.css" />
+  <script>
+    document.documentElement.setAttribute('data-theme', localStorage.getItem('parfindo-theme') || 'dark');
+  </script>
+</head>
+<body>
+  <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()">☀</button>
+
+  <header class="topbar">
+    <a class="topbar-logo" href="/">
+      <span class="logo-icon" role="img" aria-label="Aroma Match"></span>
+      <span>Aroma Match</span>
+    </a>
+    <div class="topbar-actions">
+      <a class="btn-pdf" href="/pitch/aroma-match.pdf" target="_blank">Скачать PDF</a>
+    </div>
+  </header>
+
+  <nav class="slide-nav" id="slide-nav" aria-label="Навигация по слайдам"></nav>
+
+  <!-- 1. Cover -->
+  <section class="slide slide-cover" data-slide="1" data-title="Обложка">
+    <div class="slide-inner">
+      <div class="logo-big" role="img" aria-label="Aroma Match"></div>
+      <h1 class="cover-name">Aroma Match</h1>
+      <p class="cover-sub">AI-платформа для персонального подбора парфюма</p>
+      <div class="cover-pin">Специальное предложение для Profumum.ru</div>
+    </div>
+    <div class="scroll-hint">Листайте</div>
+  </section>
+
+  <!-- 2. Проблема выбора -->
+  <section class="slide" data-slide="2" data-title="Проблема выбора">
+    <div class="slide-inner">
+      <div class="slide-tag">01 · Проблема</div>
+      <h2 class="slide-title">Проблема <em>выбора</em></h2>
+      <p class="slide-sub">Как посетители теряются в ароматах</p>
+      <div class="cols-2">
+        <div class="col">
+          <div class="col-title">Убеждение</div>
+          <p class="col-text">До 70% посетителей покидают сайт, не делая покупку, не потому что им не нравятся ароматы, а из-за недостатка информации и уверенности в выборе.</p>
+        </div>
+        <div class="col">
+          <div class="col-title">Конфуз</div>
+          <p class="col-text">Нишевый парфюм отличается сложностью: покупатели часто не знают, как выбрать между такими брендами, как Amouage и Memo Paris, что приводит к отмене покупки.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Барьеры к покупке -->
+  <section class="slide" data-slide="3" data-title="Барьеры">
+    <div class="slide-inner">
+      <div class="slide-tag">02 · Барьеры</div>
+      <h2 class="slide-title">Барьеры <em>к покупке</em></h2>
+      <p class="slide-sub">Основные препятствия для клиентов</p>
+      <div class="cols-3">
+        <div class="col">
+          <div class="card-num">01</div>
+          <div class="col-title">Паралич выбора</div>
+          <p class="col-text">Огромный каталог нишевых ароматов перегружает покупателя — невозможно сравнить десятки опций.</p>
+        </div>
+        <div class="col">
+          <div class="card-num">02</div>
+          <div class="col-title">Страх ошибки</div>
+          <p class="col-text">Дорогие ароматы — высокая цена ошибки. Покупатель боится потратить деньги впустую.</p>
+        </div>
+        <div class="col">
+          <div class="card-num">03</div>
+          <div class="col-title">Выбор подарка</div>
+          <p class="col-text">Подбор аромата для близкого человека — сложнее, чем для себя. Нет ориентиров.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Решение: Квиз -->
+  <section class="slide" data-slide="4" data-title="Решение">
+    <div class="slide-inner">
+      <div class="slide-tag">03 · Решение</div>
+      <h2 class="slide-title">Решение — <em>квиз</em></h2>
+      <p class="slide-body">Aroma Match использует AI для персонального подбора ароматов, задавая 7 вопросов о стиле жизни и предпочтениях, что помогает сузить выбор и улучшить опыт покупателя.</p>
+      <div class="cols-2">
+        <div class="col">
+          <div class="col-title">Рекомендации</div>
+          <p class="col-text">Персонализированные ароматы из каталога Profumum.ru — топ-5 для каждого пользователя.</p>
+        </div>
+        <div class="col">
+          <div class="col-title">Удобство</div>
+          <p class="col-text">24/7 доступность без необходимости консультанта. Подбор занимает 2 минуты.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Big number -->
+  <section class="slide" data-slide="5" data-title="Рост выручки">
+    <div class="slide-inner">
+      <div class="slide-tag">04 · Экономика</div>
+      <div class="bignum">1,6 – 3 млн&nbsp;₽</div>
+      <p class="slide-sub">Потенциальный рост выручки</p>
+      <p class="slide-body">Внедрение AI-квиза может значительно увеличить выручку Profumum.ru, улучшая конверсию и обеспечивая дополнительный доход от продаж нишевого парфюма.</p>
+    </div>
+  </section>
+
+  <!-- 6. Как работает -->
+  <section class="slide" data-slide="6" data-title="Как работает">
+    <div class="slide-inner">
+      <div class="slide-tag">05 · Как работает</div>
+      <h2 class="slide-title">Как работает <em>Aroma Match</em></h2>
+      <p class="slide-sub">Этапы от квиза до покупки продукта</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-name">Вопросы</div>
+          <div class="step-desc">7 вопросов о стиле, поводе и предпочтениях</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-name">AI-матчинг</div>
+          <div class="step-desc">Алгоритм ранжирует каталог под профиль</div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-name">Топ-5</div>
+          <div class="step-desc">Покупатель получает персональную подборку</div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-name">Покупка</div>
+          <div class="step-desc">Прямой переход на карточку товара</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Почему ниша выигрывает -->
+  <section class="slide" data-slide="7" data-title="Почему ниша выигрывает">
+    <div class="slide-inner">
+      <div class="slide-tag">06 · Ниша</div>
+      <h2 class="slide-title">Почему нишевые парфюмы <em>выигрывают</em></h2>
+      <p class="slide-sub">с Aroma Match</p>
+      <div class="cols-2">
+        <div class="col">
+          <div class="col-title">Уникальные бренды</div>
+          <p class="col-text">Aroma Match помогает открыть незнакомые ароматы покупателям, которые иначе бы прошли мимо нишевых марок.</p>
+        </div>
+        <div class="col">
+          <div class="col-title">Персональные рекомендации</div>
+          <p class="col-text">Индивидуальный подход увеличивает доверие к бренду Profumum и формирует лояльность.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Gift Match -->
+  <section class="slide" data-slide="8" data-title="Gift Match">
+    <div class="slide-inner">
+      <div class="slide-tag">07 · Gift Match</div>
+      <h2 class="slide-title">Gift Match — <em>увеличение продаж</em></h2>
+      <div class="cols-2">
+        <div class="col">
+          <div class="col-title">Персонализация</div>
+          <p class="col-text">Gift Match помогает покупателям выбрать идеальный аромат, учитывая предпочтения и характеристики получателя подарка.</p>
+        </div>
+        <div class="col">
+          <div class="col-title">Снижение рисков</div>
+          <p class="col-text">Система снижает страх ошибки при выборе подарка, предлагая уверенность в AI-подборе специально для них.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Интеграция -->
+  <section class="slide" data-slide="9" data-title="Интеграция">
+    <div class="slide-inner">
+      <div class="slide-tag">08 · Интеграция</div>
+      <h2 class="slide-title">Быстрый <em>старт</em></h2>
+      <p class="slide-sub">Интеграция Aroma Match</p>
+      <div class="cols-3">
+        <div class="col">
+          <div class="card-num">01</div>
+          <div class="col-title">Быстрая установка</div>
+          <p class="col-text">Лёгкая интеграция в систему Profumum.ru без переделки сайта.</p>
+        </div>
+        <div class="col">
+          <div class="card-num">02</div>
+          <div class="col-title">Адаптация под каталог</div>
+          <p class="col-text">Квиз настраивается под ваш уникальный ассортимент брендов и нот.</p>
+        </div>
+        <div class="col">
+          <div class="card-num">03</div>
+          <div class="col-title">Запуск за 3–7 дней</div>
+          <p class="col-text">Быстрый переход к началу работы с Aroma Match — от подписания до live.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Уникальное предложение -->
+  <section class="slide" data-slide="10" data-title="Уникальное предложение">
+    <div class="slide-inner">
+      <div class="slide-tag">09 · Позиционирование</div>
+      <h2 class="slide-title">Уникальное <em>предложение</em></h2>
+      <p class="slide-sub">Инновационное позиционирование</p>
+      <div class="highlight">
+        Profumum.ru — первый нишевый парфюмерный магазин с AI-подбором, выделяющийся на рынке и предлагающий premium digital experience для покупателей, стремящихся к индивидуальности и качеству.
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. Связь -->
+  <section class="slide" data-slide="11" data-title="Связь с нами">
+    <div class="slide-inner">
+      <div class="slide-tag">10 · Контакты</div>
+      <h2 class="slide-title">Связь <em>с нами</em></h2>
+      <p class="slide-body">Начните с пилота и откройте потенциал AI-подбора ароматов для вашего бизнеса.</p>
+      <div class="contacts">
+        <div class="contact-row">
+          <span class="contact-label">Telegram</span>
+          <a href="https://t.me/dudkin03" target="_blank">@dudkin03</a>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Email</span>
+          <a href="mailto:gregoryleonard03@icloud.com">gregoryleonard03@icloud.com</a>
+        </div>
+      </div>
+      <div class="cta-buttons">
+        <a class="cta-primary" href="/profumum">Попробовать квиз</a>
+        <a class="cta-secondary" href="/pitch/aroma-match.pdf" target="_blank">Скачать PDF</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="/static/pitch/app.js"></script>
+</body>
+</html>

@@ -257,6 +257,97 @@ GENDER_MAP = {
 }
 
 
+# ── Gift mode normalization ───────────────────────────────────────────────────
+
+GIFT_VIBE_TO_BRANCH: dict[str, str] = {
+    "dark_sexy":      "dark_sexy",
+    "elegant_luxury": "elegant_luxury",
+    "warm_cozy":      "warm_cozy",
+    "fresh_clean":    "fresh_clean",
+    "artistic_niche": "artistic_niche",
+    "soft_skin":      "soft_skin",
+    "soft_sexy":      "dark_sexy",
+    "rich_minimal":   "elegant_luxury",
+}
+
+GIFT_STYLE_TO_SUBTYPE: dict[str, str] = {
+    "minimal":  "quiet_luxury",
+    "luxury":   "old_money",
+    "creative": "unusual",
+    "classic":  "european",
+    "trendy":   "ceo",
+    "casual":   "clean",
+    "clean":    "clean_musk",
+}
+
+GIFT_EFFECT_TO_OCCASION: dict[str, str] = {
+    "complimentary": "daily",
+    "sexy":          "date",
+    "status":        "restaurants",
+    "cozy":          "cozy_evening",
+    "memorable":     "special",
+}
+
+GIFT_PRIORITY_TO_OCCASION: dict[str, str] = {
+    "everyone":    "daily",
+    "expensive":   "restaurants",
+    "unusual":     "special",
+    "wearable":    "daily",
+    "compliments": "daily",
+    "niche_feel":  "impress",
+    "mass_plus":   "daily",
+}
+
+GIFT_BOLDNESS_TO_VIBE: dict[str, list[str]] = {
+    "safe":           ["fresh_clean", "elegant_luxury"],
+    "niche_wearable": [],
+    "unusual":        ["artistic_niche"],
+    "rare":           ["artistic_niche"],
+}
+
+
+def _normalize_gift_answers(answers: dict) -> dict:
+    """Remap gift-mode fields to standard scoring fields. No-op if gift_type is empty."""
+    if not answers.get("gift_type"):
+        return answers
+
+    norm = dict(answers)
+
+    gift_vibes = answers.get("gift_vibe") or []
+    if isinstance(gift_vibes, str):
+        gift_vibes = [gift_vibes]
+    boldness_vibes = GIFT_BOLDNESS_TO_VIBE.get(answers.get("gift_boldness", ""), [])
+
+    if gift_vibes:
+        mapped = [GIFT_VIBE_TO_BRANCH.get(v, v) for v in gift_vibes]
+        norm["branch"] = mapped[0]
+        norm["vibe"] = mapped[1:] + boldness_vibes
+    elif boldness_vibes:
+        norm["vibe"] = boldness_vibes
+
+    gift_styles = answers.get("gift_style") or []
+    if isinstance(gift_styles, str):
+        gift_styles = [gift_styles]
+    norm["sub_type"] = [GIFT_STYLE_TO_SUBTYPE.get(s, s) for s in gift_styles]
+
+    effects = answers.get("gift_effect") or []
+    if isinstance(effects, str):
+        effects = [effects]
+    priorities = answers.get("gift_priority") or []
+    if isinstance(priorities, str):
+        priorities = [priorities]
+    occ = [GIFT_EFFECT_TO_OCCASION[e] for e in effects if e in GIFT_EFFECT_TO_OCCASION]
+    occ += [GIFT_PRIORITY_TO_OCCASION[p] for p in priorities if p in GIFT_PRIORITY_TO_OCCASION]
+    if occ:
+        norm["occasion"] = occ
+
+    gift_intensity = answers.get("gift_intensity") or []
+    if gift_intensity:
+        norm["intensity"] = gift_intensity
+
+    return norm
+
+
 def _parse_notes(text: str) -> list[str]:
     return [t.strip().lower() for t in text.split(",") if t.strip()]
 
@@ -560,6 +651,7 @@ def recommend_from_db(answers: dict, store: str = "sephora", top_n: int = 5) -> 
 
 def _recommend_catalog(answers: dict, store: str, top_n: int) -> list[dict]:
     """Hybrid scoring: iterate over CATALOG items, enrich with DB data when available."""
+    answers = _normalize_gift_answers(answers)
     catalog = _load_parfbar() if store == "parfbar" else _load_profumum()
     db_lookup = _load_db_lookup()
 

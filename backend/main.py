@@ -43,6 +43,18 @@ class Answers(BaseModel):
     branch: str = ""
     sub_type: list[str] = []
     intensity: list[str] = []
+    # Gift mode fields
+    gift_type: str = ""
+    gift_gender: str = ""
+    gift_familiarity: str = ""
+    gift_knowledge: str = ""
+    gift_age: str = ""
+    gift_vibe: list[str] = []
+    gift_style: list[str] = []
+    gift_effect: list[str] = []
+    gift_boldness: str = ""
+    gift_priority: list[str] = []
+    gift_intensity: list[str] = []
 
 
 NO_CACHE = {"Cache-Control": "no-cache, no-store, must-revalidate", "Pragma": "no-cache"}

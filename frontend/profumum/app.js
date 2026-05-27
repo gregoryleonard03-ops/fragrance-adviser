@@ -52,6 +52,197 @@ const BUDGET_STEP = {
   ],
 };
 
+// ── Gift mode data ─────────────────────────────────────────────────────────────
+
+const GIFT_BUDGET_STEP = {
+  id: 'budget',
+  title: 'Какой бюджет комфортен для подарка?',
+  hint: '',
+  multi: true,
+  cols: 4,
+  options: [
+    { value: 'budget_1', emoji: '💛', label: 'До 15 000 ₽' },
+    { value: 'budget_2', emoji: '🥈', label: '15 – 30k ₽' },
+    { value: 'budget_3', emoji: '🥇', label: '30 – 50k ₽' },
+    { value: 'budget_4', emoji: '💎', label: '50 000+ ₽' },
+  ],
+};
+
+const GIFT_ROUTING = {
+  id: 'gift_type',
+  title: 'Кому выбираешь аромат?',
+  hint: '',
+  multi: false,
+  cols: 2,
+  options: [
+    { value: 'romantic', emoji: '💑', label: 'Romantic',   sub: 'Девушке / жене / парню / мужу' },
+    { value: 'friend',   emoji: '👥', label: 'Другу',       sub: 'Подруге, другу, коллеге, родителям' },
+    { value: 'safe',     emoji: '🎁', label: 'Safe pick',   sub: 'Не знаю вкус — нужен безопасный выбор' },
+    { value: 'intro',    emoji: '🌟', label: 'Intro niche', sub: 'Хочу познакомить с нишевой парфюмерией' },
+  ],
+};
+
+const GIFT_BRANCHES = {
+  romantic: [
+    { id: 'gift_gender', title: 'Кому выбираешь?', multi: false, cols: 2, options: [
+      { value: 'female', emoji: '💄', label: 'Женщина',  sub: 'Девушке / жене' },
+      { value: 'male',   emoji: '👔', label: 'Мужчина',  sub: 'Парню / мужу' },
+    ]},
+    { id: 'gift_vibe', title: 'Какой вайб у этого человека?', hint: 'Можно выбрать несколько', multi: true, cols: 3, options: [
+      { value: 'dark_sexy',      emoji: '🖤', label: 'Dark Sexy',      sub: 'Тёмный, чувственный, мощный' },
+      { value: 'elegant_luxury', emoji: '👑', label: 'Elegant Luxury', sub: 'Статусный, изысканный, дорогой' },
+      { value: 'warm_cozy',      emoji: '🤍', label: 'Soft Cozy',      sub: 'Нежный, мягкий, тёплый' },
+      { value: 'fresh_clean',    emoji: '🌊', label: 'Fresh Clean',    sub: 'Свежий, чистый, лёгкий' },
+      { value: 'artistic_niche', emoji: '🎭', label: 'Artistic Niche', sub: 'Авторский, редкий, необычный' },
+    ]},
+    { id: 'gift_age', title: 'Сколько лет человеку?', multi: false, cols: 4, options: [
+      { value: 'age_18_25', emoji: '🌸', label: '18–25' },
+      { value: 'age_25_35', emoji: '✨', label: '25–35' },
+      { value: 'age_35_45', emoji: '🌟', label: '35–45' },
+      { value: 'age_45',    emoji: '👑', label: '45+' },
+    ]},
+    { id: 'gift_style', title: 'Какой стиль ближе этому человеку?', hint: 'Можно выбрать несколько', multi: true, cols: 3, options: [
+      { value: 'minimal',  emoji: '🤍', label: 'Минималистичный', sub: 'Меньше — лучше' },
+      { value: 'luxury',   emoji: '💎', label: 'Роскошный',        sub: 'Любит дорогие вещи' },
+      { value: 'creative', emoji: '🎨', label: 'Творческий',       sub: 'Нестандартный вкус' },
+      { value: 'classic',  emoji: '🏛️', label: 'Классика',         sub: 'Сдержанный, элегантный' },
+      { value: 'trendy',   emoji: '⚡', label: 'Трендовый',        sub: 'Следит за модой' },
+    ]},
+    { id: 'gift_effect', title: 'Какой эффект должен производить аромат?', hint: 'Можно выбрать несколько', multi: true, cols: 3, options: [
+      { value: 'complimentary', emoji: '💬', label: 'Комплиментарный', sub: 'Все спрашивают — что это?' },
+      { value: 'sexy',          emoji: '💋', label: 'Сексуальный',     sub: 'Притягивает, соблазняет' },
+      { value: 'status',        emoji: '👑', label: 'Статусный',       sub: 'Дорого и значимо' },
+      { value: 'cozy',          emoji: '🫂', label: 'Уютный',          sub: 'Близкий, домашний' },
+      { value: 'memorable',     emoji: '🌀', label: 'Запоминающийся',  sub: 'Необычный, остаётся в памяти' },
+    ]},
+    { id: 'gift_boldness', title: 'Насколько смелым должен быть подарок?', multi: false, cols: 4, options: [
+      { value: 'safe',           emoji: '🛡️', label: 'Безопасный',    sub: 'Точно понравится' },
+      { value: 'niche_wearable', emoji: '⚖️', label: 'Нишевый, но носибельный' },
+      { value: 'unusual',        emoji: '🎯', label: 'Что-то необычное' },
+      { value: 'rare',           emoji: '💎', label: 'Редкий эксклюзив', sub: 'Мало у кого есть' },
+    ]},
+    GIFT_BUDGET_STEP,
+  ],
+
+  friend: [
+    { id: 'gift_gender', title: 'Пол человека?', multi: false, cols: 3, options: [
+      { value: 'female', emoji: '👩', label: 'Женщина' },
+      { value: 'male',   emoji: '👨', label: 'Мужчина' },
+      { value: 'unisex', emoji: '🌈', label: 'Унисекс / не важно' },
+    ]},
+    { id: 'gift_familiarity', title: 'Насколько хорошо знаешь вкусы этого человека?', multi: false, cols: 4, options: [
+      { value: 'well',    emoji: '😊', label: 'Хорошо знаю' },
+      { value: 'roughly', emoji: '🤔', label: 'Примерно понимаю' },
+      { value: 'barely',  emoji: '😅', label: 'Почти не знаю' },
+      { value: 'not',     emoji: '🙅', label: 'Совсем не знаю' },
+    ]},
+    { id: 'gift_vibe', title: 'Какой вайб кажется наиболее безопасным?', hint: 'Можно выбрать несколько', multi: true, cols: 2, options: [
+      { value: 'fresh_clean',    emoji: '🌊', label: 'Fresh Clean',    sub: 'Свежий, чистый, лёгкий' },
+      { value: 'warm_cozy',      emoji: '🕯️', label: 'Warm Cozy',      sub: 'Тёплый, уютный' },
+      { value: 'elegant_luxury', emoji: '👑', label: 'Elegant Luxury', sub: 'Статусный, дорогой' },
+      { value: 'soft_skin',      emoji: '🤍', label: 'Soft Skin Scent',sub: 'Мягкий, кожный, интимный' },
+    ]},
+    { id: 'gift_style', title: 'Какой стиль у этого человека?', hint: 'Можно выбрать несколько', multi: true, cols: 3, options: [
+      { value: 'minimal',  emoji: '✨', label: 'Ухоженный минималист' },
+      { value: 'luxury',   emoji: '💎', label: 'Любит роскошь' },
+      { value: 'casual',   emoji: '👕', label: 'Casual, повседневный' },
+      { value: 'creative', emoji: '🎨', label: 'Творческий' },
+      { value: 'classic',  emoji: '🏛️', label: 'Классика и элегантность' },
+    ]},
+    { id: 'gift_priority', title: 'Что важнее в подарке?', hint: 'Можно выбрать несколько', multi: true, cols: 2, options: [
+      { value: 'everyone', emoji: '🌍', label: 'Чтобы понравился всем' },
+      { value: 'expensive',emoji: '💎', label: 'Чтобы выглядел дорого' },
+      { value: 'unusual',  emoji: '🎭', label: 'Чтобы был необычным' },
+      { value: 'wearable', emoji: '🌿', label: 'Чтобы легко носился каждый день' },
+    ]},
+    { id: 'gift_boldness', title: 'Насколько смелым должен быть выбор?', multi: false, cols: 4, options: [
+      { value: 'safe',           emoji: '🛡️', label: 'Максимально безопасный' },
+      { value: 'niche_wearable', emoji: '⚖️', label: 'Чуть интереснее масс-маркета' },
+      { value: 'unusual',        emoji: '🎯', label: 'Уже настоящая ниша' },
+      { value: 'rare',           emoji: '💎', label: 'Редкий и эксклюзивный' },
+    ]},
+    GIFT_BUDGET_STEP,
+  ],
+
+  safe: [
+    { id: 'gift_gender', title: 'Кому подарок?', multi: false, cols: 2, options: [
+      { value: 'female', emoji: '👩', label: 'Женщина' },
+      { value: 'male',   emoji: '👨', label: 'Мужчина' },
+    ]},
+    { id: 'gift_age', title: 'Сколько лет человеку?', multi: false, cols: 4, options: [
+      { value: 'age_18_25', emoji: '🌸', label: '18–25' },
+      { value: 'age_25_35', emoji: '✨', label: '25–35' },
+      { value: 'age_35_45', emoji: '🌟', label: '35–45' },
+      { value: 'age_45',    emoji: '👑', label: '45+' },
+    ]},
+    { id: 'gift_style', title: 'Какой стиль у этого человека?', hint: 'Можно выбрать несколько', multi: true, cols: 2, options: [
+      { value: 'casual',  emoji: '👕', label: 'Casual',             sub: 'Повседневный, непринуждённый' },
+      { value: 'minimal', emoji: '✨', label: 'Чистый и ухоженный', sub: 'Всегда аккуратный' },
+      { value: 'luxury',  emoji: '💎', label: 'Роскошный',          sub: 'Любит дорогие вещи' },
+      { value: 'classic', emoji: '🏛️', label: 'Классика',           sub: 'Сдержанный, традиционный' },
+    ]},
+    { id: 'gift_vibe', title: 'Какой аромат скорее понравится этому человеку?', hint: 'Можно выбрать несколько', multi: true, cols: 2, options: [
+      { value: 'fresh_clean',    emoji: '🌊', label: 'Свежий и чистый' },
+      { value: 'warm_cozy',      emoji: '🕯️', label: 'Тёплый и уютный' },
+      { value: 'dark_sexy',      emoji: '💋', label: 'Вечерний и чувственный' },
+      { value: 'elegant_luxury', emoji: '👑', label: 'Дорогой luxury-вайб' },
+    ]},
+    { id: 'gift_priority', title: 'Что важнее в подарке?', hint: 'Можно выбрать несколько', multi: true, cols: 2, options: [
+      { value: 'everyone',   emoji: '🌍', label: 'Чтобы понравился всем' },
+      { value: 'compliments',emoji: '💬', label: 'Чтобы собирал комплименты' },
+      { value: 'expensive',  emoji: '💎', label: 'Чтобы выглядел дорого' },
+      { value: 'niche_feel', emoji: '🎭', label: 'Чтобы ощущался как нишевый парфюм' },
+    ]},
+    { id: 'gift_intensity', title: 'Насколько заметным должен быть аромат?', hint: 'Можно выбрать несколько', multi: true, cols: 4, options: [
+      { value: 'very_light', emoji: '🌬️', label: 'Очень лёгкий' },
+      { value: 'medium',     emoji: '⚖️', label: 'Сбалансированный' },
+      { value: 'noticeable', emoji: '💫', label: 'Заметный' },
+      { value: 'strong',     emoji: '💪', label: 'Сильный шлейф' },
+    ]},
+    GIFT_BUDGET_STEP,
+  ],
+
+  intro: [
+    { id: 'gift_gender', title: 'Кому подарок?', multi: false, cols: 2, options: [
+      { value: 'female', emoji: '👩', label: 'Женщина' },
+      { value: 'male',   emoji: '👨', label: 'Мужчина' },
+    ]},
+    { id: 'gift_knowledge', title: 'Насколько человек знаком с парфюмерией?', multi: false, cols: 2, options: [
+      { value: 'none',    emoji: '👶', label: 'Почти не разбирается',     sub: 'Пользуется чем попало' },
+      { value: 'likes',   emoji: '🤔', label: 'Любит хорошие ароматы',   sub: 'Но niche не пробовал' },
+      { value: 'niche',   emoji: '🌱', label: 'Иногда покупает нишу',    sub: 'Уже знает что нравится' },
+      { value: 'curious', emoji: '✨', label: 'Хочет начать разбираться', sub: 'Осознанно ищет свой стиль' },
+    ]},
+    { id: 'gift_vibe', title: 'Какой вайб — самый безопасный вход в нишу?', hint: 'Можно выбрать несколько', multi: true, cols: 3, options: [
+      { value: 'fresh_clean',    emoji: '🌊', label: 'Fresh Clean',    sub: 'Свежий, чистый, лёгкий' },
+      { value: 'warm_cozy',      emoji: '🕯️', label: 'Warm Cozy',      sub: 'Тёплый, уютный' },
+      { value: 'elegant_luxury', emoji: '👑', label: 'Elegant Luxury', sub: 'Статусный, дорогой' },
+      { value: 'dark_sexy',      emoji: '💋', label: 'Soft Sexy',      sub: 'Мягкий, чувственный' },
+      { value: 'soft_skin',      emoji: '🌿', label: 'Rich Minimal',   sub: 'Насыщенный, но сдержанный' },
+    ]},
+    { id: 'gift_priority', title: 'Что важнее для этого подарка?', hint: 'Можно выбрать несколько', multi: true, cols: 2, options: [
+      { value: 'wearable',   emoji: '🌿', label: 'Чтобы легко носился каждый день' },
+      { value: 'compliments',emoji: '💬', label: 'Чтобы собирал комплименты' },
+      { value: 'expensive',  emoji: '💎', label: 'Чтобы ощущался дорого' },
+      { value: 'mass_plus',  emoji: '🎭', label: 'Чтобы был интереснее масс-маркета' },
+    ]},
+    { id: 'gift_style', title: 'Какой стиль у этого человека?', hint: 'Можно выбрать несколько', multi: true, cols: 3, options: [
+      { value: 'casual',   emoji: '👕', label: 'Casual' },
+      { value: 'luxury',   emoji: '💎', label: 'Luxury / дорогой вкус' },
+      { value: 'minimal',  emoji: '✨', label: 'Minimal clean' },
+      { value: 'trendy',   emoji: '⚡', label: 'Трендовый' },
+      { value: 'classic',  emoji: '🏛️', label: 'Элегантная классика' },
+    ]},
+    { id: 'gift_boldness', title: 'Насколько необычным должен быть аромат?', multi: false, cols: 4, options: [
+      { value: 'safe',           emoji: '🛡️', label: 'Максимально безопасный' },
+      { value: 'niche_wearable', emoji: '⚖️', label: 'Чуть интереснее обычного' },
+      { value: 'unusual',        emoji: '🎯', label: 'Уже ощущается как ниша' },
+      { value: 'rare',           emoji: '💎', label: 'Редкий и необычный' },
+    ]},
+    GIFT_BUDGET_STEP,
+  ],
+};
+
 const BRANCHES = {
 
   fresh_clean: [
@@ -504,13 +695,20 @@ let currentBranch = null;
 let currentStep = 0; // 0 = step1, 1–6 = branch steps
 const answers = {};
 let currentRecs = null;
+let mode = 'self'; // 'self' | 'gift'
+let giftBranch = null;
 
 function currentQuestion() {
+  if (mode === 'gift') {
+    if (currentStep === 0) return GIFT_ROUTING;
+    return GIFT_BRANCHES[giftBranch][currentStep - 1];
+  }
   if (currentStep === 0) return STEP1;
   return BRANCHES[currentBranch][currentStep - 1];
 }
 
 function totalSteps() {
+  if (mode === 'gift') return 8; // routing + 7 branch steps
   return 7; // step1 + 6 branch steps
 }
 
@@ -521,8 +719,10 @@ function showScreen(id) {
   document.getElementById(id).classList.add('active');
 }
 
-function startQuiz() {
+function startQuiz(newMode = 'self') {
+  mode = newMode;
   currentBranch = null;
+  giftBranch = null;
   currentStep = 0;
   Object.keys(answers).forEach(k => delete answers[k]);
   renderQuestion();
@@ -586,9 +786,11 @@ function selectCard(q, value, cardEl) {
   } else {
     answers[q.id] = value;
 
-    // If step 1, set branch
-    if (currentStep === 0) {
+    // Set branch based on mode
+    if (currentStep === 0 && mode === 'self') {
       currentBranch = value;
+    } else if (currentStep === 0 && mode === 'gift') {
+      giftBranch = value;
     }
 
     document.querySelectorAll('#cards-grid .card').forEach(c => c.classList.remove('selected'));
@@ -627,10 +829,13 @@ function nextQuestion() {
 
 function prevQuestion() {
   if (currentStep > 0) {
-    // If going back from step 2 → step 1, clear branch selection
-    if (currentStep === 1) {
+    if (currentStep === 1 && mode === 'self') {
       currentBranch = null;
       delete answers['branch'];
+    }
+    if (currentStep === 1 && mode === 'gift') {
+      giftBranch = null;
+      delete answers['gift_type'];
     }
     currentStep--;
     renderQuestion();

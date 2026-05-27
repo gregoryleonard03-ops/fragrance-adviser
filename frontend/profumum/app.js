@@ -660,6 +660,11 @@ async function submitQuiz() {
 
 // ── Results ───────────────────────────────────────────────────────────────────
 
+function addUTM(url) {
+  const sep = url.includes('?') ? '&' : '?';
+  return url + sep + 'utm_source=aroma-match&utm_medium=quiz&utm_campaign=profumum';
+}
+
 const PLACEHOLDERS = ['🌸', '🌿', '🍋', '🪸', '🌹', '🍑', '🌊', '🕯️', '✨', '🌙'];
 
 function showResults(recs) {
@@ -692,8 +697,7 @@ function showResults(recs) {
         ${price ? `<div class="result-price">${price}</div>` : ''}
         <div class="result-reason">${r.reason}</div>
         <div class="result-actions">
-          <a class="result-link" href="${r.url}" target="_blank">Купить на Profumum.ru</a>
-          <button class="result-details-btn" onclick="showDetails(${i})">Details</button>
+          <a class="result-link" href="${addUTM(r.url)}" target="_blank">Купить на Profumum.ru</a>
         </div>
       </div>
     `;
@@ -717,7 +721,7 @@ function showError(msg) {
 }
 
 function restart() {
-  window.location.href = '/';
+  window.location.href = '/profumum';
 }
 
 // ── Score details modal ───────────────────────────────────────────────────────
@@ -766,12 +770,6 @@ function ensureDetailsStyles() {
     .details-close:hover { background: #2e2e2e; color: #fff; }
     .result-actions { display: flex; gap: 8px; align-items: stretch; margin-top: 12px; }
     .result-actions .result-link { flex: 1; margin-top: 0; }
-    .result-details-btn {
-      padding: 10px 14px; background: transparent;
-      border: 1px solid #3a3a3a; border-radius: 8px; color: #888;
-      font-size: 13px; cursor: pointer; white-space: nowrap; flex-shrink: 0;
-    }
-    .result-details-btn:hover { border-color: #777; color: #eee; }
   `;
   document.head.appendChild(s);
 }

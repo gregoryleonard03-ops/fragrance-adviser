@@ -431,6 +431,30 @@ body {
 }
 .slide:not(:first-child) .scroll-hint { display: none; }
 
+/* ===== Slide math (methodology note) ===== */
+.slide-math {
+  font-size: 13px;
+  color: var(--text3);
+  text-align: center;
+  margin-top: 14px;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+}
+.slide-math strong { color: var(--accent); }
+
+/* ===== Demo CTA link ===== */
+.demo-cta { text-align: center; margin-top: 32px; }
+.cta-demo {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+.cta-demo:hover { border-color: var(--accent); }
+
 /* ===== Mobile ===== */
 @media (max-width: 760px) {
   .slide { padding: 90px 22px 50px; }

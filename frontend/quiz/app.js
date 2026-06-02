@@ -4,6 +4,7 @@ const SHOP_CONFIG = window.SHOP_CONFIG || { slug: 'demo', name: 'Aroma Match' };
 // Set shop name in all topbar elements
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.shop-name').forEach(el => { el.textContent = SHOP_CONFIG.name; });
+  document.querySelectorAll('.topbar-logo').forEach(el => { el.href = SHOP_CONFIG.home_url || '/demo'; });
 });
 
 // Theme management

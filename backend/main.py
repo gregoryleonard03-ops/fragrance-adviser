@@ -142,7 +142,7 @@ def recommend_quiz(slug: str, answers: Answers):
     if not shop:
         raise HTTPException(status_code=404, detail=f"Shop '{slug}' not found")
     try:
-        results = recommend_from_db(answers.model_dump(), store="profumum", top_n=5)
+        results = recommend_from_db(answers.model_dump(), store="generic", top_n=5)
         for r in results:
             query = f"{r['brand']} {r['name']}".replace(' ', '+')
             r['url'] = shop['search_url'].replace('{query}', query)

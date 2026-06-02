@@ -9,6 +9,7 @@ _DB = None
 _DB_LOOKUP = None   # key → db item, for O(1) catalog lookup
 _PARFBAR = None
 _PROFUMUM = None
+_GENERIC = None
 
 DATA_DIR = Path(__file__).parent / "data"
 
@@ -20,6 +21,12 @@ BUDGET_RANGES = {
         "budget_4": (6000,  float("inf")),
     },
     "profumum": {
+        "budget_1": (0,     15000),
+        "budget_2": (15000, 30000),
+        "budget_3": (30000, 50000),
+        "budget_4": (50000, float("inf")),
+    },
+    "generic": {
         "budget_1": (0,     15000),
         "budget_2": (15000, 30000),
         "budget_3": (30000, 50000),
@@ -89,6 +96,21 @@ def _load_profumum() -> dict:
         else:
             _PROFUMUM = {}
     return _PROFUMUM
+
+
+def _load_generic() -> dict:
+    """Merged Profumum + Parfbar. Profumum has priority (correct prices). Parfbar prices hidden."""
+    global _GENERIC
+    if _GENERIC is None:
+        profumum = _load_profumum()
+        parfbar  = _load_parfbar()
+        _GENERIC = dict(profumum)
+        for key, item in parfbar.items():
+            if key not in _GENERIC:
+                item_copy = dict(item)
+                item_copy['price'] = None
+                _GENERIC[key] = item_copy
+    return _GENERIC
 
 
 # ── Keyword maps ────────────────────────────────────────────────────────────
@@ -652,7 +674,12 @@ def recommend_from_db(answers: dict, store: str = "sephora", top_n: int = 5) -> 
 def _recommend_catalog(answers: dict, store: str, top_n: int) -> list[dict]:
     """Hybrid scoring: iterate over CATALOG items, enrich with DB data when available."""
     answers = _normalize_gift_answers(answers)
-    catalog = _load_parfbar() if store == "parfbar" else _load_profumum()
+    if store == "parfbar":
+        catalog = _load_parfbar()
+    elif store == "generic":
+        catalog = _load_generic()
+    else:
+        catalog = _load_profumum()
     db_lookup = _load_db_lookup()
 
     # Build price filter from selected budget tiers

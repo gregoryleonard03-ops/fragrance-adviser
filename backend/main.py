@@ -84,12 +84,21 @@ def profumum_page():
 def pitch_page():
     return FileResponse(str(FRONTEND / "pitch" / "index.html"), headers=NO_CACHE)
 
+@app.get("/demo")
+def demo_page():
+    return FileResponse(str(FRONTEND / "demo" / "index.html"), headers=NO_CACHE)
+
 @app.get("/quiz/{slug}")
 def quiz_page(slug: str):
     shop = _SHOPS.get(slug)
     if not shop:
         raise HTTPException(status_code=404, detail=f"Shop '{slug}' not found")
-    shop_config = {"slug": slug, "name": shop["name"], "domain": shop["domain"]}
+    shop_config = {
+        "slug": slug,
+        "name": shop["name"],
+        "domain": shop["domain"],
+        "buy_text": shop.get("buy_text", ""),
+    }
     template = (FRONTEND / "quiz" / "index.html").read_text()
     html = template.replace("__SHOP_CONFIG__", _json.dumps(shop_config))
     return HTMLResponse(content=html, headers=NO_CACHE)

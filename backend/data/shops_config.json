@@ -1,4 +1,10 @@
 {
+  "demo": {
+    "name": "Aroma Match",
+    "domain": "profumum.ru",
+    "search_url": "https://profumum.ru/catalog/?q={query}",
+    "buy_text": "Посмотреть аромат →"
+  },
   "bonbonne": {
     "name": "BonBonne",
     "domain": "bonbonne.ru",

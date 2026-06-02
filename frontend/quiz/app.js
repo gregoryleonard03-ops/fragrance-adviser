@@ -946,7 +946,7 @@ function showResults(recs) {
         ${price ? `<div class="result-price">${price}</div>` : ''}
         <div class="result-reason">${r.reason}</div>
         <div class="result-actions">
-          <a class="result-link" href="${addUTM(r.url)}" target="_blank">Купить на ${SHOP_CONFIG.name}</a>
+          <a class="result-link" href="${addUTM(r.url)}" target="_blank">${SHOP_CONFIG.buy_text || 'Купить на ' + SHOP_CONFIG.name}</a>
         </div>
       </div>
     `;

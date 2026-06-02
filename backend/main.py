@@ -98,6 +98,7 @@ def quiz_page(slug: str):
         "name": shop["name"],
         "domain": shop["domain"],
         "buy_text": shop.get("buy_text", ""),
+        "buy_placeholder": shop.get("buy_placeholder", ""),
     }
     template = (FRONTEND / "quiz" / "index.html").read_text()
     html = template.replace("__SHOP_CONFIG__", _json.dumps(shop_config))

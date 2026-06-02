@@ -559,6 +559,20 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; }
 }
 .result-link:hover { background: var(--accent-dark); }
 
+.result-link-demo {
+  display: block;
+  text-align: center;
+  padding: 10px 12px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px dashed var(--accent);
+  opacity: 0.55;
+  cursor: default;
+}
+
 .result-details-btn {
   display: block;
   width: 100%;

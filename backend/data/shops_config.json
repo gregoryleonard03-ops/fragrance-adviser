@@ -1,0 +1,27 @@
+{
+  "bonbonne": {
+    "name": "BonBonne",
+    "domain": "bonbonne.ru",
+    "search_url": "https://bonbonne.ru/?s={query}"
+  },
+  "visagehall": {
+    "name": "VisageHall",
+    "domain": "visagehall.ru",
+    "search_url": "https://visagehall.ru/search/?q={query}"
+  },
+  "allureparfum": {
+    "name": "AllureParfum",
+    "domain": "allureparfum.ru",
+    "search_url": "https://allureparfum.ru/search/?q={query}"
+  },
+  "parfumoff": {
+    "name": "Parfumoff",
+    "domain": "parfumoff.ru",
+    "search_url": "https://parfumoff.ru/search/?q={query}"
+  },
+  "osmodeus": {
+    "name": "Осмодеус",
+    "domain": "osmodeus.ru",
+    "search_url": "https://osmodeus.ru/?s={query}"
+  }
+}

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aroma Match — Презентация</title>
+  <link rel="stylesheet" href="/static/pitch/style.css" />
+  <script>
+    document.documentElement.setAttribute('data-theme', localStorage.getItem('parfindo-theme') || 'dark');
+  </script>
+</head>
+<body>
+  <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()">☀</button>
+
+  <header class="topbar">
+    <a class="topbar-logo" href="/demo">
+      <span class="logo-icon" role="img" aria-label="Aroma Match"></span>
+      <span>Aroma Match</span>
+    </a>
+    <div class="topbar-actions"></div>
+  </header>
+
+  <nav class="slide-nav" id="slide-nav" aria-label="Навигация по слайдам"></nav>
+
+  <!-- 1. Cover -->
+  <section class="slide slide-cover" data-slide="1" data-title="Обложка">
+    <div class="slide-inner">
+      <div class="logo-big" role="img" aria-label="Aroma Match"></div>
+      <h1 class="cover-name">Aroma Match</h1>
+      <p class="cover-sub">AI-платформа для персонального подбора парфюма</p>
+      <div class="cover-pin">Специальное предложение для вашего магазина</div>
+    </div>
+    <div class="scroll-hint">Листайте</div>
+  </section>
+
+  <!-- 2. Проблема выбора -->
+  <section class="slide" data-slide="2" data-title="Проблема выбора">
+    <div class="slide-inner">
+      <div class="slide-tag">01 · Проблема</div>
+      <h2 class="slide-title">Проблема <em>выбора</em></h2>
+      <p class="slide-sub">Как посетители теряются в ароматах</p>
+      <div class="cols-2">
+        <div class="col">
+          <div class="col-title">Убеждение</div>
+          <p class="col-text">До 70% посетителей покидают сайт, не делая покупку, не потому что им не нравятся ароматы, а из-за недостатка информации и уверенности в выборе.</p>
+        </div>
+        <div class="col">
+          <div class="col-title">Конфуз</div>
+          <p class="col-text">Нишевый парфюм отличается сложностью: покупатели часто не знают, как выбрать между такими брендами, как Amouage и Memo Paris, что приводит к отмене покупки.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Барьеры к покупке -->
+  <section class="slide" data-slide="3" data-title="Барьеры">
+    <div class="slide-inner">
+      <div class="slide-tag">02 · Барьеры</div>
+      <h2 class="slide-title">Барьеры <em>к покупке</em></h2>
+      <p class="slide-sub">Основные препятствия для клиентов</p>
+      <div class="cols-3">
+        <div class="col">
+          <div class="card-num">01</div>
+          <div class="col-title">Паралич выбора</div>
+          <p class="col-text">Огромный каталог нишевых ароматов перегружает покупателя — невозможно сравнить десятки опций.</p>
+        </div>
+        <div class="col">
+          <div class="card-num">02</div>
+          <div class="col-title">Страх ошибки</div>
+          <p class="col-text">Дорогие ароматы — высокая цена ошибки. Покупатель боится потратить деньги впустую.</p>
+        </div>
+        <div class="col">
+          <div class="card-num">03</div>
+          <div class="col-title">Выбор подарка</div>
+          <p class="col-text">Подбор аромата для близкого человека — сложнее, чем для себя. Нет ориентиров.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Решение: Квиз -->
+  <section class="slide" data-slide="4" data-title="Решение">
+    <div class="slide-inner">
+      <div class="slide-tag">03 · Решение</div>
+      <h2 class="slide-title">Решение — <em>квиз</em></h2>
+      <p class="slide-body">Aroma Match использует AI для персонального подбора ароматов, задавая 7 вопросов о стиле жизни и предпочтениях, что помогает сузить выбор и улучшить опыт покупателя.</p>
+      <div class="cols-2">
+        <div class="col">
+          <div class="col-title">Рекомендации</div>
+          <p class="col-text">Персонализированные ароматы из вашего каталога — топ-5 для каждого пользователя.</p>
+        </div>
+        <div class="col">
+          <div class="col-title">Удобство</div>
+          <p class="col-text">24/7 доступность без необходимости консультанта. Подбор занимает 2 минуты.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Economics table -->
+  <section class="slide" data-slide="5" data-title="Рост выручки">
+    <div class="slide-inner">
+      <div class="slide-tag">04 · Экономика</div>
+      <h2 class="slide-title">Потенциальная <em>выручка</em></h2>
+      <p class="slide-sub">Дополнительная выручка в год · средний чек 25 000 ₽</p>
+      <table class="econ-table">
+        <thead>
+          <tr>
+            <th class="econ-corner">конв.&nbsp;↓&nbsp;/&nbsp;посет.&nbsp;→</th>
+            <th>3 000<span class="econ-th-sub">/мес</span></th>
+            <th>5 000<span class="econ-th-sub">/мес</span></th>
+            <th>7 000<span class="econ-th-sub">/мес</span></th>
+            <th>10 000<span class="econ-th-sub">/мес</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="econ-row-label">+0,04%<span class="econ-th-sub">≈ +4%</span></td>
+            <td>360 тыс. ₽</td>
+            <td>600 тыс. ₽</td>
+            <td>840 тыс. ₽</td>
+            <td class="econ-md">1,2 млн ₽</td>
+          </tr>
+          <tr>
+            <td class="econ-row-label">+0,06%<span class="econ-th-sub">≈ +6%</span></td>
+            <td>540 тыс. ₽</td>
+            <td>900 тыс. ₽</td>
+            <td class="econ-md">1,3 млн ₽</td>
+            <td class="econ-md">1,8 млн ₽</td>
+          </tr>
+          <tr>
+            <td class="econ-row-label">+0,08%<span class="econ-th-sub">≈ +8%</span></td>
+            <td>720 тыс. ₽</td>
+            <td class="econ-md">1,2 млн ₽</td>
+            <td class="econ-md">1,7 млн ₽</td>
+            <td class="econ-hi">2,4 млн ₽</td>
+          </tr>
+          <tr>
+            <td class="econ-row-label">+0,10%<span class="econ-th-sub">≈ +10%</span></td>
+            <td>900 тыс. ₽</td>
+            <td class="econ-md">1,5 млн ₽</td>
+            <td class="econ-hi">2,1 млн ₽</td>
+            <td class="econ-top">3,0 млн ₽</td>
+          </tr>
+          <tr>
+            <td class="econ-row-label">+0,12%<span class="econ-th-sub">≈ +12%</span></td>
+            <td class="econ-md">1,1 млн ₽</td>
+            <td class="econ-md">1,8 млн ₽</td>
+            <td class="econ-hi">2,5 млн ₽</td>
+            <td class="econ-top">3,6 млн ₽</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="slide-math">При базовой конверсии ~1% · реалистичный прирост для квиза: +4–12% от текущего · средний чек 25 000 ₽</p>
+    </div>
+  </section>
+
+  <!-- 6. Как работает -->
+  <section class="slide" data-slide="6" data-title="Как работает">
+    <div class="slide-inner">
+      <div class="slide-tag">05 · Как работает</div>
+      <h2 class="slide-title">Как работает <em>Aroma Match</em></h2>
+      <p class="slide-sub">Этапы от квиза до покупки продукта</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-name">Вопросы</div>
+          <div class="step-desc">7 вопросов о стиле, поводе и предпочтениях</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-name">AI-матчинг</div>
+          <div class="step-desc">Алгоритм ранжирует каталог под профиль</div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-name">Топ-5</div>
+          <div class="step-desc">Покупатель получает персональную подборку</div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-name">Покупка</div>
+          <div class="step-desc">Прямой переход на карточку товара</div>
+        </div>
+      </div>
+      <div class="demo-cta">
+        <a class="cta-demo" href="/quiz/demo" target="_blank">→ Попробовать квиз прямо сейчас</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Почему это выгодно вашему магазину -->
+  <section class="slide" data-slide="7" data-title="Почему это выгодно вашему магазину">
+    <div class="slide-inner">
+      <div class="slide-tag">06 · Ценность</div>
+      <h2 class="slide-title">Почему это выгодно <em>вашему магазину</em></h2>
+      <div class="cols-2">
+        <div class="col">
+          <div class="col-title">Рост конверсии</div>
+          <p class="col-text">Покупатель быстрее переходит от выбора к покупке.</p>
+        </div>
+        <div class="col">
+          <div class="col-title">Выше вовлечённость</div>
+          <p class="col-text">Квиз удерживает пользователя на сайте и делает опыт интерактивным.</p>
+        </div>
+        <div class="col">
+          <div class="col-title">Продажа нишевых брендов</div>
+          <p class="col-text">Aroma Match помогает продвигать не только очевидные бестселлеры, но и менее знакомые ароматы.</p>
+        </div>
+        <div class="col">
+          <div class="col-title">Имиджевый эффект</div>
+          <p class="col-text">Ваш магазин выглядит как современный, технологичный и персонализированный парфюмерный магазин.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Gift Match -->
+  <section class="slide" data-slide="8" data-title="Gift Match">
+    <div class="slide-inner">
+      <div class="slide-tag">07 · Gift Match</div>
+      <h2 class="slide-title">Gift Match — <em>увеличение продаж</em></h2>
+      <div class="cols-2">
+        <div class="col">
+          <div class="col-title">Персонализация</div>
+          <p class="col-text">Gift Match помогает покупателям выбрать идеальный аромат, учитывая предпочтения и характеристики получателя подарка.</p>
+        </div>
+        <div class="col">
+          <div class="col-title">Снижение рисков</div>
+          <p class="col-text">Система снижает страх ошибки при выборе подарка, предлагая уверенность в AI-подборе специально для них.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Интеграция -->
+  <section class="slide" data-slide="9" data-title="Интеграция">
+    <div class="slide-inner">
+      <div class="slide-tag">08 · Интеграция</div>
+      <h2 class="slide-title">Быстрый <em>старт</em></h2>
+      <p class="slide-sub">Интеграция Aroma Match</p>
+      <div class="cols-3">
+        <div class="col">
+          <div class="card-num">01</div>
+          <div class="col-title">Быстрая установка</div>
+          <p class="col-text">Лёгкая интеграция в вашу систему без переделки сайта.</p>
+        </div>
+        <div class="col">
+          <div class="card-num">02</div>
+          <div class="col-title">Адаптация под каталог</div>
+          <p class="col-text">Квиз настраивается под ваш уникальный ассортимент брендов и нот.</p>
+        </div>
+        <div class="col">
+          <div class="card-num">03</div>
+          <div class="col-title">Запуск за 3–7 дней</div>
+          <p class="col-text">Быстрый переход к началу работы с Aroma Match — от подписания до live.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Виджет -->
+  <section class="slide" data-slide="10" data-title="Виджет на сайте">
+    <div class="slide-inner">
+      <div class="slide-tag">09 · Виджет</div>
+      <h2 class="slide-title">Встроенный <em>виджет</em></h2>
+      <p class="slide-sub">Один скрипт — квиз на вашем сайте</p>
+      <div class="mock-wrap">
+        <div class="mock-browser">
+          <div class="mock-bar">
+            <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+            <span class="mock-url">вашмагазин.ru/catalog</span>
+          </div>
+          <div class="mock-content">
+            <div class="mock-site-header">
+              <div class="mock-line" style="width:42%;height:11px;margin-bottom:7px"></div>
+              <div class="mock-line" style="width:63%"></div>
+            </div>
+            <div class="mock-products">
+              <div class="mock-product-card"></div>
+              <div class="mock-product-card"></div>
+              <div class="mock-product-card"></div>
+            </div>
+            <div class="mock-widget">
+              <div class="mock-widget-header">✦&nbsp;&nbsp;Подобрать аромат</div>
+              <div class="mock-widget-body">
+                <div class="mock-progress"><div class="mock-progress-fill"></div></div>
+                <div class="mock-q">Какой вайб тебе ближе?</div>
+                <div class="mock-chips">
+                  <span>🌊 Fresh</span>
+                  <span class="mock-chip-active">🖤 Dark Sexy</span>
+                  <span>🕯️ Warm</span>
+                </div>
+                <div class="mock-actions"><span class="mock-next-btn">Далее →</span></div>
+              </div>
+            </div>
+            <div class="mock-fab">✦</div>
+          </div>
+        </div>
+        <div class="mock-features">
+          <div class="col">
+            <div class="col-title">Без переделки сайта</div>
+            <p class="col-text">Один тег &lt;script&gt; — квиз появляется как кнопка или встроенный блок. Никаких изменений в шаблоне.</p>
+          </div>
+          <div class="col">
+            <div class="col-title">Два режима</div>
+            <p class="col-text">Плавающая кнопка (FAB) внизу страницы — или iframe в любом месте каталога.</p>
+          </div>
+          <div class="col">
+            <div class="col-title">Под ваш стиль</div>
+            <p class="col-text">Настраиваем цвета, шрифт и логотип под ваш брендбук — без доп. оплаты.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. Уникальное предложение -->
+  <section class="slide" data-slide="11" data-title="Уникальное предложение">
+    <div class="slide-inner">
+      <div class="slide-tag">10 · Позиционирование</div>
+      <h2 class="slide-title">Уникальное <em>предложение</em></h2>
+      <p class="slide-sub">Инновационное позиционирование</p>
+      <div class="highlight">
+        Ваш магазин — первый нишевый парфюмерный магазин с AI-подбором, выделяющийся на рынке и предлагающий premium digital experience для покупателей, стремящихся к индивидуальности и качеству.
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. Связь -->
+  <section class="slide" data-slide="12" data-title="Связь с нами">
+    <div class="slide-inner">
+      <div class="slide-tag">11 · Контакты</div>
+      <h2 class="slide-title">Связь <em>с нами</em></h2>
+      <p class="slide-body">Начните с пилота и откройте потенциал AI-подбора ароматов для вашего бизнеса.</p>
+      <div class="contacts">
+        <div class="contact-row">
+          <span class="contact-label">Telegram</span>
+          <a href="https://t.me/dudkin03" target="_blank">@dudkin03</a>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Email</span>
+          <a href="mailto:gregoryleonard03@icloud.com">gregoryleonard03@icloud.com</a>
+        </div>
+      </div>
+      <div class="cta-buttons">
+        <a class="cta-primary" href="/quiz/demo">Попробовать квиз</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="/static/pitch/app.js"></script>
+</body>
+</html>

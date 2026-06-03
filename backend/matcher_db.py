@@ -99,7 +99,8 @@ def _load_profumum() -> dict:
 
 
 def _load_generic() -> dict:
-    """Merged Profumum + Parfbar. Profumum has priority (correct prices). Parfbar prices hidden."""
+    """Merged Profumum + Parfbar. Profumum has priority (correct prices).
+    Parfbar prices × 10: catalog stores 5ml decant price, full bottle ≈ 50ml = ×10."""
     global _GENERIC
     if _GENERIC is None:
         profumum = _load_profumum()
@@ -108,7 +109,8 @@ def _load_generic() -> dict:
         for key, item in parfbar.items():
             if key not in _GENERIC:
                 item_copy = dict(item)
-                item_copy['price'] = None
+                if item_copy.get("price"):
+                    item_copy["price"] = item_copy["price"] * 10
                 _GENERIC[key] = item_copy
     return _GENERIC
 
@@ -621,7 +623,7 @@ def _build_reason(item: dict, answers: dict, store: str, catalog_item=None) -> s
 
 
 def recommend_from_db(answers: dict, store: str = "sephora", top_n: int = 5) -> list[dict]:
-    if store in ("parfbar", "profumum"):
+    if store in ("parfbar", "profumum", "generic"):
         return _recommend_catalog(answers, store, top_n)
 
     db = _load_db()
@@ -738,6 +740,34 @@ def _recommend_catalog(answers: dict, store: str, top_n: int) -> list[dict]:
 
         if len(results) == top_n:
             break
+
+    # Fallback: if scoring found nothing (all scores ≤ 0), return top-N by budget only
+    if not results:
+        for s, breakdown, catalog_item, db_item in scored:
+            price = catalog_item.get("price")
+            if not _price_ok(price, price_filters):
+                continue
+            name = catalog_item.get("name", "")
+            brand = catalog_item.get("brand", "")
+            dedup_key = f"{brand}|{name}".lower()
+            if dedup_key in seen:
+                continue
+            seen.add(dedup_key)
+            url = catalog_item.get("url", "")
+            if not url:
+                q = (brand + " " + name).replace(" ", "+")
+                url = f"https://parfbar.com/?s={q}" if store == "parfbar" else f"https://profumum.ru/catalog/?q={q}"
+            source_item = db_item if db_item else {}
+            reason = _build_reason(source_item, answers, store, catalog_item)
+            results.append({
+                "name": name, "brand": brand, "price": price,
+                "image_url": catalog_item.get("image_url", ""),
+                "url": url, "score": s,
+                "accords": (db_item.get("accords") or []) if db_item else [],
+                "reason": reason, "score_details": breakdown,
+            })
+            if len(results) == top_n:
+                break
 
     return results
 

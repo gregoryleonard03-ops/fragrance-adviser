@@ -88,6 +88,10 @@ def pitch_page():
 def demo_page():
     return FileResponse(str(FRONTEND / "demo" / "index.html"), headers=NO_CACHE)
 
+@app.get("/pitch-demo")
+def pitch_demo_page():
+    return FileResponse(str(FRONTEND / "pitch-demo" / "index.html"), headers=NO_CACHE)
+
 @app.get("/quiz/{slug}")
 def quiz_page(slug: str):
     shop = _SHOPS.get(slug)

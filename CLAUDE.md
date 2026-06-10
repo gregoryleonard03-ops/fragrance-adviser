@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Production URL
+
+**Railway:** https://fragrance-adviser-production.up.railway.app
+
 ## What this is
 
 **Aroma Match** — AI-платформа персонального подбора парфюма. Продаётся владельцам нишевых магазинов (текущий клиент — Profumum.ru). Без внешних AI API — матчинг локальный по ключевым словам.

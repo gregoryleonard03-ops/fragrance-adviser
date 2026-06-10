@@ -3,6 +3,7 @@ Matcher using fragrances_db.json (76k combined database).
 Used by both Sephora and Parfbar versions.
 """
 import json
+import re
 from pathlib import Path
 
 _DB = None
@@ -10,6 +11,7 @@ _DB_LOOKUP = None   # key → db item, for O(1) catalog lookup
 _PARFBAR = None
 _PROFUMUM = None
 _GENERIC = None
+_BIBLIOTEKA_LIST = None
 
 DATA_DIR = Path(__file__).parent / "data"
 
@@ -623,6 +625,8 @@ def _build_reason(item: dict, answers: dict, store: str, catalog_item=None) -> s
 
 
 def recommend_from_db(answers: dict, store: str = "sephora", top_n: int = 5) -> list[dict]:
+    if store == "biblioteka":
+        return _recommend_biblioteka(answers, top_n)
     if store in ("parfbar", "profumum", "generic"):
         return _recommend_catalog(answers, store, top_n)
 
@@ -770,6 +774,221 @@ def _recommend_catalog(answers: dict, store: str, top_n: int) -> list[dict]:
                 break
 
     return results
+
+
+# ── Biblioteka ароматов (собственный бренд, своя система выдачи) ───────────────
+# Их товаров нет в Sephora DB, поэтому скоринг идёт по полям нашего каталога:
+# family + 4 характеристики (longevity/brightness/sweetness/freshness) + настроение
+# (ключевые слова в описании/нотах). Образные ответы квиза маппятся сюда.
+
+_LEVEL_ORDER = {"low": 0, "medium": 1, "high": 2}
+
+# Настроение из их подборок → ключевые слова в описании/нотах (рус)
+BIBLIOTEKA_MOOD_KEYWORDS: dict[str, list[str]] = {
+    "fresh_energy": ["озон", "вода", "водян", "мят", "цитрус", "лимон", "бергамот",
+                     "свеж", "бодр", "утро", "лёд", "лед", "морск", "акватик", "трав",
+                     "бриз", "ветивер", "зелен", "зелён"],
+    "warm_cozy":    ["тепл", "уют", "камин", "кашемир", "дерев", "ваниль", "янтар",
+                     "амбр", "сандал", "смол", "балз", "плед", "какао", "кедр", "орех"],
+    "seduction":    ["соблазн", "страст", "кожа", "мускус", "шлейф", "ночь", "чёрн",
+                     "черн", "табак", "афродизиак", "чувствен", "поцелуй", "обнаж"],
+    "mystery":      ["туман", "замок", "мистик", "дым", "ладан", "землист", "тёмн",
+                     "темн", "призрак", "тайн", "камен", "сталь", "метал", "ведьм", "ночн"],
+    "tender":       ["нежн", "пудр", "мускус", "чист", "молочн", "цвет", "лёгк",
+                     "легк", "мыльн", "пион", "ирис", "хлопок", "кожа младенц"],
+    "gourmand_joy": ["карамель", "ваниль", "крем", "сладк", "десерт", "груш",
+                     "шоколад", "сахар", "брюле", "печень", "мёд", "мед", "ягод", "сдоб",
+                     "морожен", "фисташк", "пломбир", "орех", "фундук", "ирис"],
+}
+
+# Семейство нот → ключевые слова (fallback, если поле family пустое или не совпало)
+BIBLIOTEKA_FAMILY_KEYWORDS: dict[str, list[str]] = {
+    "floral":   ["цвет", "роза", "жасмин", "пион", "ирис", "черёмух", "черемух",
+                 "ландыш", "фиалк", "флёрдоранж", "тубероз"],
+    "gourmand": ["ваниль", "карамель", "крем", "шоколад", "сахар", "десерт", "брюле",
+                 "мёд", "мед", "груш", "ягод", "печень", "сдоб", "какао"],
+    "woody":    ["дерев", "сандал", "кедр", "пачул", "ветивер", "смол", "древес", "гваяк"],
+    "aquatic":  ["вода", "водян", "морск", "озон", "акватик", "солён", "солен", "бриз", "океан"],
+    "green":    ["трав", "зелён", "зелен", "лист", "мят", "мох", "лужай"],
+    "citrus":   ["цитрус", "лимон", "бергамот", "апельсин", "грейпфрут", "мандарин", "лайм"],
+    "mineral":  ["минерал", "камен", "сталь", "метал", "земл", "порох", "туман", "озон"],
+    "tobacco":  ["табак", "кожа", "ром", "виски", "дым", "замш"],
+}
+
+
+def _load_biblioteka_list() -> list[dict]:
+    global _BIBLIOTEKA_LIST
+    if _BIBLIOTEKA_LIST is None:
+        path = DATA_DIR / "fragrances_biblioteka.json"
+        if path.exists():
+            _BIBLIOTEKA_LIST = json.loads(path.read_text())
+        else:
+            _BIBLIOTEKA_LIST = []
+    return _BIBLIOTEKA_LIST
+
+
+def _score_biblioteka_item(item: dict, answers: dict) -> tuple[int, dict]:
+    score = 0
+    matched = {"families": [], "axes": [], "mood": []}
+    text = (item.get("description", "") + " " + item.get("notes", "")).lower()
+
+    # Семейства нот (multi)
+    fams = answers.get("b_families") or []
+    if isinstance(fams, str):
+        fams = [fams]
+    item_family = (item.get("family") or "").lower()
+    for f in fams:
+        if item_family and item_family == f:
+            score += 5
+            if f not in matched["families"]:
+                matched["families"].append(f)
+        else:
+            for kw in BIBLIOTEKA_FAMILY_KEYWORDS.get(f, []):
+                if kw in text:
+                    score += 1
+                    if f not in matched["families"]:
+                        matched["families"].append(f)
+                    break
+
+    # Характеристики: точное совпадение +3, соседний уровень +1
+    for axis, akey in [("sweetness", "b_sweetness"), ("freshness", "b_freshness"),
+                       ("brightness", "b_brightness"), ("longevity", "b_longevity")]:
+        want = answers.get(akey)
+        have = (item.get(axis) or "").lower()
+        if want in _LEVEL_ORDER and have in _LEVEL_ORDER:
+            d = abs(_LEVEL_ORDER[want] - _LEVEL_ORDER[have])
+            if d == 0:
+                score += 3
+                matched["axes"].append(axis)
+            elif d == 1:
+                score += 1
+
+    # Настроение → ключевые слова (макс 3 совпадения, чтобы не перевешивать)
+    mood = answers.get("b_mood", "")
+    mood_hits = 0
+    for kw in BIBLIOTEKA_MOOD_KEYWORDS.get(mood, []):
+        if kw in text and mood_hits < 3:
+            score += 2
+            mood_hits += 1
+            matched["mood"].append(kw)
+
+    return score, matched
+
+
+def _biblioteka_reason(item: dict, matched: dict) -> str:
+    parts = []
+    descr = []
+    if (item.get("sweetness") or "").lower() == "high":
+        descr.append("сладкий")
+    if (item.get("freshness") or "").lower() == "high":
+        descr.append("свежий")
+    elif (item.get("freshness") or "").lower() == "low":
+        descr.append("тёплый")
+    if (item.get("brightness") or "").lower() == "high":
+        descr.append("яркий")
+    elif (item.get("brightness") or "").lower() == "low":
+        descr.append("тихий")
+    if (item.get("longevity") or "").lower() == "high":
+        descr.append("стойкий")
+    if descr:
+        s = ", ".join(descr[:3])
+        return s[0].upper() + s[1:] + " — как ты и хотел."
+    # если характеристики нейтральные — короткий намёк по нотам
+    notes = item.get("notes", "")
+    first_notes = [n.strip() for n in notes.split(",") if n.strip()][:2]
+    if first_notes:
+        return "В сердце — " + ", ".join(first_notes).lower() + "."
+    return "Из коллекции «Библиотеки ароматов»."
+
+
+def _format_biblioteka(item: dict, matched: dict, score: int) -> dict:
+    return {
+        "name":      item.get("name", ""),
+        "brand":     item.get("brand", "Библиотека ароматов"),
+        "price":     item.get("price"),
+        "image_url": item.get("image_url", ""),
+        "url":       item.get("url", ""),
+        "score":     score,
+        "notes":     item.get("notes", ""),
+        "volumes":   item.get("volumes", ""),
+        "reason":    _biblioteka_reason(item, matched),
+    }
+
+
+def _recommend_biblioteka(answers: dict, top_n: int = 3) -> list[dict]:
+    items = _load_biblioteka_list()
+    perfumes = [i for i in items if (i.get("type") or "perfume") != "box"]
+
+    scored = []
+    for it in perfumes:
+        s, matched = _score_biblioteka_item(it, answers)
+        scored.append((s, it, matched))
+    scored.sort(key=lambda x: -x[0])
+
+    results, seen = [], set()
+    for s, it, matched in scored:
+        if s <= 0:
+            continue
+        key = it.get("name", "").lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        results.append(_format_biblioteka(it, matched, s))
+        if len(results) == top_n:
+            break
+
+    # Fallback: если ничего не набрало баллов — отдать первые top_n
+    if not results:
+        for it in perfumes[:top_n]:
+            results.append(_format_biblioteka(it, {"families": [], "axes": [], "mood": []}, 0))
+
+    return results
+
+
+def pick_biblioteka_box(answers: dict):
+    """Подобрать готовый тематический бокс под настроение/семейства из квиза."""
+    items = _load_biblioteka_list()
+    boxes = [i for i in items if (i.get("type") or "perfume") == "box"]
+    if not boxes:
+        return None
+
+    mood = answers.get("b_mood", "")
+    fams = answers.get("b_families") or []
+    if isinstance(fams, str):
+        fams = [fams]
+    kws = BIBLIOTEKA_MOOD_KEYWORDS.get(mood, [])
+
+    # ключевые слова выбранных семейств — для матча, когда настроение не сработало
+    fam_kws = [kw for f in fams for kw in BIBLIOTEKA_FAMILY_KEYWORDS.get(f, [])]
+
+    def _item_count(b):
+        mobj = re.search(r"\d+", b.get("volumes", ""))
+        return int(mobj.group()) if mobj else 99
+
+    best, best_key = boxes[0], (-1, 0)
+    for b in boxes:
+        # Только название+описание: у части боксов в notes склеены ноты всех
+        # ароматов набора — этот «шум» иначе перебивает тематический матч.
+        text = (b.get("name", "") + " " + b.get("description", "")).lower()
+        # Совпадение поля family — доминирующий сигнал (точная тема набора).
+        # Ключевые слова — лишь добивка с потолком.
+        fam_field = 10 if (b.get("family") or "").lower() in fams else 0
+        mood_hits = min(sum(1 for kw in kws if kw in text), 3)
+        fam_kw_hits = min(sum(1 for kw in fam_kws if kw in text), 2)
+        sc = fam_field + mood_hits + fam_kw_hits
+        # Тай-брейк: при равном счёте берём меньший набор (он тематичнее
+        # generic-боксов на 10 ароматов).
+        key = (sc, -_item_count(b))
+        if key > best_key:
+            best_key, best = key, b
+
+    return {
+        "name":      best.get("name", ""),
+        "price":     best.get("price"),
+        "image_url": best.get("image_url", ""),
+        "url":       best.get("url", ""),
+        "description": best.get("description", ""),
+    }
 
 
 if __name__ == "__main__":

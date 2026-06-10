@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Подбор аромата — Aroma Match × Библиотека ароматов</title>
+  <link rel="stylesheet" href="/static/biblioteka/style.css?v=3" />
+</head>
+<body>
+<div id="app">
+  <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()">☀</button>
+
+  <!-- ===== Intro ===== -->
+  <div id="screen-intro" class="screen active">
+    <div class="topbar">
+      <a class="topbar-logo" href="/">Aroma Match</a>
+      <span class="topbar-dot"></span>
+      <span class="topbar-sub">Библиотека ароматов</span>
+    </div>
+    <div class="intro-content">
+      <div class="intro-ornament">— ✦ —</div>
+      <h2 class="intro-title">Найди свой<br><em>аромат</em></h2>
+      <div class="intro-line"></div>
+      <p class="intro-sub">Ответь на 7 вопросов — и мы подберём ароматы из «Библиотеки»<br>точно под твоё настроение и характер.</p>
+      <div class="intro-actions">
+        <button class="btn-primary" onclick="startQuiz()">Начать ›</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Quiz ===== -->
+  <div id="screen-quiz" class="screen">
+    <div class="topbar">
+      <a class="topbar-logo" href="/">Aroma Match</a>
+      <span class="topbar-dot"></span>
+      <span class="topbar-sub">Библиотека ароматов</span>
+    </div>
+    <div class="quiz-progress-bar-wrap">
+      <div class="progress-row">
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-label" id="progress-text">1 / 7</div>
+      </div>
+    </div>
+    <div class="quiz-body">
+      <div class="question-wrap" id="question-wrap">
+        <h2 class="question-title" id="question-title"></h2>
+        <p class="question-hint" id="question-hint"></p>
+        <div class="cards-grid" id="cards-grid"></div>
+      </div>
+      <div class="quiz-nav">
+        <button class="btn-back" id="btn-back" onclick="prevQuestion()">← Назад</button>
+        <button class="btn-next" id="btn-next" onclick="nextQuestion()">Далее →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Loading ===== -->
+  <div id="screen-loading" class="screen">
+    <div class="topbar">
+      <a class="topbar-logo" href="/">Aroma Match</a>
+      <span class="topbar-dot"></span>
+      <span class="topbar-sub">Библиотека ароматов</span>
+    </div>
+    <div class="loading-content">
+      <div class="loading-ornament">✦ ✦ ✦</div>
+      <p>Подбираем ароматы...</p>
+    </div>
+  </div>
+
+  <!-- ===== Results ===== -->
+  <div id="screen-results" class="screen">
+    <div class="topbar">
+      <a class="topbar-logo" href="/">Aroma Match</a>
+      <span class="topbar-dot"></span>
+      <span class="topbar-sub">Библиотека ароматов</span>
+    </div>
+    <div class="results-header">
+      <div class="results-ornament">— ✦ —</div>
+      <h2>Твоя подборка</h2>
+      <p class="results-subtitle">3 аромата, подобранных под тебя</p>
+    </div>
+    <div class="results-grid" id="results-grid"></div>
+    <div class="box-block" id="box-block"></div>
+    <div class="results-footer">
+      <button class="btn-restart" onclick="restart()">Начать заново</button>
+    </div>
+  </div>
+
+</div>
+<script src="/static/biblioteka/app.js?v=2"></script>
+</body>
+</html>

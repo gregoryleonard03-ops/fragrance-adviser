@@ -12,7 +12,7 @@ from fastapi.responses import FileResponse, HTMLResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from matcher_db import recommend_from_db
+from matcher_db import recommend_from_db, pick_biblioteka_box
 
 app = FastAPI(title="Fragrance Adviser")
 
@@ -59,6 +59,14 @@ class Answers(BaseModel):
     gift_boldness: str = ""
     gift_priority: list[str] = []
     gift_intensity: list[str] = []
+    # Biblioteka fields (образный квиз → оси матчинга)
+    b_mood: str = ""
+    b_sweetness: str = ""
+    b_freshness: str = ""
+    b_brightness: str = ""
+    b_longevity: str = ""
+    b_families: list[str] = []
+    b_format: str = ""
 
 
 NO_CACHE = {"Cache-Control": "no-cache, no-store, must-revalidate", "Pragma": "no-cache"}
@@ -79,6 +87,10 @@ def parfbar_page():
 @app.get("/profumum")
 def profumum_page():
     return FileResponse(str(FRONTEND / "profumum" / "index.html"), headers=NO_CACHE)
+
+@app.get("/biblioteka")
+def biblioteka_page():
+    return FileResponse(str(FRONTEND / "biblioteka" / "index.html"), headers=NO_CACHE)
 
 @app.get("/pitch")
 def pitch_page():
@@ -159,5 +171,15 @@ def recommend_profumum(answers: Answers):
     try:
         results = recommend_from_db(answers.model_dump(), store="profumum", top_n=5)
         return {"recommendations": results}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/api/recommend/biblioteka")
+def recommend_biblioteka(answers: Answers):
+    try:
+        a = answers.model_dump()
+        results = recommend_from_db(a, store="biblioteka", top_n=3)
+        box = pick_biblioteka_box(a)
+        return {"recommendations": results, "box": box}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

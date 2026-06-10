@@ -73,14 +73,14 @@ const QUESTIONS = [
   },
   {
     id: 'b_longevity',
-    title: 'Аромат на весь день или лёгкая вуаль на пару часов?',
+    title: 'Когда ты уйдёшь — что останется в воздухе?',
     hint: '',
     multi: false,
     cols: 3,
     options: [
-      { value: 'high',   emoji: '🌙', label: 'Стойкий, на весь день', sub: 'Со шлейфом до вечера' },
-      { value: 'medium', emoji: '🕐', label: 'Средняя стойкость',     sub: 'На полдня' },
-      { value: 'low',    emoji: '🌬️', label: 'Лёгкая вуаль',          sub: 'Ненавязчиво, на пару часов' },
+      { value: 'high',   emoji: '🌫️', label: 'Густой шлейф',     sub: 'Тебя запомнят надолго' },
+      { value: 'medium', emoji: '✨',  label: 'Лёгкий след',      sub: 'Приятное ощущение на пару часов' },
+      { value: 'low',    emoji: '🫧',  label: 'Почти ничего',     sub: 'Только ты сама знаешь' },
     ],
   },
   {

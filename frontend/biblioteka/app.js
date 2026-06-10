@@ -72,15 +72,16 @@ const QUESTIONS = [
     ],
   },
   {
-    id: 'b_longevity',
-    title: 'Когда ты уйдёшь — что останется в воздухе?',
+    id: 'b_occasion',
+    title: 'Когда будешь носить?',
     hint: '',
     multi: false,
-    cols: 3,
+    cols: 2,
     options: [
-      { value: 'high',   emoji: '🌫️', label: 'Густой шлейф',     sub: 'Тебя запомнят надолго' },
-      { value: 'medium', emoji: '✨',  label: 'Лёгкий след',      sub: 'Приятное ощущение на пару часов' },
-      { value: 'low',    emoji: '🫧',  label: 'Почти ничего',     sub: 'Только ты сама знаешь' },
+      { value: 'daily',   emoji: '☀️', label: 'Каждый день',       sub: 'Работа, прогулки, встречи' },
+      { value: 'evening', emoji: '🌙', label: 'Вечер и свидания',  sub: 'Романтика, особые выходы' },
+      { value: 'office',  emoji: '💼', label: 'Офис и переговоры', sub: 'Ненавязчиво, уверенно' },
+      { value: 'special', emoji: '✨', label: 'Особый случай',     sub: 'Праздник, запомниться' },
     ],
   },
   {

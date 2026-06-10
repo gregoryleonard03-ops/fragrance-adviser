@@ -801,6 +801,13 @@ BIBLIOTEKA_MOOD_KEYWORDS: dict[str, list[str]] = {
                      "морожен", "фисташк", "пломбир", "орех", "фундук", "ирис"],
 }
 
+BIBLIOTEKA_OCCASION_KEYWORDS: dict[str, list[str]] = {
+    "daily":   ["повседневн", "каждый", "везде", "всегда", "универсальн", "лёгк"],
+    "evening": ["вечер", "ночной", "романтик", "свидани", "соблазн", "притяжени"],
+    "office":  ["офис", "работ", "деловой", "сдержанн", "строг", "ненавязчив"],
+    "special": ["особый", "праздник", "торжество", "запомн", "незабываем", "восхищает"],
+}
+
 # Семейство нот → ключевые слова (fallback, если поле family пустое или не совпало)
 BIBLIOTEKA_FAMILY_KEYWORDS: dict[str, list[str]] = {
     "floral":   ["цвет", "роза", "жасмин", "пион", "ирис", "черёмух", "черемух",
@@ -852,7 +859,7 @@ def _score_biblioteka_item(item: dict, answers: dict) -> tuple[int, dict]:
 
     # Характеристики: точное совпадение +3, соседний уровень +1
     for axis, akey in [("sweetness", "b_sweetness"), ("freshness", "b_freshness"),
-                       ("brightness", "b_brightness"), ("longevity", "b_longevity")]:
+                       ("brightness", "b_brightness")]:
         want = answers.get(akey)
         have = (item.get(axis) or "").lower()
         if want in _LEVEL_ORDER and have in _LEVEL_ORDER:
@@ -871,6 +878,16 @@ def _score_biblioteka_item(item: dict, answers: dict) -> tuple[int, dict]:
             score += 2
             mood_hits += 1
             matched["mood"].append(kw)
+
+    # Повод → ключевые слова (макс 3 совпадения)
+    occasion = answers.get("b_occasion", "")
+    occ_hits = 0
+    matched["occasion"] = []
+    for kw in BIBLIOTEKA_OCCASION_KEYWORDS.get(occasion, []):
+        if kw in text and occ_hits < 3:
+            score += 2
+            occ_hits += 1
+            matched["occasion"].append(kw)
 
     return score, matched
 

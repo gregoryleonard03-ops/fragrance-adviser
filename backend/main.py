@@ -174,6 +174,28 @@ def recommend_profumum(answers: Answers):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.get("/social-demo")
+def social_demo_page():
+    return FileResponse(str(FRONTEND / "social-demo" / "index.html"), headers=NO_CACHE)
+
+
+class InstagramRequest(BaseModel):
+    url: str
+
+
+@app.post("/api/analyze-instagram")
+async def analyze_instagram_endpoint(req: InstagramRequest):
+    import asyncio
+    try:
+        from social_analyzer import analyze_instagram
+        result = await asyncio.to_thread(analyze_instagram, req.url)
+        return result
+    except ValueError as e:
+        return {"success": False, "error": str(e)}
+    except Exception as e:
+        return {"success": False, "error": f"Не удалось получить профиль: {str(e)}"}
+
+
 @app.post("/api/recommend/biblioteka")
 def recommend_biblioteka(answers: Answers):
     try:

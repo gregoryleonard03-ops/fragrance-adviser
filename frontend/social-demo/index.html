@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aroma Match — Анализ профиля</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0f0f0f;
+    color: #f0f0f0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+
+  .logo {
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #b89a6a;
+    margin-bottom: 48px;
+  }
+
+  h1 {
+    font-size: 26px;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+
+  .subtitle {
+    color: #888;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .input-row {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    max-width: 540px;
+    margin-bottom: 12px;
+  }
+
+  input[type="text"] {
+    flex: 1;
+    background: #1c1c1c;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 13px 16px;
+    color: #f0f0f0;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input[type="text"]:focus { border-color: #b89a6a; }
+  input[type="text"]::placeholder { color: #555; }
+
+  button {
+    background: #b89a6a;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 13px 22px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  button:hover { background: #a0855a; }
+  button:disabled { background: #444; cursor: not-allowed; }
+
+  .hint {
+    font-size: 12px;
+    color: #555;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  /* Loader */
+  .loader {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin: 40px 0;
+  }
+  .loader.visible { display: flex; }
+  .spinner {
+    width: 36px; height: 36px;
+    border: 3px solid #333;
+    border-top-color: #b89a6a;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loader-text { color: #888; font-size: 14px; }
+
+  /* Error */
+  .error-box {
+    display: none;
+    background: #1c1c1c;
+    border: 1px solid #3a1a1a;
+    border-radius: 12px;
+    padding: 16px 20px;
+    color: #ff7070;
+    font-size: 14px;
+    max-width: 540px;
+    width: 100%;
+    text-align: center;
+  }
+  .error-box.visible { display: block; }
+
+  /* Result card */
+  .result {
+    display: none;
+    width: 100%;
+    max-width: 540px;
+    background: #1c1c1c;
+    border: 1px solid #2a2a2a;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .result.visible { display: block; }
+
+  .result-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #2a2a2a;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .avatar-placeholder {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: #2a2a2a;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .profile-name { font-size: 16px; font-weight: 600; }
+  .profile-username { font-size: 13px; color: #888; margin-top: 2px; }
+
+  .result-body { padding: 20px 24px; }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid #222;
+    font-size: 14px;
+    gap: 16px;
+  }
+  .row:last-child { border-bottom: none; }
+  .row-label { color: #888; flex-shrink: 0; }
+  .row-value { text-align: right; font-weight: 500; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
+  .tag {
+    background: #2a2a2a;
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 12px;
+    color: #ccc;
+  }
+  .tag.accent { background: #2d2416; color: #b89a6a; }
+
+  .notes-list {
+    display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end;
+  }
+  .note-tag {
+    background: #1a2020;
+    border: 1px solid #2a3a3a;
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 12px;
+    color: #7ec8c8;
+  }
+
+  .reasoning {
+    margin-top: 16px;
+    padding: 14px 16px;
+    background: #161616;
+    border-radius: 10px;
+    font-size: 13px;
+    color: #aaa;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .vibe-map = {
+    fresh: "Свежий",
+    warm_cozy: "Тёплый и уютный",
+    sweet: "Сладкий",
+    woody: "Древесный",
+    floral: "Цветочный",
+    oriental: "Восточный",
+    clean: "Чистый",
+  }
+
+  /* JSON debug toggle */
+  /* Posts section */
+  .posts-section {
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: #161616;
+    border-radius: 10px;
+  }
+  .posts-title {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 8px;
+  }
+  .post-desc {
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+    line-height: 1.5;
+    padding: 4px 0;
+    border-bottom: 1px solid #222;
+  }
+  .post-desc:last-child { border-bottom: none; }
+
+  /* Recommendations */
+  .recs-section {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid #2a2a2a;
+  }
+  .recs-title {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 14px;
+  }
+  .rec-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #222;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+    border-radius: 8px;
+    margin: 0 -8px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .rec-card:hover { background: #1a1a1a; }
+  .rec-card:last-child { border-bottom: none; }
+  .rec-img {
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+    object-fit: cover;
+    background: #2a2a2a;
+    flex-shrink: 0;
+  }
+  .rec-img-placeholder {
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+    background: #2a2a2a;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+  }
+  .rec-info { flex: 1; min-width: 0; }
+  .rec-name { font-size: 14px; font-weight: 600; line-height: 1.3; }
+  .rec-brand { font-size: 12px; color: #888; margin-top: 2px; }
+  .rec-reason {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 6px;
+    line-height: 1.4;
+    font-style: italic;
+  }
+  .rec-accords {
+    display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px;
+  }
+  .rec-accord {
+    background: #1a2020;
+    border: 1px solid #2a3a3a;
+    border-radius: 10px;
+    padding: 2px 8px;
+    font-size: 11px;
+    color: #7ec8c8;
+  }
+
+  .debug-toggle {
+    margin-top: 16px;
+    font-size: 12px;
+    color: #444;
+    cursor: pointer;
+    text-align: center;
+  }
+  .debug-toggle:hover { color: #666; }
+  .debug-box {
+    display: none;
+    margin-top: 8px;
+    background: #111;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 11px;
+    font-family: monospace;
+    color: #666;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  .debug-box.visible { display: block; }
+</style>
+</head>
+<body>
+
+<div class="logo">Aroma Match</div>
+
+<h1>Подбор по профилю</h1>
+<p class="subtitle">Вставь ссылку на Instagram — AI определит парфюмерный профиль</p>
+
+<div class="input-row">
+  <input type="text" id="url-input"
+    placeholder="https://www.instagram.com/username"
+    value="https://www.instagram.com/anastaasia.sh/">
+  <button id="analyze-btn" onclick="analyze()">Анализировать</button>
+</div>
+<p class="hint">Только публичные профили · Данные не сохраняются</p>
+
+<div class="loader" id="loader">
+  <div class="spinner"></div>
+  <div class="loader-text" id="loader-text">Загружаем профиль...</div>
+</div>
+
+<div class="error-box" id="error-box"></div>
+
+<div class="result" id="result">
+  <div class="result-header">
+    <div class="avatar-placeholder">🧴</div>
+    <div>
+      <div class="profile-name" id="res-name"></div>
+      <div class="profile-username" id="res-username"></div>
+    </div>
+  </div>
+  <div class="result-body">
+    <div class="row">
+      <span class="row-label">Возраст</span>
+      <span class="row-value" id="res-age"></span>
+    </div>
+    <div class="row">
+      <span class="row-label">Эстетика</span>
+      <span class="row-value" id="res-aesthetic"></span>
+    </div>
+    <div class="row">
+      <span class="row-label">Образ жизни</span>
+      <div class="tags" id="res-lifestyles"></div>
+    </div>
+    <div class="row">
+      <span class="row-label">Вайб</span>
+      <span class="row-value tag accent" id="res-vibe"></span>
+    </div>
+    <div class="row">
+      <span class="row-label">Ноты</span>
+      <div class="notes-list" id="res-notes"></div>
+    </div>
+
+    <div class="reasoning" id="res-reasoning"></div>
+
+    <div class="posts-section" id="posts-section" style="display:none">
+      <div class="posts-title">Что видно в постах</div>
+      <div id="posts-list"></div>
+    </div>
+
+    <div class="recs-section" id="recs-section" style="display:none">
+      <div class="recs-title">Подходящие ароматы</div>
+      <div id="recs-list"></div>
+    </div>
+
+    <div class="debug-toggle" onclick="toggleDebug()">показать raw JSON ↓</div>
+    <div class="debug-box" id="debug-box"></div>
+  </div>
+</div>
+
+<script>
+const AGE_LABELS = {
+  teen: "до 20 лет",
+  young_adult: "20–30 лет",
+  adult: "30–45 лет",
+  mature: "45+",
+};
+const AESTHETIC_LABELS = {
+  clean_minimal: "Clean / Минимализм",
+  dark_moody: "Dark / Мрачный",
+  boho: "Бохо / Земной",
+  glam_luxury: "Гламур / Люкс",
+  sporty_fresh: "Спорт / Свежесть",
+  artistic: "Артистичный",
+  preppy: "Preppy / Классика",
+};
+const VIBE_LABELS = {
+  fresh: "Свежий",
+  warm_cozy: "Тёплый и уютный",
+  sweet: "Сладкий",
+  woody: "Древесный",
+  floral: "Цветочный",
+  oriental: "Восточный",
+  clean: "Чистый",
+};
+const LIFESTYLE_LABELS = {
+  fashion: "Мода",
+  sport: "Спорт",
+  travel: "Путешествия",
+  home_cozy: "Домашний уют",
+  food: "Еда",
+  art_culture: "Искусство",
+  professional: "Карьера",
+  outdoor: "Природа",
+};
+
+let debugData = null;
+
+async function analyze() {
+  const url = document.getElementById("url-input").value.trim();
+  if (!url) return;
+
+  const btn = document.getElementById("analyze-btn");
+  btn.disabled = true;
+  btn.textContent = "...";
+
+  document.getElementById("loader").classList.add("visible");
+  document.getElementById("error-box").classList.remove("visible");
+  document.getElementById("result").classList.remove("visible");
+
+  const steps = [
+    "Загружаем профиль...",
+    "Анализируем хайлайты...",
+    "Составляем парфюмерный профиль...",
+  ];
+  let step = 0;
+  const interval = setInterval(() => {
+    step = (step + 1) % steps.length;
+    document.getElementById("loader-text").textContent = steps[step];
+  }, 3000);
+
+  try {
+    const resp = await fetch("/api/analyze-instagram", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ url }),
+    });
+    const data = await resp.json();
+    clearInterval(interval);
+
+    if (!data.success) {
+      showError(data.error || "Неизвестная ошибка");
+      return;
+    }
+
+    debugData = data;
+    showResult(data);
+  } catch (e) {
+    clearInterval(interval);
+    showError("Ошибка соединения: " + e.message);
+  } finally {
+    document.getElementById("loader").classList.remove("visible");
+    btn.disabled = false;
+    btn.textContent = "Анализировать";
+  }
+}
+
+function showError(msg) {
+  const box = document.getElementById("error-box");
+  box.textContent = "⚠️ " + msg;
+  box.classList.add("visible");
+}
+
+function showResult(data) {
+  const p = data.profile;
+  const a = data.analysis;
+
+  document.getElementById("res-name").textContent = p.name || p.username;
+  document.getElementById("res-username").textContent = "@" + p.username;
+  document.getElementById("res-age").textContent = AGE_LABELS[a.age_group] || a.age_group;
+  document.getElementById("res-aesthetic").textContent = AESTHETIC_LABELS[a.aesthetic] || a.aesthetic;
+  document.getElementById("res-vibe").textContent = VIBE_LABELS[a.dominant_vibe] || a.dominant_vibe;
+  document.getElementById("res-reasoning").textContent = "💬 " + (a.reasoning || "");
+
+  const lifestyleEl = document.getElementById("res-lifestyles");
+  lifestyleEl.innerHTML = "";
+  (a.lifestyles || []).forEach(l => {
+    const t = document.createElement("span");
+    t.className = "tag";
+    t.textContent = LIFESTYLE_LABELS[l] || l;
+    lifestyleEl.appendChild(t);
+  });
+
+  const notesEl = document.getElementById("res-notes");
+  notesEl.innerHTML = "";
+  (a.notes_hint || []).forEach(n => {
+    const t = document.createElement("span");
+    t.className = "note-tag";
+    t.textContent = n;
+    notesEl.appendChild(t);
+  });
+
+  document.getElementById("result").classList.add("visible");
+
+  // Post descriptions
+  const postsSection = document.getElementById("posts-section");
+  const postsList = document.getElementById("posts-list");
+  postsList.innerHTML = "";
+  const postDescs = (data.analysis && data.analysis.post_descriptions) || [];
+  if (postDescs.length > 0) {
+    postDescs.forEach(desc => {
+      const d = document.createElement("div");
+      d.className = "post-desc";
+      d.textContent = desc;
+      postsList.appendChild(d);
+    });
+    postsSection.style.display = "block";
+  } else {
+    postsSection.style.display = "none";
+  }
+
+  // Recommendations
+  const recsSection = document.getElementById("recs-section");
+  const recsList = document.getElementById("recs-list");
+  recsList.innerHTML = "";
+  const recs = data.recommendations || [];
+  if (recs.length > 0) {
+    recs.forEach((r, i) => {
+      const a = document.createElement("a");
+      a.className = "rec-card";
+      a.href = r.url || "#";
+      a.target = "_blank";
+      a.rel = "noopener";
+
+      const imgHtml = r.image_url
+        ? `<img class="rec-img" src="${r.image_url}" alt="${r.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+          + `<div class="rec-img-placeholder" style="display:none">🧴</div>`
+        : `<div class="rec-img-placeholder">🧴</div>`;
+
+      const accords = (r.accords || []).slice(0, 3)
+        .map(acc => `<span class="rec-accord">${acc}</span>`).join("");
+
+      a.innerHTML = `
+        ${imgHtml}
+        <div class="rec-info">
+          <div class="rec-name">${r.name}</div>
+          <div class="rec-brand">${r.brand}</div>
+          <div class="rec-reason">${r.reason || ""}</div>
+          <div class="rec-accords">${accords}</div>
+        </div>`;
+      recsList.appendChild(a);
+    });
+    recsSection.style.display = "block";
+  } else {
+    recsSection.style.display = "none";
+  }
+}
+
+function toggleDebug() {
+  const box = document.getElementById("debug-box");
+  if (box.classList.contains("visible")) {
+    box.classList.remove("visible");
+    document.querySelector(".debug-toggle").textContent = "показать raw JSON ↓";
+  } else {
+    box.textContent = JSON.stringify(debugData, null, 2);
+    box.classList.add("visible");
+    document.querySelector(".debug-toggle").textContent = "скрыть JSON ↑";
+  }
+}
+
+// Enter to submit
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("url-input").addEventListener("keydown", e => {
+    if (e.key === "Enter") analyze();
+  });
+});
+</script>
+</body>
+</html>

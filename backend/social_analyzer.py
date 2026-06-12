@@ -400,20 +400,88 @@ def generate_reasons(analysis: dict, recs: list[dict]) -> list[str]:
     return [_fallback_reason(analysis, r) for r in recs]
 
 
+_VIBE_TO_BMOOD: dict[str, str] = {
+    "fresh":     "fresh_energy",
+    "clean":     "fresh_energy",
+    "warm_cozy": "warm_cozy",
+    "sweet":     "gourmand_joy",
+    "floral":    "tender",
+    "oriental":  "seduction",
+    "woody":     "warm_cozy",
+}
+
+_VIBE_TO_BFAMILIES: dict[str, list[str]] = {
+    "fresh":     ["aquatic", "citrus", "green"],
+    "clean":     ["aquatic", "citrus"],
+    "warm_cozy": ["woody", "gourmand"],
+    "sweet":     ["gourmand", "floral"],
+    "floral":    ["floral"],
+    "oriental":  ["tobacco", "woody"],
+    "woody":     ["woody"],
+}
+
+_LIFESTYLE_TO_BOCCASION: dict[str, str] = {
+    "professional": "office",
+    "travel":       "daily",
+    "fashion":      "special",
+    "sport":        "daily",
+    "home_cozy":    "daily",
+    "art_culture":  "special",
+    "outdoor":      "daily",
+    "food":         "daily",
+}
+
+
+def social_to_biblioteka_answers(analysis: dict) -> dict:
+    vibe = analysis.get("dominant_vibe", "")
+    aesthetic = analysis.get("aesthetic", "")
+    lifestyles = analysis.get("lifestyles", [])
+
+    b_mood = _VIBE_TO_BMOOD.get(vibe, "fresh_energy")
+    if aesthetic == "dark_moody" and b_mood == "fresh_energy":
+        b_mood = "mystery"
+
+    b_families = list(_VIBE_TO_BFAMILIES.get(vibe, ["aquatic"]))
+
+    b_occasion = _LIFESTYLE_TO_BOCCASION.get(lifestyles[0] if lifestyles else "", "daily")
+
+    return {
+        "b_mood":      b_mood,
+        "b_occasion":  b_occasion,
+        "b_families":  b_families,
+        "b_sweetness": "",
+        "b_freshness": "",
+        "b_brightness": "",
+        "b_format":    "",
+    }
+
+
 def analyze_instagram(url: str) -> dict:
-    from matcher_db import recommend_from_db
+    from matcher_db import recommend_from_db, pick_biblioteka_box
 
     profile = fetch_instagram_profile(url)
     analysis = analyze_with_claude(profile)
+
+    # Parfbar recommendations
     answers = social_to_answers(analysis)
     recs = recommend_from_db(answers, store="parfbar", top_n=5)
     reasons = generate_reasons(analysis, recs)
     for rec, reason in zip(recs, reasons):
         rec["reason"] = reason
+
+    # Biblioteka recommendations
+    bib_answers = social_to_biblioteka_answers(analysis)
+    bib_recs = recommend_from_db(bib_answers, store="biblioteka", top_n=3)
+    bib_box = pick_biblioteka_box(bib_answers)
+
     return {
         "profile": profile,
         "analysis": analysis,
         "recommendations": recs,
+        "biblioteka": {
+            "fragrances": bib_recs,
+            "box": bib_box,
+        },
         "success": True,
     }
 

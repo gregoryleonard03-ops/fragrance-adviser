@@ -123,7 +123,7 @@
   .result {
     display: none;
     width: 100%;
-    max-width: 540px;
+    max-width: 1100px;
     background: #1c1c1c;
     border: 1px solid #2a2a2a;
     border-radius: 16px;
@@ -232,7 +232,41 @@
   }
   .post-desc:last-child { border-bottom: none; }
 
-  /* Recommendations */
+  /* Two-column recommendations */
+  .recs-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 24px;
+    border-top: 1px solid #2a2a2a;
+  }
+  .recs-col {
+    padding: 20px 24px;
+  }
+  .recs-col:first-child {
+    border-right: 1px solid #2a2a2a;
+  }
+  .recs-col-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .recs-col-title {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #666;
+  }
+  .recs-col-badge {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: #2a2a2a;
+    color: #888;
+  }
+
+  /* Recommendations (legacy single section) */
   .recs-section {
     margin-top: 24px;
     padding-top: 20px;
@@ -244,6 +278,43 @@
     text-transform: uppercase;
     color: #666;
     margin-bottom: 14px;
+  }
+
+  /* Biblioteka box card */
+  .box-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 12px;
+    padding: 12px;
+    background: #161616;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s;
+  }
+  .box-card:hover { border-color: #b89a6a; }
+  .box-img {
+    width: 56px; height: 56px;
+    border-radius: 8px;
+    object-fit: cover;
+    background: #2a2a2a;
+    flex-shrink: 0;
+  }
+  .box-label {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #b89a6a;
+    margin-bottom: 3px;
+  }
+  .box-name { font-size: 13px; font-weight: 600; line-height: 1.3; }
+  .box-price { font-size: 12px; color: #888; margin-top: 3px; }
+
+  @media (max-width: 720px) {
+    .recs-columns { grid-template-columns: 1fr; }
+    .recs-col:first-child { border-right: none; border-bottom: 1px solid #2a2a2a; }
   }
   .rec-card {
     display: flex;
@@ -382,9 +453,22 @@
       <div id="posts-list"></div>
     </div>
 
-    <div class="recs-section" id="recs-section" style="display:none">
-      <div class="recs-title">Подходящие ароматы</div>
-      <div id="recs-list"></div>
+    <div class="recs-columns" id="recs-columns" style="display:none">
+      <div class="recs-col">
+        <div class="recs-col-header">
+          <span class="recs-col-title">Parfbar</span>
+          <span class="recs-col-badge">~450 ароматов</span>
+        </div>
+        <div id="recs-parfbar"></div>
+      </div>
+      <div class="recs-col">
+        <div class="recs-col-header">
+          <span class="recs-col-title">Библиотека ароматов</span>
+          <span class="recs-col-badge">авторские</span>
+        </div>
+        <div id="recs-biblioteka"></div>
+        <div id="recs-box"></div>
+      </div>
     </div>
 
     <div class="debug-toggle" onclick="toggleDebug()">показать raw JSON ↓</div>
@@ -533,40 +617,53 @@ function showResult(data) {
     postsSection.style.display = "none";
   }
 
-  // Recommendations
-  const recsSection = document.getElementById("recs-section");
-  const recsList = document.getElementById("recs-list");
-  recsList.innerHTML = "";
-  const recs = data.recommendations || [];
-  if (recs.length > 0) {
-    recs.forEach((r, i) => {
-      const a = document.createElement("a");
-      a.className = "rec-card";
-      a.href = r.url || "#";
-      a.target = "_blank";
-      a.rel = "noopener";
+  // Recommendations — two columns
+  const recsColumns = document.getElementById("recs-columns");
 
-      const imgHtml = r.image_url
-        ? `<img class="rec-img" src="${r.image_url}" alt="${r.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
-          + `<div class="rec-img-placeholder" style="display:none">🧴</div>`
-        : `<div class="rec-img-placeholder">🧴</div>`;
+  function makeRecCard(r) {
+    const a = document.createElement("a");
+    a.className = "rec-card";
+    a.href = r.url || "#";
+    a.target = "_blank";
+    a.rel = "noopener";
+    const imgHtml = r.image_url
+      ? `<img class="rec-img" src="${r.image_url}" alt="${r.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="rec-img-placeholder" style="display:none">🧴</div>`
+      : `<div class="rec-img-placeholder">🧴</div>`;
+    const accords = (r.accords || []).slice(0, 3).map(acc => `<span class="rec-accord">${acc}</span>`).join("");
+    a.innerHTML = `${imgHtml}<div class="rec-info"><div class="rec-name">${r.name}</div><div class="rec-brand">${r.brand}</div><div class="rec-reason">${r.reason || ""}</div><div class="rec-accords">${accords}</div></div>`;
+    return a;
+  }
 
-      const accords = (r.accords || []).slice(0, 3)
-        .map(acc => `<span class="rec-accord">${acc}</span>`).join("");
+  // Parfbar column
+  const parfbarList = document.getElementById("recs-parfbar");
+  parfbarList.innerHTML = "";
+  (data.recommendations || []).forEach(r => parfbarList.appendChild(makeRecCard(r)));
 
-      a.innerHTML = `
-        ${imgHtml}
-        <div class="rec-info">
-          <div class="rec-name">${r.name}</div>
-          <div class="rec-brand">${r.brand}</div>
-          <div class="rec-reason">${r.reason || ""}</div>
-          <div class="rec-accords">${accords}</div>
-        </div>`;
-      recsList.appendChild(a);
-    });
-    recsSection.style.display = "block";
-  } else {
-    recsSection.style.display = "none";
+  // Biblioteka column
+  const bibList = document.getElementById("recs-biblioteka");
+  bibList.innerHTML = "";
+  const bib = data.biblioteka || {};
+  (bib.fragrances || []).forEach(r => bibList.appendChild(makeRecCard(r)));
+
+  // Box
+  const boxEl = document.getElementById("recs-box");
+  boxEl.innerHTML = "";
+  const box = bib.box;
+  if (box) {
+    const a = document.createElement("a");
+    a.className = "box-card";
+    a.href = box.url || "#";
+    a.target = "_blank";
+    a.rel = "noopener";
+    const imgHtml = box.image_url
+      ? `<img class="box-img" src="${box.image_url}" alt="${box.name}" loading="lazy">`
+      : `<div class="box-img" style="display:flex;align-items:center;justify-content:center;font-size:20px">🎁</div>`;
+    a.innerHTML = `${imgHtml}<div><div class="box-label">Набор</div><div class="box-name">${box.name}</div><div class="box-price">${box.price ? box.price.toLocaleString("ru") + " ₽" : ""}</div></div>`;
+    boxEl.appendChild(a);
+  }
+
+  if ((data.recommendations || []).length > 0 || (bib.fragrances || []).length > 0) {
+    recsColumns.style.display = "grid";
   }
 }
 

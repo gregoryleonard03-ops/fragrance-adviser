@@ -177,7 +177,27 @@ def analyze_with_claude(profile: dict) -> dict:
         f"Followers: {profile.get('followers', 0)}"
     )
 
-    prompt = f"""You are a perfume expert. Analyze this Instagram profile (and post images if provided) to determine the person's fragrance personality.
+    # Build message content — prepend post images if available, track count
+    content: list = []
+    images_loaded = 0
+    for img_url in profile.get("post_image_urls", [])[:2]:
+        img_data = _fetch_image_b64(img_url)
+        if img_data:
+            data, mt = img_data
+            content.append({
+                "type": "image",
+                "source": {"type": "base64", "media_type": mt, "data": data},
+            })
+            images_loaded += 1
+
+    # Ask for post_descriptions only when images actually loaded (avoids hallucinations)
+    desc_field = (
+        ',\n  "post_descriptions": array of 1 short Russian sentence per loaded image '
+        '— what you actually see (outfit, setting, mood). Only describe what is visible.'
+        if images_loaded > 0 else ""
+    )
+
+    prompt = f"""You are a perfume expert. Analyze this Instagram profile{"and the post images above" if images_loaded > 0 else ""} to determine the person's fragrance personality.
 
 Profile:
 {profile_text}
@@ -189,32 +209,26 @@ Return ONLY valid JSON with these exact fields. Always pick the closest matching
   "lifestyles": array of 1-3 items from exactly: ["fashion", "sport", "travel", "home_cozy", "food", "art_culture", "professional", "outdoor"],
   "dominant_vibe": one of exactly: "fresh", "warm_cozy", "sweet", "woody", "floral", "oriental", "clean",
   "notes_hint": array of 3-5 specific fragrance notes in Russian (e.g. "бергамот", "белый мускус", "пион"),
-  "reasoning": one sentence in Russian explaining the fragrance choice
+  "reasoning": one sentence in Russian explaining the fragrance choice{desc_field}
 }}"""
 
-    # Build message content — prepend post images if available
-    content: list = []
-    for img_url in profile.get("post_image_urls", [])[:2]:
-        img_data = _fetch_image_b64(img_url)
-        if img_data:
-            data, mt = img_data
-            content.append({
-                "type": "image",
-                "source": {"type": "base64", "media_type": mt, "data": data},
-            })
     content.append({"type": "text", "text": prompt})
 
     msg = client.messages.create(
         model="claude-haiku-4-5-20251001",
-        max_tokens=600,
+        max_tokens=700,
         messages=[{"role": "user", "content": content}],
     )
 
-    raw = msg.content[0].text.strip()
+    raw = (msg.content[0].text or "").strip()
+    if not raw:
+        raise ValueError("Claude вернул пустой ответ — попробуй ещё раз")
     m = re.search(r"\{.*\}", raw, re.DOTALL)
-    if m:
-        raw = m.group(0)
-    return json.loads(raw)
+    if not m:
+        raise ValueError(f"Claude не вернул JSON: {raw[:200]}")
+    result = json.loads(m.group(0))
+    result.setdefault("post_descriptions", [])
+    return result
 
 
 _NOTES_REVERSE: dict[str, str] = {
@@ -470,6 +484,9 @@ def analyze_instagram(url: str) -> dict:
     bib_answers = social_to_biblioteka_answers(analysis)
     bib_recs = recommend_from_db(bib_answers, store="biblioteka", top_n=3)
     bib_box = pick_biblioteka_box(bib_answers)
+    bib_reasons = generate_reasons(analysis, bib_recs, post_captions=profile.get("post_captions", []))
+    for rec, reason in zip(bib_recs, bib_reasons):
+        rec["reason"] = reason
 
     return {
         "profile": profile,

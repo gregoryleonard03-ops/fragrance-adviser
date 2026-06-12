@@ -439,7 +439,7 @@
     <div class="reasoning" id="res-reasoning"></div>
 
     <div class="posts-section" id="posts-section" style="display:none">
-      <div class="posts-title">Подписи к постам</div>
+      <div class="posts-title" id="posts-title">Что видно в постах</div>
       <div id="posts-list"></div>
     </div>
 
@@ -590,16 +590,21 @@ function showResult(data) {
 
   document.getElementById("result").classList.add("visible");
 
-  // Post captions (real captions from Instagram alt text — never hallucinated)
+  // Posts section: prefer AI descriptions (only when images actually loaded),
+  // fall back to real captions, hide only if nothing at all
   const postsSection = document.getElementById("posts-section");
+  const postsTitle = document.getElementById("posts-title");
   const postsList = document.getElementById("posts-list");
   postsList.innerHTML = "";
+  const postDescs = (data.analysis && data.analysis.post_descriptions) || [];
   const postCaptions = (data.profile && data.profile.post_captions) || [];
-  if (postCaptions.length > 0) {
-    postCaptions.forEach(cap => {
+  const postsItems = postDescs.length > 0 ? postDescs : postCaptions;
+  if (postsItems.length > 0) {
+    postsTitle.textContent = postDescs.length > 0 ? "Что видно в постах" : "Подписи к постам";
+    postsItems.forEach(item => {
       const d = document.createElement("div");
       d.className = "post-desc";
-      d.textContent = cap;
+      d.textContent = item;
       postsList.appendChild(d);
     });
     postsSection.style.display = "block";

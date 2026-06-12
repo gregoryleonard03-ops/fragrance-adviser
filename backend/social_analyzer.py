@@ -98,9 +98,16 @@ def _parse_instagram_text(text: str, url: str) -> dict:
     highlights = []
     followers = posts = 0
 
-    skip = {"Log In", "Sign Up", "Meta", "About", "Blog", "Jobs", "Help",
-            "API", "Privacy", "Terms", "Locations", "Popular", "Contact",
-            "Threads", "Instagram Lite", "Meta AI", "Meta Verified"}
+    skip = {
+        # English
+        "Log In", "Sign Up", "Meta", "About", "Blog", "Jobs", "Help",
+        "API", "Privacy", "Terms", "Locations", "Popular", "Contact",
+        "Threads", "Instagram Lite", "Meta AI", "Meta Verified",
+        # Russian login-wall strings
+        "Войти", "Войдите", "Вход", "Зарегистрироваться", "Регистрация",
+        "Ещё", "ещё", "Подписаться", "Сообщение", "Электронная почта",
+        "Забыли пароль?", "или", "Войдите с помощью Facebook",
+    }
 
     for line in lines:
         if re.match(r"^\d[\d,\.]*\s+(posts?|публикац)", line, re.I):
@@ -170,15 +177,15 @@ def analyze_with_claude(profile: dict) -> dict:
 Profile:
 {profile_text}
 
-Return ONLY valid JSON with these exact fields:
+Return ONLY valid JSON with these exact fields. Always pick the closest matching value — never return "unknown" or "unable to determine":
 {{
-  "age_group": "teen" or "young_adult" or "adult" or "mature",
-  "aesthetic": one of ["clean_minimal", "dark_moody", "boho", "glam_luxury", "sporty_fresh", "artistic", "preppy"],
-  "lifestyles": array of 1-3 items from ["fashion", "sport", "travel", "home_cozy", "food", "art_culture", "professional", "outdoor"],
-  "dominant_vibe": one of ["fresh", "warm_cozy", "sweet", "woody", "floral", "oriental", "clean"],
+  "age_group": one of exactly: "teen", "young_adult", "adult", "mature",
+  "aesthetic": one of exactly: "clean_minimal", "dark_moody", "boho", "glam_luxury", "sporty_fresh", "artistic", "preppy",
+  "lifestyles": array of 1-3 items from exactly: ["fashion", "sport", "travel", "home_cozy", "food", "art_culture", "professional", "outdoor"],
+  "dominant_vibe": one of exactly: "fresh", "warm_cozy", "sweet", "woody", "floral", "oriental", "clean",
   "notes_hint": array of 3-5 specific fragrance notes in Russian (e.g. "бергамот", "белый мускус", "пион"),
-  "reasoning": one sentence in Russian explaining why these notes suit this person,
-  "post_descriptions": array of 1-2 sentences in Russian describing each visible post image (what the person wears, where they are, the mood) — empty array if no images provided
+  "reasoning": one sentence in Russian explaining the fragrance choice,
+  "post_descriptions": array of 1-2 sentences in Russian describing each visible post image — empty array if no images
 }}"""
 
     # Build message content — prepend post images if available

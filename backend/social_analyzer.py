@@ -214,21 +214,30 @@ Return ONLY valid JSON with these exact fields. Always pick the closest matching
 
     content.append({"type": "text", "text": prompt})
 
-    msg = client.messages.create(
-        model="claude-haiku-4-5-20251001",
-        max_tokens=700,
-        messages=[{"role": "user", "content": content}],
-    )
+    last_err: Exception | None = None
+    for attempt in range(2):
+        try:
+            msg = client.messages.create(
+                model="claude-haiku-4-5-20251001",
+                max_tokens=700,
+                messages=[{"role": "user", "content": content}],
+            )
+            raw = (msg.content[0].text or "").strip()
+            if not raw:
+                last_err = ValueError("Claude вернул пустой ответ")
+                continue
+            m = re.search(r"\{.*\}", raw, re.DOTALL)
+            if not m:
+                last_err = ValueError(f"Нет JSON в ответе Claude: {raw[:120]}")
+                continue
+            result = json.loads(m.group(0))
+            result.setdefault("post_descriptions", [])
+            return result
+        except (ValueError, KeyError, json.JSONDecodeError) as e:
+            last_err = e
+            continue
 
-    raw = (msg.content[0].text or "").strip()
-    if not raw:
-        raise ValueError("Claude вернул пустой ответ — попробуй ещё раз")
-    m = re.search(r"\{.*\}", raw, re.DOTALL)
-    if not m:
-        raise ValueError(f"Claude не вернул JSON: {raw[:200]}")
-    result = json.loads(m.group(0))
-    result.setdefault("post_descriptions", [])
-    return result
+    raise ValueError(f"Не удалось получить анализ после 2 попыток — попробуй ещё раз ({last_err})")
 
 
 _NOTES_REVERSE: dict[str, str] = {
@@ -399,7 +408,7 @@ def generate_reasons(analysis: dict, recs: list[dict], post_captions: list[str] 
             max_tokens=500,
             messages=[{"role": "user", "content": prompt}],
         )
-        raw = msg.content[0].text.strip()
+        raw = (msg.content[0].text or "").strip()
         m = re.search(r"\[.*\]", raw, re.DOTALL)
         if m:
             reasons = json.loads(m.group(0))

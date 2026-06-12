@@ -189,8 +189,7 @@ Return ONLY valid JSON with these exact fields. Always pick the closest matching
   "lifestyles": array of 1-3 items from exactly: ["fashion", "sport", "travel", "home_cozy", "food", "art_culture", "professional", "outdoor"],
   "dominant_vibe": one of exactly: "fresh", "warm_cozy", "sweet", "woody", "floral", "oriental", "clean",
   "notes_hint": array of 3-5 specific fragrance notes in Russian (e.g. "бергамот", "белый мускус", "пион"),
-  "reasoning": one sentence in Russian explaining the fragrance choice,
-  "post_descriptions": array of 1-2 sentences in Russian describing each visible post image — empty array if no images
+  "reasoning": one sentence in Russian explaining the fragrance choice
 }}"""
 
     # Build message content — prepend post images if available
@@ -215,9 +214,7 @@ Return ONLY valid JSON with these exact fields. Always pick the closest matching
     m = re.search(r"\{.*\}", raw, re.DOTALL)
     if m:
         raw = m.group(0)
-    result = json.loads(raw)
-    result.setdefault("post_descriptions", [])
-    return result
+    return json.loads(raw)
 
 
 _NOTES_REVERSE: dict[str, str] = {
@@ -351,7 +348,7 @@ def _fallback_reason(analysis: dict, rec: dict) -> str:
     return f"{desc[0].upper()}{desc[1:]} — {context}."
 
 
-def generate_reasons(analysis: dict, recs: list[dict]) -> list[str]:
+def generate_reasons(analysis: dict, recs: list[dict], post_captions: list[str] | None = None) -> list[str]:
     """One Claude call → unique personalized reason for each fragrance."""
     import anthropic
 
@@ -361,9 +358,9 @@ def generate_reasons(analysis: dict, recs: list[dict]) -> list[str]:
         return [_fallback_reason(analysis, r) for r in recs]
 
     post_ctx = ""
-    descs = analysis.get("post_descriptions", [])
-    if descs:
-        post_ctx = "Последние посты: " + "; ".join(descs) + "."
+    captions = post_captions or []
+    if captions:
+        post_ctx = "Подписи к постам: " + "; ".join(captions) + "."
 
     frags = "\n".join([
         f"{i+1}. {r['brand']} — {r['name']} ({', '.join((r.get('accords') or [])[:3])})"
@@ -465,7 +462,7 @@ def analyze_instagram(url: str) -> dict:
     # Parfbar recommendations
     answers = social_to_answers(analysis)
     recs = recommend_from_db(answers, store="parfbar", top_n=5)
-    reasons = generate_reasons(analysis, recs)
+    reasons = generate_reasons(analysis, recs, post_captions=profile.get("post_captions", []))
     for rec, reason in zip(recs, reasons):
         rec["reason"] = reason
 

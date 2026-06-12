@@ -197,16 +197,6 @@
     font-style: italic;
   }
 
-  .vibe-map = {
-    fresh: "Свежий",
-    warm_cozy: "Тёплый и уютный",
-    sweet: "Сладкий",
-    woody: "Древесный",
-    floral: "Цветочный",
-    oriental: "Восточный",
-    clean: "Чистый",
-  }
-
   /* JSON debug toggle */
   /* Posts section */
   .posts-section {
@@ -449,7 +439,7 @@
     <div class="reasoning" id="res-reasoning"></div>
 
     <div class="posts-section" id="posts-section" style="display:none">
-      <div class="posts-title">Что видно в постах</div>
+      <div class="posts-title">Подписи к постам</div>
       <div id="posts-list"></div>
     </div>
 
@@ -600,16 +590,16 @@ function showResult(data) {
 
   document.getElementById("result").classList.add("visible");
 
-  // Post descriptions
+  // Post captions (real captions from Instagram alt text — never hallucinated)
   const postsSection = document.getElementById("posts-section");
   const postsList = document.getElementById("posts-list");
   postsList.innerHTML = "";
-  const postDescs = (data.analysis && data.analysis.post_descriptions) || [];
-  if (postDescs.length > 0) {
-    postDescs.forEach(desc => {
+  const postCaptions = (data.profile && data.profile.post_captions) || [];
+  if (postCaptions.length > 0) {
+    postCaptions.forEach(cap => {
       const d = document.createElement("div");
       d.className = "post-desc";
-      d.textContent = desc;
+      d.textContent = cap;
       postsList.appendChild(d);
     });
     postsSection.style.display = "block";
@@ -643,23 +633,27 @@ function showResult(data) {
   const bibList = document.getElementById("recs-biblioteka");
   bibList.innerHTML = "";
   const bib = data.biblioteka || {};
-  (bib.fragrances || []).forEach(r => bibList.appendChild(makeRecCard(r)));
+  (bib.fragrances || []).forEach(r => {
+    try { bibList.appendChild(makeRecCard(r)); } catch(e) { console.error("bibCard error", e, r); }
+  });
 
   // Box
   const boxEl = document.getElementById("recs-box");
   boxEl.innerHTML = "";
   const box = bib.box;
   if (box) {
-    const a = document.createElement("a");
-    a.className = "box-card";
-    a.href = box.url || "#";
-    a.target = "_blank";
-    a.rel = "noopener";
-    const imgHtml = box.image_url
-      ? `<img class="box-img" src="${box.image_url}" alt="${box.name}" loading="lazy">`
-      : `<div class="box-img" style="display:flex;align-items:center;justify-content:center;font-size:20px">🎁</div>`;
-    a.innerHTML = `${imgHtml}<div><div class="box-label">Набор</div><div class="box-name">${box.name}</div><div class="box-price">${box.price ? box.price.toLocaleString("ru") + " ₽" : ""}</div></div>`;
-    boxEl.appendChild(a);
+    try {
+      const boxA = document.createElement("a");
+      boxA.className = "box-card";
+      boxA.href = box.url || "#";
+      boxA.target = "_blank";
+      boxA.rel = "noopener";
+      const boxImg = box.image_url
+        ? `<img class="box-img" src="${box.image_url}" alt="${box.name || ''}" loading="lazy">`
+        : `<div class="box-img" style="display:flex;align-items:center;justify-content:center;font-size:20px">🎁</div>`;
+      boxA.innerHTML = `${boxImg}<div><div class="box-label">Набор</div><div class="box-name">${box.name || ''}</div><div class="box-price">${box.price ? box.price.toLocaleString("ru") + " ₽" : ""}</div></div>`;
+      boxEl.appendChild(boxA);
+    } catch(e) { console.error("boxCard error", e); }
   }
 
   if ((data.recommendations || []).length > 0 || (bib.fragrances || []).length > 0) {

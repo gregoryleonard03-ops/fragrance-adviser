@@ -61,20 +61,22 @@ def fetch_instagram_profile(url: str) -> dict:
 
         text = page.inner_text("body")
 
-        # Extract post image URLs from the grid (skip tiny avatar thumbnails)
+        # Extract post images and captions (alt text = post caption on Instagram)
         post_image_urls = []
+        post_captions = []
         try:
-            imgs = page.query_selector_all("img[srcset]")
+            imgs = page.query_selector_all("img")
             for img in imgs:
                 src = img.get_attribute("src") or ""
-                if (
-                    "fbcdn.net" in src
-                    and "s150x150" not in src
-                    and "s320x320" not in src
-                    and "p320x320" not in src
-                    and src not in post_image_urls
-                ):
-                    post_image_urls.append(src)
+                alt = (img.get_attribute("alt") or "").strip()
+                # Skip profile photo and highlight covers (alt starts with "Фото профиля")
+                if alt.startswith("Фото профиля") or not src:
+                    continue
+                if "cdninstagram.com" in src or "fbcdn.net" in src:
+                    if src not in post_image_urls:
+                        post_image_urls.append(src)
+                    if alt and alt not in post_captions:
+                        post_captions.append(alt)
                 if len(post_image_urls) >= 3:
                     break
         except Exception:
@@ -84,6 +86,7 @@ def fetch_instagram_profile(url: str) -> dict:
 
     profile = _parse_instagram_text(text, url)
     profile["post_image_urls"] = post_image_urls
+    profile["post_captions"] = post_captions
     return profile
 
 
@@ -164,11 +167,13 @@ def analyze_with_claude(profile: dict) -> dict:
 
     client = anthropic.Anthropic(api_key=api_key)
 
+    captions_str = "; ".join(profile.get("post_captions", []))
     profile_text = (
         f"Name: {profile.get('name', '')}\n"
         f"Username: @{profile.get('username', '')}\n"
         f"Bio: {profile.get('bio', '')}\n"
         f"Highlights: {', '.join(profile.get('highlights', []))}\n"
+        f"Recent post captions: {captions_str}\n"
         f"Followers: {profile.get('followers', 0)}"
     )
 

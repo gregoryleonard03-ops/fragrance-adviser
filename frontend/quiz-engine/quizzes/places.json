@@ -1,0 +1,75 @@
+{
+  "id": "places",
+  "title": "By Place",
+  "steps": [
+    {
+      "id": "_place",
+      "title": "Where do you feel most yourself?",
+      "hint": "",
+      "multi": false,
+      "cols": 4,
+      "options": [
+        { "value": "shoreline", "emoji": "🌊", "label": "Shoreline at dawn", "sub": "Salt air, empty beach",
+          "maps": { "branch": "fresh_clean", "vibe": ["beach"], "notes": ["marine"] } },
+        { "value": "bookshop", "emoji": "📚", "label": "An old bookshop", "sub": "Paper, dust, quiet",
+          "maps": { "branch": "artistic_niche", "vibe": ["intellectual"], "notes": ["woody", "vetiver"] } },
+        { "value": "club", "emoji": "🌃", "label": "A rooftop at 2am", "sub": "City lights below",
+          "maps": { "branch": "dark_sexy", "vibe": ["night_out"], "occasion": ["party", "night_city"] } },
+        { "value": "mountains", "emoji": "⛰️", "label": "A mountain cabin", "sub": "Pine, woodsmoke, wool",
+          "maps": { "branch": "warm_cozy", "vibe": ["nordic_cabin"], "notes": ["woody"] } },
+        { "value": "studio", "emoji": "🎨", "label": "An artist's studio", "sub": "Paint, clay, ideas",
+          "maps": { "branch": "artistic_niche", "vibe": ["art_gallery"] } },
+        { "value": "lobby", "emoji": "🏨", "label": "A five-star lobby", "sub": "Marble, fresh flowers",
+          "maps": { "branch": "elegant_luxury", "sub_type": ["hotel"], "vibe": ["luxury_hotel"] } },
+        { "value": "market", "emoji": "🍑", "label": "A summer market", "sub": "Ripe fruit, warm stone",
+          "maps": { "branch": "fresh_clean", "vibe": ["summer_europe"], "notes": ["fruits", "citrus"] } },
+        { "value": "bedroom", "emoji": "🛏️", "label": "Fresh linen bedroom", "sub": "White sheets, soft light",
+          "maps": { "branch": "soft_skin", "vibe": ["second_skin"], "occasion": ["bed_scent"] } }
+      ]
+    },
+    {
+      "id": "_time",
+      "title": "When does that place feel best?",
+      "hint": "",
+      "multi": true,
+      "cols": 4,
+      "options": [
+        { "value": "summer", "emoji": "☀️", "label": "Golden summer",      "maps": { "season": ["summer"] } },
+        { "value": "autumn", "emoji": "🍂", "label": "Crisp autumn",       "maps": { "season": ["autumn"] } },
+        { "value": "winter", "emoji": "❄️", "label": "Deep winter",        "maps": { "season": ["winter"] } },
+        { "value": "spring", "emoji": "🌸", "label": "First days of spring", "maps": { "season": ["spring"] } }
+      ]
+    },
+    {
+      "id": "notes",
+      "title": "Which notes do you enjoy?",
+      "hint": "Pick as many as you like",
+      "multi": true,
+      "cols": 3,
+      "options": [
+        { "value": "citrus",  "emoji": "🍋", "label": "Citrus / bergamot" },
+        { "value": "rose",    "emoji": "🌹", "label": "Rose / florals" },
+        { "value": "vanilla", "emoji": "🍦", "label": "Vanilla / tonka" },
+        { "value": "woody",   "emoji": "🪵", "label": "Woods / sandalwood" },
+        { "value": "oud",     "emoji": "🕌", "label": "Oud / incense" },
+        { "value": "musk",    "emoji": "🤍", "label": "Musk" }
+      ]
+    },
+    { "$ref": "budget" }
+  ],
+  "shared": {
+    "budget": {
+      "id": "budget",
+      "title": "What's your comfortable budget?",
+      "hint": "Full bottle — every pick also comes as a $4–15 sample",
+      "multi": true,
+      "cols": 4,
+      "options": [
+        { "value": "budget_1", "emoji": "💛", "label": "Under $200" },
+        { "value": "budget_2", "emoji": "🥈", "label": "$200 – 300" },
+        { "value": "budget_3", "emoji": "🥇", "label": "$300 – 400" },
+        { "value": "budget_4", "emoji": "💎", "label": "$400+" }
+      ]
+    }
+  }
+}

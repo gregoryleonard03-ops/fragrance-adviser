@@ -1,0 +1,67 @@
+{
+  "id": "moodboard",
+  "title": "By Moodboard",
+  "steps": [
+    {
+      "id": "_mood",
+      "title": "Pick the three that pull you in",
+      "hint": "Don't think — feel",
+      "multi": true,
+      "cols": 4,
+      "options": [
+        { "value": "midnight_silk", "label": "Midnight silk", "sub": "after dark",
+          "bg": "linear-gradient(160deg, #1a1423 0%, #3d2645 60%, #120d16 100%)",
+          "maps": { "branch": "dark_sexy", "vibe": ["dark_elegance"] } },
+        { "value": "golden_hour", "label": "Golden hour", "sub": "sun on skin",
+          "bg": "linear-gradient(160deg, #e8a24b 0%, #c96f2e 55%, #8a4a1f 100%)",
+          "maps": { "branch": "warm_cozy", "vibe": ["warm_skin_sun"], "notes": ["amber"] } },
+        { "value": "sea_glass", "label": "Sea glass", "sub": "cold and clear",
+          "bg": "linear-gradient(160deg, #a8d5d0 0%, #5da8a0 55%, #3a7d7a 100%)",
+          "maps": { "branch": "fresh_clean", "vibe": ["beach"], "notes": ["marine"] } },
+        { "value": "white_linen", "label": "White linen", "sub": "just washed",
+          "bg": "linear-gradient(160deg, #f2f0ec 0%, #d8d4cd 60%, #b8b3ab 100%)",
+          "maps": { "branch": "soft_skin", "vibe": ["just_showered"], "notes": ["musk"] } },
+        { "value": "marble_brass", "label": "Marble & brass", "sub": "quiet money",
+          "bg": "linear-gradient(160deg, #e9e2d0 0%, #c9b98a 55%, #9d8a5a 100%)",
+          "maps": { "branch": "elegant_luxury", "vibe": ["expensive_calm"] } },
+        { "value": "gallery", "label": "Gallery concrete", "sub": "white walls, big ideas",
+          "bg": "linear-gradient(160deg, #9a9a9a 0%, #6e6e6e 55%, #4a4a4a 100%)",
+          "maps": { "branch": "artistic_niche", "vibe": ["art_gallery"] } },
+        { "value": "fireside", "label": "Fireside cashmere", "sub": "wrapped up warm",
+          "bg": "linear-gradient(160deg, #6b3f2a 0%, #4a2a1c 55%, #2e1a12 100%)",
+          "maps": { "branch": "warm_cozy", "vibe": ["cashmere_fireplace"], "notes": ["vanilla"] } },
+        { "value": "neon_rain", "label": "Neon rain", "sub": "the city at 1am",
+          "bg": "linear-gradient(160deg, #1b2452 0%, #4a2a6b 55%, #a83a6e 100%)",
+          "maps": { "branch": "dark_sexy", "vibe": ["night_out"] } },
+        { "value": "citrus_grove", "label": "Citrus grove", "sub": "green and bright",
+          "bg": "linear-gradient(160deg, #c8d96a 0%, #8db54a 55%, #5a8a3a 100%)",
+          "maps": { "branch": "fresh_clean", "vibe": ["summer_europe"], "notes": ["citrus"] } },
+        { "value": "powder_pearls", "label": "Powder & pearls", "sub": "soft focus",
+          "bg": "linear-gradient(160deg, #f0dede 0%, #d8b8c0 55%, #b898a8 100%)",
+          "maps": { "branch": "soft_skin", "sub_type": ["powdery"], "notes": ["rose"] } },
+        { "value": "old_library", "label": "Old library", "sub": "leather and paper",
+          "bg": "linear-gradient(160deg, #5a3a28 0%, #3e2a1e 55%, #241a12 100%)",
+          "maps": { "branch": "artistic_niche", "vibe": ["intellectual"], "notes": ["woody", "tobacco"] } },
+        { "value": "desert_dusk", "label": "Desert dusk", "sub": "heat leaving the sand",
+          "bg": "linear-gradient(160deg, #c97a4a 0%, #8a4a5a 55%, #4a2a4a 100%)",
+          "maps": { "branch": "artistic_niche", "vibe": ["desert_midnight"], "notes": ["oud", "spicy"] } }
+      ]
+    },
+    { "$ref": "budget" }
+  ],
+  "shared": {
+    "budget": {
+      "id": "budget",
+      "title": "What's your comfortable budget?",
+      "hint": "Full bottle — every pick also comes as a $4–15 sample",
+      "multi": true,
+      "cols": 4,
+      "options": [
+        { "value": "budget_1", "emoji": "💛", "label": "Under $200" },
+        { "value": "budget_2", "emoji": "🥈", "label": "$200 – 300" },
+        { "value": "budget_3", "emoji": "🥇", "label": "$300 – 400" },
+        { "value": "budget_4", "emoji": "💎", "label": "$400+" }
+      ]
+    }
+  }
+}

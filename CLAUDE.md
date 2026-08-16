@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-**Aroma Match** — AI-платформа персонального подбора парфюма. Продаётся владельцам нишевых магазинов (текущий клиент — Profumum.ru). Без внешних AI API — матчинг локальный по ключевым словам.
+**Aroma Match** — AI-платформа персонального подбора парфюма. Продаётся владельцам нишевых магазинов (текущий клиент — Profumum.ru; демо для Библиотеки ароматов и Scentrique). Матчинг локальный по ключевым словам (без API-вызовов); Claude API (Haiku) используется для Instagram-анализа (`social_analyzer.py`) и генерации персональных причин. Ключ — `ANTHROPIC_API_KEY` в `.env` в корне.
 
 Главная страница (`/`) — бренд Aroma Match, две карточки: «Profumum — Квиз» (→ `/profumum`) и «О продукте» (→ `/pitch` — продающая презентация в виде scroll-snap HTML-слайдов).
 
@@ -39,31 +39,40 @@ Open: http://localhost:8000
 
 ```
 backend/
-  main.py          — FastAPI: serves frontend + POST /api/recommend
-  matcher.py       — local scoring engine (no API calls)
-  scraper.py       — one-time Playwright scraper to build fragrances.json
+  main.py              — FastAPI: pages + все /api/* эндпоинты
+  matcher.py           — старый скоринг (sephora, 35 позиций)
+  matcher_db.py        — основной скоринг: 76k база + каталоги магазинов
+                         (parfbar/profumum/generic/biblioteka/scentrique)
+  social_analyzer.py   — Instagram: Playwright-скрейп → Claude Haiku → answers;
+                         lang="ru"|"en"; merge_answers для объединённого скоринга
+  scraper.py           — one-time Playwright scraper (Sephora)
+  scrape_scentrique.py — one-time скрейпер scentrique.us (дисковый кэш в
+                         data/scentrique_cache/, вежливые задержки)
+  test_*.py            — assert-тесты: merge, notes_reverse, regression, quiz_configs
   data/
-    fragrances.json — fragrance catalog (35 entries, manually curated)
+    fragrances_db.json         — 76k общая база (accords, ноты)
+    fragrances_{parfbar,profumum,biblioteka,scentrique}.json — каталоги магазинов
 
-frontend/           — vanilla JS, no build step
-  index.html        — Aroma Match home: 2 cards + theme toggle + logo
-  assets/
-    logo_am.png     — AM logo (transparent PNG, used everywhere)
-  pitch/            — sales presentation (11 slides, scroll-snap)
-    index.html
-    style.css
-    app.js
-  profumum/         — main customer quiz (RU, 7 questions)
-  sephora/          — hidden prototype (EN, 10 questions) — direct URL only
-  parfbar/          — hidden prototype (RU, 7 questions) — direct URL only
+frontend/               — vanilla JS, no build step
+  index.html            — Aroma Match home
+  pitch/                — sales presentation (scroll-snap слайды)
+  profumum/             — основной клиентский квиз (RU)
+  sephora/, parfbar/    — скрытые прототипы (прямой URL)
+  biblioteka/           — квиз Библиотеки ароматов (RU)
+  social-demo/          — Instagram-демо (RU, Parfbar + Библиотека)
+  quiz-engine/          — движок квизов на JSON-конфигах:
+    engine.js           — чистое ядро + DOM-рендер (тесты: node test_engine.js)
+    quizzes/*.json      — mood / characters / places / moodboard (EN, Scentrique)
+  match/                — /match: IG (опц.) → выбор квиза → квиз → результат (EN)
 ```
 
 Routes in `backend/main.py`:
-- `/` → home
-- `/pitch` → presentation page
-- `/pitch/aroma-match.pdf` → original PDF download
-- `/profumum`, `/sephora`, `/parfbar` → quiz pages
-- `/api/recommend/{profumum|sephora|parfbar}` → matching API
+- `/` → home; `/pitch` → презентация (+ `/pitch/aroma-match.pdf`)
+- `/profumum`, `/sephora`, `/parfbar`, `/biblioteka` → квизы
+- `/social-demo` → Instagram-демо (RU); `/match` → объединённый флоу Scentrique (EN)
+- `/api/recommend/{sephora|parfbar|profumum|biblioteka}` + `/api/recommend/quiz/{slug}`
+- `/api/analyze-instagram` (полный, RU) и `/api/analyze-instagram-light` (для /match, EN)
+- `/api/recommend/combined` — слияние квиз+IG ответов → один скоринг (store=scentrique)
 
 Static files are served via FastAPI at `/static/*` — HTML references them as `/static/assets/logo_am.png`, `/static/pitch/style.css` etc. (absolute paths).
 

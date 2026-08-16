@@ -44,6 +44,17 @@
 .btn-ghost { background: transparent; color: #1c1c1c; border: 1px solid #ddd; }
 .btn-ghost:hover:not(:disabled) { border-color: #1c1c1c; }
 
+/* Moodboard tiles: gradient background + display type instead of emoji cards.
+   ponytail: CSS gradients stand in for licensed photography; buy images if
+   this style wins the tests. */
+.card.tile {
+  min-height: 130px; display: flex; flex-direction: column; justify-content: flex-end;
+  align-items: flex-start; text-align: left; border-color: transparent;
+}
+.card.tile .card-label { color: #fff; font-size: 16px; text-shadow: 0 1px 8px rgba(0,0,0,.35); }
+.card.tile .card-sub { color: rgba(255,255,255,.85); text-shadow: 0 1px 6px rgba(0,0,0,.35); }
+.card.tile.selected { box-shadow: 0 0 0 3px #81550d; }
+
 @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
 @media (max-width: 640px) {

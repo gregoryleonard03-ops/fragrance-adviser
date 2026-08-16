@@ -165,12 +165,13 @@ const QuizEngine = {
     q.options.forEach(function (opt) {
       const card = document.createElement('div');
       card.className = 'card';
+      if (opt.bg) { card.classList.add('tile'); card.style.background = opt.bg; }
       const isSel = q.multi
         ? Array.isArray(selected) && selected.indexOf(opt.value) !== -1
         : selected === opt.value;
       if (isSel) card.classList.add('selected');
       card.innerHTML =
-        '<div class="card-emoji">' + opt.emoji + '</div>' +
+        (opt.emoji ? '<div class="card-emoji">' + opt.emoji + '</div>' : '') +
         '<div class="card-label">' + opt.label + '</div>' +
         (opt.sub ? '<div class="card-sub">' + opt.sub + '</div>' : '');
       card.addEventListener('click', function () { QuizEngine.selectCard(q, opt.value, card); });

@@ -1,0 +1,4578 @@
+[
+ {
+  "brand": "Amouage",
+  "name": "Dia EDP M 100ml",
+  "top_notes": "Bergamot, Peach, Ginger",
+  "middle_notes": "Rose, Jasmine, Narcissus",
+  "base_notes": "Musk, Amber, Sandalwood",
+  "accords": [
+   "Floral",
+   "Rose",
+   "Warm",
+   "Amber"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "BDK Parfums",
+  "name": "Creme De Cuir",
+  "top_notes": "Bergamot, Lemon",
+  "middle_notes": "Leather, Iris",
+  "base_notes": "Vanilla, Musk, Vetiver",
+  "accords": [
+   "Leather",
+   "Warm"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "BDK Parfums",
+  "name": "Tubereuse Imperiale",
+  "top_notes": "Bergamot, Mandarin",
+  "middle_notes": "Tuberose, Lily of the Valley",
+  "base_notes": "Amber, Sandalwood, Musk",
+  "accords": [
+   "White Floral",
+   "Floral",
+   "Warm"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Etat Libre d'Orange",
+  "name": "Clean Suede (formerly Tom of Finland) EDP",
+  "top_notes": "Galbanum, Lemon, Green Notes",
+  "middle_notes": "Iris, Suede, Leather",
+  "base_notes": "Sandalwood, Patchouli, Ambroxan",
+  "accords": [
+   "Leathery",
+   "Green",
+   "Iris",
+   "Woody"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Montale",
+  "name": "Intense Cafe",
+  "top_notes": "Coffee, Cinnamon",
+  "middle_notes": "Coffee, Cocoa, Vanilla",
+  "base_notes": "Vanilla, Tonka, Sandalwood",
+  "accords": [
+   "Gourmand",
+   "Warm",
+   "Aromatic"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Montale",
+  "name": "Intense Café Ristretto EXTRAIT",
+  "top_notes": "Coffee, Spices",
+  "middle_notes": "Coffee, Cocoa",
+  "base_notes": "Vanilla, Tonka, Musk",
+  "accords": [
+   "Gourmand",
+   "Warm",
+   "Aromatic"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Montale",
+  "name": "Intense Roses Musk EXTRAIT",
+  "top_notes": "Rose, Cassis",
+  "middle_notes": "Rose, Osmanthus",
+  "base_notes": "Musk, Sandalwood",
+  "accords": [
+   "Rose",
+   "Floral",
+   "Musky"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Nasomatto",
+  "name": "Black Afgano",
+  "top_notes": "Labdanum Resinoid",
+  "middle_notes": "Oud, Black Musk",
+  "base_notes": "Leather, Incense, Amber",
+  "accords": [
+   "Oud",
+   "Leather",
+   "Oriental",
+   "Incense",
+   "Smoky"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Nishane",
+  "name": "Ani",
+  "top_notes": "Pink Pepper, Lemon",
+  "middle_notes": "Rose, Heliotrope, Iris",
+  "base_notes": "Vanilla, Musk, Sandalwood",
+  "accords": [
+   "Floral",
+   "Sweet",
+   "Warm"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "PARFUMS de MARLY",
+  "name": "Delina",
+  "top_notes": "Raspberry, Bulgarian Rose",
+  "middle_notes": "Peony, Grasse Rose, Geranium",
+  "base_notes": "Musk, Patchouli, Sandalwood",
+  "accords": [
+   "Floral",
+   "Fruity",
+   "Sweet",
+   "Warm"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "PARFUMS de MARLY",
+  "name": "Layton",
+  "top_notes": "Bergamot, Blackcurrant",
+  "middle_notes": "Peach, Geranium, Iris",
+  "base_notes": "Vanilla, Tonka Bean, Sandalwood",
+  "accords": [
+   "Fruity",
+   "Sweet",
+   "Warm",
+   "Woody"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Montale",
+  "name": "Vanilla Absolu",
+  "top_notes": "Orange Blossom, Bergamot",
+  "middle_notes": "Vanilla, Amber",
+  "base_notes": "Musk, Sandalwood, Vanilla",
+  "accords": [
+   "Warm",
+   "Vanilla",
+   "Sweet"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Vilhelm Parfumerie",
+  "name": "Basilico & Fellini EDP",
+  "top_notes": "Basil, Lemon",
+  "middle_notes": "Floral, Basil",
+  "base_notes": "Musk, Wood",
+  "accords": [
+   "Fresh",
+   "Herbal",
+   "Green"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Vilhelm Parfumerie",
+  "name": "Black Citrus EDP",
+  "top_notes": "Grapefruit, Lemon, Black Pepper",
+  "middle_notes": "Jasmine, Ambroxan",
+  "base_notes": "Musk, Vetiver, Wood",
+  "accords": [
+   "Citrus",
+   "Spicy",
+   "Fresh"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Vilhelm Parfumerie",
+  "name": "Mango Skin EDP",
+  "top_notes": "Mango, Citrus, Pink Pepper",
+  "middle_notes": "Floral, Mango",
+  "base_notes": "Musk, Ambroxan, Sandalwood",
+  "accords": [
+   "Fruity",
+   "Tropical",
+   "Sweet"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "1861 Naxos EDP",
+  "top_notes": "Grapefruit, Bergamot, Peach",
+  "middle_notes": "Jasmine, Rose, Peach",
+  "base_notes": "Amber, Musk, Wood",
+  "accords": [
+   "Fresh",
+   "Floral",
+   "Sweet"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "1861 Renaissance EDP",
+  "top_notes": "Bergamot, Neroli, Grapefruit",
+  "middle_notes": "Rose, Jasmine, Carnation",
+  "base_notes": "Amber, Sandalwood, Musk",
+  "accords": [
+   "Fresh",
+   "Rose",
+   "Floral"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "1861 Zefiro EDP",
+  "top_notes": "Bergamot, Mandarin, Grapefruit",
+  "middle_notes": "Orange Blossom, Jasmine",
+  "base_notes": "Amber, Sandalwood, Musk",
+  "accords": [
+   "Citrus",
+   "Fresh",
+   "Floral"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Xerjoff Casamorati",
+  "name": "1888 EDP",
+  "top_notes": "Bergamot, Lavender, Grapefruit",
+  "middle_notes": "Rose, Jasmine, Iris",
+  "base_notes": "Amber, Vanilla, Sandalwood",
+  "accords": [
+   "Fresh",
+   "Rose",
+   "Warm"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Xerjoff Casamorati",
+  "name": "Dama Bianca EDP",
+  "top_notes": "Bergamot, Pink Pepper",
+  "middle_notes": "Rose, Lilac, Peony",
+  "base_notes": "Musk, Amber, Sandalwood",
+  "accords": [
+   "Rose",
+   "Floral",
+   "Soft"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Xerjoff Casamorati",
+  "name": "Dolce Amalfi EDP",
+  "top_notes": "Lemon, Mandarin, Orange",
+  "middle_notes": "Tiare Flower, Peach",
+  "base_notes": "Amber, Musk, Sandalwood",
+  "accords": [
+   "Citrus",
+   "Fruity",
+   "Sweet"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Xerjoff Casamorati",
+  "name": "La Tosca EDP",
+  "top_notes": "Bergamot, Grapefruit",
+  "middle_notes": "Gardenia, Tuberose, Jasmine",
+  "base_notes": "Amber, Sandalwood, Vanilla",
+  "accords": [
+   "White Floral",
+   "Warm",
+   "Sweet"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Xerjoff Casamorati",
+  "name": "Lira EDP",
+  "top_notes": "Bergamot, Neroli, Mandarin",
+  "middle_notes": "Jasmine, Rose, Lilac",
+  "base_notes": "Amber, Vanilla, Musk",
+  "accords": [
+   "Fresh",
+   "Floral",
+   "Warm"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Xerjoff Casamorati",
+  "name": "Mefisto",
+  "top_notes": "Pink Pepper, Ginger",
+  "middle_notes": "Oud, Spices, Leather",
+  "base_notes": "Amber, Oud, Wood",
+  "accords": [
+   "Spicy",
+   "Oud",
+   "Oriental"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "Coffee Break Golden Dallah EDP",
+  "top_notes": "Cardamom, Coffee, Saffron",
+  "middle_notes": "Oud, Amber, Spices",
+  "base_notes": "Sandalwood, Amber, Vanilla",
+  "accords": [
+   "Warm",
+   "Spicy",
+   "Gourmand"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "Oud Stars Alexandria II",
+  "top_notes": "Bergamot, Pink Pepper",
+  "middle_notes": "Oud, Spices, Rose",
+  "base_notes": "Amber, Oud, Sandalwood",
+  "accords": [
+   "Oud",
+   "Oriental",
+   "Spicy"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Pierre Guillaume Paris",
+  "name": "31 Tonka Bodykon",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Amber",
+   "Vanilla",
+   "Gourmand",
+   "Sweet"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BDK Parfums",
+  "name": "312 Saint Honore",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Iris",
+   "Musky",
+   "Powdery",
+   "Floral"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Etat Libre d'Orange",
+  "name": "Above the Waves EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Citrus",
+   "Aromatic",
+   "Woody",
+   "Fresh"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Giardini di Toscana",
+  "name": "Almafolia EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "White Floral",
+   "Fruity",
+   "Vanilla",
+   "Sweet"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Amouage",
+  "name": "Blossom Love EDP W 100ml",
+  "top_notes": "Cherry Blossom",
+  "middle_notes": "Rose, Ylang-Ylang",
+  "base_notes": "Vanilla, Sandalwood, Tonka Bean, Musk",
+  "accords": [
+   "Rose",
+   "White Floral",
+   "Vanilla",
+   "Sweet"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Amouage",
+  "name": "Epic 56 Extrait W 100 ml",
+  "top_notes": "Chinese Tangerine, Cumin, Sichuan Pepper",
+  "middle_notes": "Rose, Jasmine, Frankincense, Damask Plum",
+  "base_notes": "Sandalwood, Amber, Oud, Patchouli, Musk",
+  "accords": [
+   "Oriental",
+   "Amber",
+   "Spicy",
+   "Rose",
+   "Woody"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Amouage",
+  "name": "Epic EDP W 100ml",
+  "top_notes": "Chinese Tangerine, Cumin, Sichuan Pepper",
+  "middle_notes": "Rose, Jasmine, Frankincense, Damask Plum",
+  "base_notes": "Sandalwood, Amber, Oud, Patchouli, Musk",
+  "accords": [
+   "Oriental",
+   "Amber",
+   "Spicy",
+   "Rose",
+   "Woody"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Amouage",
+  "name": "Guidance 46 Extrait",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Amber",
+   "White Floral",
+   "Rose",
+   "Fruity",
+   "Gourmand"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Amouage",
+  "name": "Honour 43 Extrait W 100ml",
+  "top_notes": "Bergamot, Neroli, Litchi",
+  "middle_notes": "Jasmine Sambac, Tuberose",
+  "base_notes": "Leather, Vetiver, Musk",
+  "accords": [
+   "White Floral",
+   "Leather",
+   "Amber",
+   "Earthy"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Amouage",
+  "name": "Honour EDP W 100ml",
+  "top_notes": "Bergamot, Neroli, Litchi",
+  "middle_notes": "Jasmine Sambac, Tuberose",
+  "base_notes": "Leather, Vetiver, Musk",
+  "accords": [
+   "White Floral",
+   "Leather",
+   "Amber",
+   "Earthy"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Amouage",
+  "name": "Interlude EDP M 100ml",
+  "top_notes": "Oregano, Bergamot, Pink Pepper, Frankincense",
+  "middle_notes": "Amber, Cinnamon, Opoponax, Patchouli",
+  "base_notes": "Frankincense, Styrax, Leather, Sandalwood, Papyrus",
+  "accords": [
+   "Amber",
+   "Leather",
+   "Smoky",
+   "Incense",
+   "Spicy"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Amouage",
+  "name": "Jubilation XXV EDP M 100ml",
+  "top_notes": "Cardamom, Coriander, Cumin, Cinnamon, Frankincense, Bergamot",
+  "middle_notes": "Rose, Oud, Patchouli, Labdanum, Geranium",
+  "base_notes": "Civet, Sandalwood, Musk, Oakmoss, Vetiver, Honey",
+  "accords": [
+   "Oud",
+   "Woody",
+   "Spicy",
+   "Animal",
+   "Amber"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Amouage",
+  "name": "Love Delight EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Gourmand",
+   "Rose",
+   "White Floral",
+   "Vanilla",
+   "Spicy"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Amouage",
+  "name": "Meander EDP M 100ml",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Incense",
+   "Smoky",
+   "Woody",
+   "Earthy"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Amouage",
+  "name": "Reflection 45 Extrait M 100ml",
+  "top_notes": "Cardamom, Coriander, Rosemary, Lemon, Bergamot",
+  "middle_notes": "Cinnamon, Lily-of-the-Valley, Orris, Jasmine",
+  "base_notes": "Frankincense, Civet, Musk, Sandalwood, Cedar, Oakmoss",
+  "accords": [
+   "Citrus",
+   "Woody",
+   "Spicy",
+   "Floral"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Amouage",
+  "name": "Reflection EDP M 100ml",
+  "top_notes": "Cardamom, Coriander, Rosemary, Lemon, Bergamot",
+  "middle_notes": "Cinnamon, Lily-of-the-Valley, Orris, Jasmine",
+  "base_notes": "Frankincense, Civet, Musk, Sandalwood, Cedar, Oakmoss",
+  "accords": [
+   "Citrus",
+   "Woody",
+   "Spicy",
+   "Floral"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Ormonde Jayne",
+  "name": "Arabesque EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Floral",
+   "Rose",
+   "Fruity",
+   "White Floral"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "PARFUMS de MARLY",
+  "name": "Athenais",
+  "top_notes": "Neroli, Yuzu",
+  "middle_notes": "Orange Blossom",
+  "base_notes": "Tonka Bean",
+  "accords": [
+   "Citrus",
+   "Floral",
+   "Powdery",
+   "Vanilla"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "House of Bo",
+  "name": "Ave Maria",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "White Floral",
+   "Floral",
+   "Fruity",
+   "Sweet"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BDK Parfums",
+  "name": "Bouquet De Hongrie",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Rose",
+   "White Floral",
+   "Musky",
+   "Green"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BDK Parfums",
+  "name": "Gris Charnel",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Spicy",
+   "Powdery",
+   "Amber"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BDK Parfums",
+  "name": "Pas Ce Soir",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "White Floral",
+   "Fruity",
+   "Woody",
+   "Spicy",
+   "Amber"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BDK Parfums",
+  "name": "Rouge Smoking",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Gourmand",
+   "Spicy",
+   "Amber",
+   "Fruity",
+   "Sweet"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BDK Parfums",
+  "name": "Villa Neroli",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Citrus",
+   "Floral",
+   "Vanilla",
+   "Woody"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BDK Parfums",
+  "name": "Pas Ce Soir Extrait",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Gourmand",
+   "Spicy",
+   "Fruity",
+   "Woody"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Giardini di Toscana",
+  "name": "Bianco Latte EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Vanilla",
+   "Gourmand",
+   "Sweet",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Giardini di Toscana",
+  "name": "Bianco Oro EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Rose",
+   "Spicy",
+   "Woody",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BORNTOSTANDOUT®",
+  "name": "Black Guava Extrait Extrême",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Oud",
+   "Fruity",
+   "Woody",
+   "Rose",
+   "Earthy"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BORNTOSTANDOUT®",
+  "name": "Black Mango Extrait Extrême",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Fruity",
+   "Woody",
+   "Vanilla",
+   "Leather"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Phaedon Paris",
+  "name": "Black Vetiver",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Smoky",
+   "Aromatic",
+   "Earthy"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Giardini di Toscana",
+  "name": "Blu Indaco EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Floral",
+   "Musky",
+   "Powdery",
+   "Clean"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Giardini di Toscana",
+  "name": "Blu Mare EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Aquatic",
+   "Citrus",
+   "Green",
+   "Marine"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Maison Crivelli",
+  "name": "Bois Datchai EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Fruity",
+   "Leather",
+   "Aromatic"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Essential Parfums",
+  "name": "Bois Impérial Extrait",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Citrus",
+   "Spicy",
+   "Earthy"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Maison Mataha",
+  "name": "Brownie Pop",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Gourmand",
+   "Vanilla",
+   "Sweet",
+   "Musky"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Ormonde Jayne",
+  "name": "Bukhara EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "White Floral",
+   "Fruity",
+   "Vanilla",
+   "Woody"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Maison Mataha",
+  "name": "Café Des Délices",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Gourmand",
+   "Vanilla",
+   "Sweet",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "INITIO",
+  "name": "Can’t Get Enough",
+  "top_notes": "Pink Pepper",
+  "middle_notes": "Rose, Jasmine",
+  "base_notes": "Caramel, Vanilla, Musk",
+  "accords": [
+   "Rose",
+   "Amber",
+   "Vanilla",
+   "Gourmand",
+   "Sweet"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "House of Bo",
+  "name": "Casa Blanca",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Aquatic",
+   "Woody",
+   "Vanilla",
+   "Fresh"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "PARFUMS de MARLY",
+  "name": "Castley",
+  "top_notes": "Bergamot, Lavender, Aquatic Notes",
+  "middle_notes": "Timut Pepper, Iris",
+  "base_notes": "Labdanum, Akigalawood, Musk",
+  "accords": [
+   "Aquatic",
+   "Spicy",
+   "Amber",
+   "Woody",
+   "Aromatic"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Chabaud",
+  "name": "Ambre Du Reve",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Amber",
+   "Oriental",
+   "Woody",
+   "Vanilla",
+   "Sweet"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Chabaud",
+  "name": "Cedre Noble",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Smoky",
+   "Aromatic"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Chabaud",
+  "name": "Chic Et Boheme",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "White Floral",
+   "Amber",
+   "Vanilla",
+   "Floral"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Chabaud",
+  "name": "Ile Mythique",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Aromatic",
+   "Leather",
+   "Woody",
+   "Earthy"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Chabaud",
+  "name": "Innocente Fragilite",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "White Floral",
+   "Floral",
+   "Musky",
+   "Tropical"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Chabaud",
+  "name": "Lait Concentre",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Gourmand",
+   "Vanilla",
+   "Sweet",
+   "Tropical"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Chabaud",
+  "name": "Lumiere De Venise",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Rose",
+   "White Floral",
+   "Woody",
+   "Amber"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Chabaud",
+  "name": "Patchouli 1973",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Amber",
+   "Musky",
+   "Aromatic"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Chabaud",
+  "name": "Rose Orage",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Rose",
+   "Amber",
+   "Fruity",
+   "Woody"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Chabaud",
+  "name": "Vert D'eau",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Green",
+   "Citrus",
+   "Woody",
+   "Fresh"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Chabaud",
+  "name": "Vintage",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Rose",
+   "White Floral",
+   "Gourmand",
+   "Sweet"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Ormonde Jayne",
+  "name": "Champaca Pure Parfum",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "White Floral",
+   "Floral",
+   "Aromatic",
+   "Herbal"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Mancera",
+  "name": "Cherry Cherry",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Fruity",
+   "White Floral",
+   "Vanilla",
+   "Musky"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Vilhelm Parfumerie",
+  "name": "Chimilka EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Floral",
+   "Fruity",
+   "Leather",
+   "Woody"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BORNTOSTANDOUT®",
+  "name": "Choco Loco (Holiday Exclusive)",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Gourmand",
+   "Vanilla",
+   "Sweet",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Giardini di Toscana",
+  "name": "Christos EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Amber",
+   "Resinous",
+   "Woody",
+   "Spicy",
+   "Rose"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Phaedon Paris",
+  "name": "Ciel Immobile",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Green",
+   "Woody",
+   "Balsamic",
+   "Spicy"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Mancera",
+  "name": "Cinque Terre",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Aquatic",
+   "Citrus",
+   "Herbal",
+   "Marine"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Giardini di Toscana",
+  "name": "Colonia Nobile EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Citrus",
+   "Musky",
+   "Amber",
+   "Floral"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "Coro EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Amber",
+   "Citrus",
+   "Gourmand",
+   "Vanilla",
+   "Musky"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "House of Bo",
+  "name": "Cosmos",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Smoky",
+   "Resinous",
+   "Warm",
+   "Amber"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Phaedon Paris",
+  "name": "Coton Egyptien",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "White Floral",
+   "Musky",
+   "Woody",
+   "Clean"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Nicolai Parfums",
+  "name": "Crème Ebene",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Amber",
+   "Spicy",
+   "Leather",
+   "Vanilla"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "House of Cosmo",
+  "name": "Crimson Aura",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Warm",
+   "Sweet",
+   "Amber"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Maison Crivelli",
+  "name": "Cuir InfraRouge Extrait",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Leather",
+   "Fruity",
+   "Woody",
+   "Iris"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Ormonde Jayne",
+  "name": "Damask EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Rose",
+   "Fruity",
+   "Amber",
+   "Musky"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Montale",
+  "name": "Day Dreams",
+  "top_notes": "Mandarin, Orange Blossom",
+  "middle_notes": "Jasmine, Neroli, Tiare Flower",
+  "base_notes": "Sandalwood, Vanilla, Coconut",
+  "accords": [
+   "White Floral",
+   "Tropical",
+   "Vanilla",
+   "Citrus"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Amouage",
+  "name": "Decision",
+  "top_notes": "Bergamot, Lemon, Juniper Berries",
+  "middle_notes": "Frankincense, Myrrh, Cardamom",
+  "base_notes": "Cedar, Vetiver, Musk",
+  "accords": [
+   "Incense",
+   "Woody",
+   "Spicy",
+   "Amber"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Pierre Guillaume Paris",
+  "name": "Dialogue with Venus",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "White Floral",
+   "Woody",
+   "Citrus",
+   "Oud"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BORNTOSTANDOUT®",
+  "name": "Dirty Heaven",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "White Floral",
+   "Musky",
+   "Vanilla",
+   "Spicy",
+   "Sweet"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BORNTOSTANDOUT®",
+  "name": "Dirty Milk",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Vanilla",
+   "Sweet",
+   "Woody",
+   "Powdery",
+   "Spicy"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BORNTOSTANDOUT®",
+  "name": "Dirty Rice",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Sweet",
+   "Powdery",
+   "Warm",
+   "Aromatic"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BORNTOSTANDOUT®",
+  "name": "Drunk Lovers",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Amber",
+   "Fruity",
+   "Spicy",
+   "Woody",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BORNTOSTANDOUT®",
+  "name": "Drunk Saffron",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Leather",
+   "Spicy",
+   "Vanilla",
+   "Warm",
+   "Sweet"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "Elle Anniversary Perfume",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Amber",
+   "Rose",
+   "Gourmand",
+   "Fruity",
+   "Woody"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Etat Libre d'Orange",
+  "name": "Exit The King EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Floral",
+   "Woody",
+   "Oud",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Etat Libre d'Orange",
+  "name": "Fat Electrician EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Earthy",
+   "Herbal",
+   "Oud"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Etat Libre d'Orange",
+  "name": "Hermann EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Rose",
+   "Floral",
+   "Spicy",
+   "Fruity",
+   "Woody"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Etat Libre d'Orange",
+  "name": "I Am Trash EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Rose",
+   "Floral",
+   "Fruity",
+   "Woody",
+   "Oud"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Etat Libre d'Orange",
+  "name": "Remarkable People EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Citrus",
+   "White Floral",
+   "Woody",
+   "Fresh"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Etat Libre d'Orange",
+  "name": "She Was An Anomaly EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "White Floral",
+   "Musky",
+   "Vanilla",
+   "Woody",
+   "Soft"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Etat Libre d'Orange",
+  "name": "You or Someone Like You EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Citrus",
+   "Fresh",
+   "Clean",
+   "Light"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Maison Mataha",
+  "name": "Evasion Bonbon",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Gourmand",
+   "Sweet",
+   "Vanilla",
+   "Musky",
+   "Fruity"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Amouage",
+  "name": "Existence EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Floral",
+   "Musky",
+   "Powdery",
+   "Incense",
+   "Rose"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Ex Nihilo",
+  "name": "Extrait Blue Talisman",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "White Floral",
+   "Fruity",
+   "Woody",
+   "Vanilla",
+   "Oud"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Ex Nihilo",
+  "name": "Extrait Fleur Narcotique",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Floral",
+   "Fruity",
+   "Woody",
+   "Fresh"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Ex Nihilo",
+  "name": "Extrait Lust in Paradise",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Floral",
+   "Fruity",
+   "Woody",
+   "Fresh"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Mancera",
+  "name": "Fig Me Up",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Fruity",
+   "Citrus",
+   "Woody",
+   "Tobacco",
+   "Sweet"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BORNTOSTANDOUT®",
+  "name": "Fig Porn",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Fruity",
+   "Rose",
+   "Floral",
+   "Woody",
+   "Citrus"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BORNTOSTANDOUT®",
+  "name": "Filthy Musk",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Musky",
+   "Fruity",
+   "Sweet",
+   "Spicy",
+   "Vanilla"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Ex Nihilo",
+  "name": "Fleur Narcotique",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "White Floral",
+   "Fruity",
+   "Musky",
+   "Woody"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Thameen London",
+  "name": "Florentine Diamond",
+  "top_notes": "Mandarin, Cocoa",
+  "middle_notes": "Sugar Cane, Tuberose, Barley",
+  "base_notes": "Vanilla, Oak, Oud",
+  "accords": [
+   "Amber",
+   "Vanilla",
+   "White Floral",
+   "Sweet",
+   "Oud"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "House of Cosmo",
+  "name": "Galaxia",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Musky",
+   "Powdery",
+   "Soft",
+   "Light",
+   "Clean"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Giardini di Toscana",
+  "name": "Celeste EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Aquatic",
+   "Fresh",
+   "Floral",
+   "Iris",
+   "Clean"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Ex Nihilo",
+  "name": "Gold Immortals",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Floral",
+   "Fruity",
+   "Oriental",
+   "Sweet",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Goldfield & Banks Australia",
+  "name": "Bohemian Lime",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Citrus",
+   "Fresh",
+   "Woody",
+   "Herbal",
+   "Tropical"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Goldfield & Banks Australia",
+  "name": "Ingenious Ginger",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Citrus",
+   "Spicy",
+   "White Floral",
+   "Amber",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Goldfield & Banks Australia",
+  "name": "Pacific Rock Moss",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Aquatic",
+   "Marine",
+   "Musky",
+   "Woody",
+   "Fresh"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Goldfield & Banks Australia",
+  "name": "Purple Suede",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Amber",
+   "Leather",
+   "Aromatic",
+   "Woody",
+   "Herbal"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Goldfield & Banks Australia",
+  "name": "Silky Woods Elixir",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Oud",
+   "Woody",
+   "Smoky",
+   "Resinous",
+   "Spicy"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Goldfield & Banks Australia",
+  "name": "Silky Woods",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Oud",
+   "Woody",
+   "Oriental",
+   "Tobacco",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Goldfield & Banks Australia",
+  "name": "Sunset Hour",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Gourmand",
+   "Fruity",
+   "Tropical",
+   "Sweet",
+   "Vanilla"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Goldfield & Banks Australia",
+  "name": "Wood Infusion",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Amber",
+   "Aromatic",
+   "Earthy",
+   "Musky"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Vilhelm Parfumerie",
+  "name": "Great Lord EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Citrus",
+   "Leather",
+   "Floral",
+   "Fruity",
+   "Woody"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BDK Parfums",
+  "name": "Gris Charnel Extrait",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Spicy",
+   "Herbal",
+   "Warm",
+   "Earthy"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Maison Crivelli",
+  "name": "Hibiscus Mahajad Extrait",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Rose",
+   "Fruity",
+   "Floral",
+   "Spicy",
+   "Amber"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BDK Parfums",
+  "name": "Impadia",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Floral",
+   "Rose",
+   "Fruity",
+   "Musky",
+   "White Floral"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BORNTOSTANDOUT®",
+  "name": "Indecent Cherry",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Fruity",
+   "Rose",
+   "Sweet",
+   "Amber",
+   "Leather"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Goldfield & Banks Australia",
+  "name": "Ingenious Ginger Gift Set",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Citrus",
+   "Spicy",
+   "Floral",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Mancera",
+  "name": "Intense Cedrat Boise Extrait",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Leather",
+   "Fruity",
+   "Musky",
+   "Spicy"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Maison Crivelli",
+  "name": "Iris Malikhân EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Iris",
+   "Powdery",
+   "Woody",
+   "Incense",
+   "Leather"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Indult Paris",
+  "name": "Isvaraya",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "White Floral",
+   "Fruity",
+   "Earthy",
+   "Sweet"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Amouage",
+  "name": "Jubilation 40 Man Extrait 100ml",
+  "top_notes": "Bergamot, Cardamom, Coriander, Cumin, Nutmeg, Oregano, Pink Pepper, Rosemary",
+  "middle_notes": "Angelica, Frankincense, Labdanum, Oakmoss, Opoponax, Sandalwood",
+  "base_notes": "Amber, Civet, Guaiac Wood, Leather, Musk, Oud, Patchouli, Tobacco, Vanilla, Vetiver",
+  "accords": [
+   "Amber",
+   "Woody",
+   "Leather",
+   "Spicy",
+   "Oriental"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Ormonde Jayne",
+  "name": "Kashmir EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Amber",
+   "Powdery",
+   "Musky",
+   "Balsamic"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "House of Bo",
+  "name": "La Mar",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "White Floral",
+   "Tropical",
+   "Sweet",
+   "Marine",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Laboratorio Olfattivo",
+  "name": "Alambar EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Amber",
+   "Sweet",
+   "Spicy",
+   "Vanilla",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Laboratorio Olfattivo",
+  "name": "Cozumel EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Amber",
+   "Woody",
+   "Spicy",
+   "Tobacco",
+   "Aromatic"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Laboratorio Olfattivo",
+  "name": "Decou-Vert EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Green",
+   "White Floral",
+   "Musky",
+   "Fresh",
+   "Herbal"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Laboratorio Olfattivo",
+  "name": "ExpLOud EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Oud",
+   "Amber",
+   "Woody",
+   "Spicy",
+   "Floral"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Laboratorio Olfattivo",
+  "name": "Kashnoir EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Spicy",
+   "Rose",
+   "Herbal",
+   "Warm",
+   "Vanilla"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Laboratorio Olfattivo",
+  "name": "MyLO EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "White Floral",
+   "Citrus",
+   "Musky",
+   "Amber",
+   "Rose"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Laboratorio Olfattivo",
+  "name": "Need_U EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Aquatic",
+   "White Floral",
+   "Citrus",
+   "Musky",
+   "Fresh"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Laboratorio Olfattivo",
+  "name": "Nektar EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Gourmand",
+   "Leather",
+   "Woody",
+   "Spicy",
+   "Vanilla"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Laboratorio Olfattivo",
+  "name": "Nerotic EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Leather",
+   "Woody",
+   "Spicy",
+   "Smoky",
+   "Fruity"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Laboratorio Olfattivo",
+  "name": "Nun EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Amber",
+   "Floral",
+   "Musky",
+   "Powdery"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Laboratorio Olfattivo",
+  "name": "Salina EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Aquatic",
+   "Citrus",
+   "Woody",
+   "Musky",
+   "Fresh"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Laboratorio Olfattivo",
+  "name": "Tiglio Mirabilis (formerly Til..) EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "White Floral",
+   "Musky",
+   "Woody",
+   "Fresh"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Laboratorio Olfattivo",
+  "name": "Tonkade EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Gourmand",
+   "Amber",
+   "Spicy",
+   "Vanilla",
+   "Woody"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Laboratorio Olfattivo",
+  "name": "Vanhera EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Vanilla",
+   "Amber",
+   "Woody",
+   "Spicy",
+   "Musky"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Pierre Guillaume Paris",
+  "name": "Le Musc & La Peau Extrait",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Musky",
+   "Vanilla",
+   "Warm",
+   "Soft"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Ormonde Jayne",
+  "name": "Levant EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Rose",
+   "White Floral",
+   "Citrus",
+   "Fruity",
+   "Fresh"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "INITIO",
+  "name": "Lift Me Up",
+  "top_notes": "Bergamot",
+  "middle_notes": "Ylang-Ylang, White Flowers",
+  "base_notes": "Musk, Ambrette, Sandalwood, Cedar, Vanilla",
+  "accords": [
+   "White Floral",
+   "Musky",
+   "Vanilla",
+   "Amber",
+   "Warm"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "Louis XV 1722",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Gourmand",
+   "Rose",
+   "Sweet",
+   "Spicy"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Amouage",
+  "name": "Love Hisbiscus EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Floral",
+   "Fruity",
+   "Sweet",
+   "Vanilla",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "House of Cosmo",
+  "name": "Lunar Minérale",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Fresh",
+   "Clean",
+   "Musky",
+   "Light",
+   "Soft"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Maison Mataha",
+  "name": "Escapade Gourmande",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Gourmand",
+   "Vanilla",
+   "Sweet",
+   "Musky",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Indult Paris",
+  "name": "Manakara",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Rose",
+   "Fruity",
+   "Sweet",
+   "Floral"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Chabaud",
+  "name": "Mon Tiramisu",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Gourmand",
+   "Vanilla",
+   "Sweet",
+   "Woody",
+   "Musky"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Ormonde Jayne",
+  "name": "Muscat EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Oud",
+   "Rose",
+   "Vanilla",
+   "Amber",
+   "Spicy"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Goldfield & Banks Australia",
+  "name": "Mystic Bliss",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Amber",
+   "Rose",
+   "Woody",
+   "Green",
+   "Fruity"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BORNTOSTANDOUT®",
+  "name": "Nanatopia",
+  "top_notes": "Banana, Rum",
+  "middle_notes": "Nutmeg, Cinnamon",
+  "base_notes": "Caramel",
+  "accords": [
+   "Gourmand",
+   "Sweet",
+   "Spicy",
+   "Warm",
+   "Balsamic"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Nasomatto",
+  "name": "Absinth",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Green",
+   "Woody",
+   "Herbal",
+   "Aromatic"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Nasomatto",
+  "name": "Baraonda",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Amber",
+   "Woody",
+   "Musky",
+   "Oud"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Nasomatto",
+  "name": "Blamage",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Leather",
+   "Woody",
+   "Musky",
+   "Animal"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Nasomatto",
+  "name": "Duro",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Leather",
+   "Woody",
+   "Spicy",
+   "Oud"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Nasomatto",
+  "name": "Fantomas",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Fruity",
+   "Sweet",
+   "Gourmand",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Nasomatto",
+  "name": "Narcotic V",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "White Floral",
+   "Floral",
+   "Spicy",
+   "Sweet"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Nasomatto",
+  "name": "Silver Musk",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Musky",
+   "Soft",
+   "Powdery",
+   "Clean"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Essential Parfums",
+  "name": "Neroli Botanica",
+  "top_notes": "Curcuma Leaf, Ginger, Pink Pepper, Black Pepper",
+  "middle_notes": "Orange Blossom",
+  "base_notes": "",
+  "accords": [
+   "Citrus",
+   "Floral",
+   "White Floral",
+   "Spicy",
+   "Fresh"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Maison Crivelli",
+  "name": "Neroli Nasimba EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Citrus",
+   "Floral",
+   "Woody",
+   "Leather",
+   "Animal"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "House of Cosmo",
+  "name": "New Eden",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Fresh",
+   "Clean",
+   "Light"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Nicolai Parfums",
+  "name": "Ambre Cashmere Intense",
+  "top_notes": "",
+  "middle_notes": "Iris",
+  "base_notes": "Patchouli, Musk",
+  "accords": [
+   "Amber",
+   "Oriental",
+   "Woody",
+   "Vanilla",
+   "Powdery"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Nicolai Parfums",
+  "name": "Baikal Leather Intense",
+  "top_notes": "Yuzu, Pepper, Saffron, Spearmint",
+  "middle_notes": "",
+  "base_notes": "Guaiac Wood, Smoked Pine",
+  "accords": [
+   "Leather",
+   "Woody",
+   "Spicy",
+   "Smoky"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Nicolai Parfums",
+  "name": "Bois Bélize Intense",
+  "top_notes": "Bergamot",
+  "middle_notes": "Mate, Rose, Cardamom, Clove, Oak Moss",
+  "base_notes": "Guaiac Wood, Patchouli, Vetiver",
+  "accords": [
+   "Woody",
+   "Citrus",
+   "Rose",
+   "Spicy",
+   "Earthy"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Nicolai Parfums",
+  "name": "Caravansérail Intense",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Gourmand",
+   "Spicy",
+   "Sweet",
+   "Warm",
+   "Woody"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Nicolai Parfums",
+  "name": "Cuir Cuba Intense",
+  "top_notes": "Licorice",
+  "middle_notes": "Magnolia",
+  "base_notes": "Tobacco, Leather, Cedarwood, Patchouli",
+  "accords": [
+   "Leather",
+   "Tobacco",
+   "Woody",
+   "Smoky"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Nicolai Parfums",
+  "name": "Eau de Yuzu",
+  "top_notes": "Yuzu",
+  "middle_notes": "",
+  "base_notes": "Patchouli, Guaiac Wood, Vetiver",
+  "accords": [
+   "Citrus",
+   "Woody",
+   "Fresh",
+   "Aromatic"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Nicolai Parfums",
+  "name": "Fig-Tea",
+  "top_notes": "",
+  "middle_notes": "Fig, Tea, Jasmine",
+  "base_notes": "",
+  "accords": [
+   "Floral",
+   "Fruity",
+   "Amber",
+   "Light"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Nicolai Parfums",
+  "name": "L’eau miXte",
+  "top_notes": "Bergamot, Sicilian Lemon, Mint, Grapefruit, Blackcurrant",
+  "middle_notes": "Juniper, Nutmeg",
+  "base_notes": "Vetiver",
+  "accords": [
+   "Citrus",
+   "Green",
+   "Woody",
+   "Fresh"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Nicolai Parfums",
+  "name": "Macaron Bourbon",
+  "top_notes": "",
+  "middle_notes": "Bitter Almond, Rum",
+  "base_notes": "Caramel",
+  "accords": [
+   "Gourmand",
+   "Sweet",
+   "Amber",
+   "Fruity"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Nicolai Parfums",
+  "name": "New York Intense",
+  "top_notes": "Citrus, Pepper, Clove",
+  "middle_notes": "",
+  "base_notes": "Patchouli, Vanilla, Incense, Balsam",
+  "accords": [
+   "Oriental",
+   "Spicy",
+   "Vanilla",
+   "Incense",
+   "Woody"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Nicolai Parfums",
+  "name": "Patchouli Intense",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "Patchouli, Incense",
+  "accords": [
+   "Amber",
+   "Woody",
+   "Oriental",
+   "Resinous"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Nicolai Parfums",
+  "name": "Pavlova",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Gourmand",
+   "Sweet",
+   "Fruity",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Nicolai Parfums",
+  "name": "Poudre de Musc Intense",
+  "top_notes": "Aldehydes",
+  "middle_notes": "Rose, Hawthorn, Orange Blossom",
+  "base_notes": "Musk, Sandalwood",
+  "accords": [
+   "Powdery",
+   "Floral",
+   "Musky",
+   "Soft"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Nicolai Parfums",
+  "name": "Rose Pivoine",
+  "top_notes": "",
+  "middle_notes": "Bulgarian Rose, Peony, Geranium",
+  "base_notes": "Ambrette Seeds",
+  "accords": [
+   "Rose",
+   "Floral",
+   "Fruity",
+   "Green"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Nishane",
+  "name": "Wūlóng Chá",
+  "top_notes": "Bergamot, Orange, Mandarin",
+  "middle_notes": "Oolong Tea",
+  "base_notes": "Fig, Musk",
+  "accords": [
+   "Citrus",
+   "Fruity",
+   "Musky",
+   "Fresh"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "House of Cosmo",
+  "name": "Nova",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Fresh",
+   "Light",
+   "Aromatic"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BORNTOSTANDOUT®",
+  "name": "Nuts",
+  "top_notes": "Davana",
+  "middle_notes": "Pistachio, Almond, Sesame",
+  "base_notes": "Caramel, Rum",
+  "accords": [
+   "Gourmand",
+   "Sweet",
+   "Warm",
+   "Vanilla"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Ormonde Jayne",
+  "name": "Ormonde Man Pure Parfum EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Oud",
+   "Spicy",
+   "Earthy",
+   "Aromatic"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Ormonde Jayne",
+  "name": "Ormonde Woman Pure Parfum",
+  "top_notes": "",
+  "middle_notes": "Jasmine, Violet",
+  "base_notes": "Black Hemlock",
+  "accords": [
+   "Floral",
+   "White Floral",
+   "Woody",
+   "Amber",
+   "Spicy"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "House of Bo",
+  "name": "Oro Verde",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Green",
+   "Aquatic",
+   "Fruity",
+   "Fresh"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BORNTOSTANDOUT®",
+  "name": "Oud Candy Extrait Extrême",
+  "top_notes": "Brown Sugar, Nuts, Milk",
+  "middle_notes": "White Florals",
+  "base_notes": "Oud, Saffron, Black Woods, Caramel",
+  "accords": [
+   "Oud",
+   "Gourmand",
+   "Sweet",
+   "Smoky",
+   "Vanilla"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Maison Crivelli",
+  "name": "Oud Maracuja Extrait",
+  "top_notes": "Passion Fruit",
+  "middle_notes": "Rose",
+  "base_notes": "Oud, Vanilla, Amber",
+  "accords": [
+   "Oud",
+   "Fruity",
+   "Amber",
+   "Rose",
+   "Vanilla"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Maison Crivelli",
+  "name": "Oud Stallion Extrait",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Oud",
+   "Woody",
+   "Leather",
+   "Animal"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Ex Nihilo",
+  "name": "Outcast Blue",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Tobacco",
+   "Spicy",
+   "Earthy"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Amouage",
+  "name": "Outlands",
+  "top_notes": "Citrus, Lemon",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Citrus",
+   "Floral",
+   "Rose",
+   "Musky",
+   "Fresh"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Goldfield & Banks Australia",
+  "name": "Pacific Rock Flower",
+  "top_notes": "",
+  "middle_notes": "Tea Tree Flower",
+  "base_notes": "",
+  "accords": [
+   "Floral",
+   "Aquatic",
+   "Musky",
+   "White Floral",
+   "Fresh"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Goldfield & Banks Australia",
+  "name": "Pacific Rock Moss Gift Set",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Earthy",
+   "Aromatic",
+   "Green",
+   "Musky"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "PARFUMS de MARLY",
+  "name": "Palatine",
+  "top_notes": "Mandarin, Bergamot, Pear",
+  "middle_notes": "Violet",
+  "base_notes": "Musk, Sandalwood",
+  "accords": [
+   "Floral",
+   "Fruity",
+   "Powdery",
+   "Musky"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Maison Crivelli",
+  "name": "Papyrus Moléculaire EDP",
+  "top_notes": "Papyrus, Carrot, Coriander",
+  "middle_notes": "Amyris",
+  "base_notes": "Tonka Bean, Tobacco",
+  "accords": [
+   "Woody",
+   "Powdery",
+   "Spicy",
+   "Tobacco"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "PARFUMS de MARLY",
+  "name": "Althair",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "Vanilla",
+  "accords": [
+   "Vanilla",
+   "Oriental",
+   "Warm",
+   "Spicy",
+   "Oud"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Maison Mataha",
+  "name": "Peche Velours",
+  "top_notes": "Peach",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Fruity",
+   "Sweet",
+   "Gourmand",
+   "Vanilla",
+   "Musky"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Phaedon Paris",
+  "name": "L'eau De Phaedon",
+  "top_notes": "Neroli, Jasmine, Yellow Mandarin",
+  "middle_notes": "Aloe Vera, Agave Leaves",
+  "base_notes": "Woody Musk",
+  "accords": [
+   "Floral",
+   "White Floral",
+   "Aquatic",
+   "Musky",
+   "Fresh"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Phaedon Paris",
+  "name": "Pluie De Soleil",
+  "top_notes": "Lemon, Bergamot",
+  "middle_notes": "White Peach, Strawberry, Pineapple, Freesia",
+  "base_notes": "Sandalwood, Cashmeran, Vanilla",
+  "accords": [
+   "Fruity",
+   "Sweet",
+   "Gourmand",
+   "Vanilla"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Phaedon Paris",
+  "name": "Poivre Colonial",
+  "top_notes": "Grapefruit, Nutmeg, Peppercorns",
+  "middle_notes": "Cedar, Vetiver, Cocoa Beans",
+  "base_notes": "Oak Moss, Patchouli, Woods",
+  "accords": [
+   "Woody",
+   "Spicy",
+   "Leather",
+   "Earthy"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Phaedon Paris",
+  "name": "Tabac Rouge",
+  "top_notes": "",
+  "middle_notes": "Tobacco, Ginger, Cinnamon, Honey",
+  "base_notes": "",
+  "accords": [
+   "Tobacco",
+   "Smoky",
+   "Incense",
+   "Spicy",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Phaedon Paris",
+  "name": "Phaesus",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "Sandalwood",
+  "accords": [
+   "Floral",
+   "Woody",
+   "Marine",
+   "Animal"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Pierre Guillaume Paris",
+  "name": "Liqueur Charnelle",
+  "top_notes": "Orange, Apricot, Grape",
+  "middle_notes": "Linden Blossom, Vine Blossom, Violet",
+  "base_notes": "Vanilla, Prune, Caramel",
+  "accords": [
+   "Gourmand",
+   "Sweet",
+   "Fruity",
+   "Vanilla",
+   "Floral"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Pierre Guillaume Paris",
+  "name": "Mojito Chypre",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "Patchouli, Vetiver, Labdanum, Vanilla, Oak Moss",
+  "accords": [
+   "Aquatic",
+   "Fresh",
+   "Woody",
+   "Aromatic",
+   "Green"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Pierre Guillaume Paris",
+  "name": "02 Coze",
+  "top_notes": "",
+  "middle_notes": "Hemp Seed (Cannabis Sativa)",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Spicy",
+   "Tobacco",
+   "Warm",
+   "Earthy"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Pierre Guillaume Paris",
+  "name": "04 Musc Maori",
+  "top_notes": "Coffee Tree Blossom",
+  "middle_notes": "",
+  "base_notes": "Cumaru Wood, White Musk, Cocoa Bean",
+  "accords": [
+   "Musky",
+   "Gourmand",
+   "Amber",
+   "Sweet",
+   "Woody"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Pierre Guillaume Paris",
+  "name": "11.1 Indian Wood",
+  "top_notes": "Lemon Mint, Peppermint, Jamaican Allspice, Nutmeg, Cardamom",
+  "middle_notes": "",
+  "base_notes": "Cedar, Dried Jasmine Blossom",
+  "accords": [
+   "Woody",
+   "Spicy",
+   "Aromatic",
+   "Floral"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Pierre Guillaume Paris",
+  "name": "15.1 Hapyang",
+  "top_notes": "Aldehydes",
+  "middle_notes": "Magnolia, Ylang-Ylang",
+  "base_notes": "Pearwood, Benzoin, Vanilla",
+  "accords": [
+   "Floral",
+   "Powdery",
+   "Sweet",
+   "Vanilla",
+   "White Floral"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Pierre Guillaume Paris",
+  "name": "16 Jardins De Kerylos",
+  "top_notes": "Fig",
+  "middle_notes": "",
+  "base_notes": "Sycamore Wood",
+  "accords": [
+   "Green",
+   "Fruity",
+   "Woody",
+   "Aquatic"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Pierre Guillaume Paris",
+  "name": "19.1 Neroli Ad Astra",
+  "top_notes": "",
+  "middle_notes": "Neroli, Agave Flower",
+  "base_notes": "",
+  "accords": [
+   "White Floral",
+   "Floral",
+   "Fresh",
+   "Citrus",
+   "Light"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Pierre Guillaume Paris",
+  "name": "26 Isparta",
+  "top_notes": "",
+  "middle_notes": "Isparta Rose",
+  "base_notes": "",
+  "accords": [
+   "Rose",
+   "Floral",
+   "Fruity",
+   "Sweet"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Pierre Guillaume Paris",
+  "name": "30 Alphaora",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "Tree Moss, Lichen",
+  "accords": [
+   "Woody",
+   "Amber",
+   "Earthy",
+   "Oud"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Pierre Guillaume Paris",
+  "name": "4.1 Le Musc & La Peau",
+  "top_notes": "",
+  "middle_notes": "Ylang-Ylang, Rosemary",
+  "base_notes": "Musk, Tonka Bean, Amber, Cedarwood, Vanilla",
+  "accords": [
+   "Musky",
+   "Warm",
+   "Vanilla",
+   "Amber",
+   "Woody"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Pierre Guillaume Paris",
+  "name": "Animal Mondain",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Tobacco",
+   "Smoky",
+   "Woody",
+   "Oud",
+   "Animal"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Pierre Guillaume Paris",
+  "name": "Aqaysos",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Oud",
+   "Sweet",
+   "Warm",
+   "Gourmand"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Pierre Guillaume Paris",
+  "name": "Entre Ciel Et Mer",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Aquatic",
+   "Marine",
+   "Fresh",
+   "Aromatic",
+   "Herbal"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Pierre Guillaume Paris",
+  "name": "Intime.Extime",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Powdery",
+   "Floral",
+   "White Floral",
+   "Amber",
+   "Woody"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "House of Cosmo",
+  "name": "Polaris",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Fresh",
+   "Light",
+   "Clean",
+   "Aromatic"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "INITIO",
+  "name": "Power Self",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Floral",
+   "White Floral",
+   "Musky",
+   "Soft"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Maison Mataha",
+  "name": "Printemps Blanc",
+  "top_notes": "Grapefruit, Orange Blossom",
+  "middle_notes": "Jasmine, White Tea",
+  "base_notes": "Vanilla, Sandalwood",
+  "accords": [
+   "Floral",
+   "White Floral",
+   "Citrus",
+   "Vanilla",
+   "Gourmand"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "BORNTOSTANDOUT®",
+  "name": "Purple Stain Extrait Extrême",
+  "top_notes": "saffron, cinnamon, nutmeg, mandarin, bergamot",
+  "middle_notes": "orange blossom, caramel, vanilla",
+  "base_notes": "oud, patchouli",
+  "accords": [
+   "Spicy",
+   "Amber",
+   "Sweet",
+   "Woody",
+   "Leathery"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Amouage",
+  "name": "Remain",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Floral",
+   "Rose",
+   "Musky",
+   "Aromatic",
+   "Woody"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Indult Paris",
+  "name": "Cuir 404",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Leather",
+   "Smoky",
+   "Woody",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Orto Parisi",
+  "name": "Risvelium",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Citrus",
+   "Fruity",
+   "Musky",
+   "Clean"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Maison Crivelli",
+  "name": "Rose Saltifolia EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Aquatic",
+   "Marine",
+   "Rose",
+   "Woody",
+   "Fruity"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Montale",
+  "name": "Roses Musk",
+  "top_notes": "rose",
+  "middle_notes": "",
+  "base_notes": "musk",
+  "accords": [
+   "Rose",
+   "Musky",
+   "Floral",
+   "Sweet"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Giardini di Toscana",
+  "name": "Rosso Rubino EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Gourmand",
+   "Woody",
+   "Sweet",
+   "Citrus"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BDK Parfums",
+  "name": "Rouge Smoking Extrait",
+  "top_notes": "cherry",
+  "middle_notes": "tobacco leaf",
+  "base_notes": "tonka bean, amber, vanilla",
+  "accords": [
+   "Fruity",
+   "Gourmand",
+   "Sweet",
+   "Amber",
+   "Vanilla"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Maison Crivelli",
+  "name": "Safran Secret Extrait",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Spicy",
+   "Leathery",
+   "Woody",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Nicolai Parfums",
+  "name": "Saint-Honore",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Gourmand",
+   "Sweet",
+   "Amber",
+   "Vanilla",
+   "Woody"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Ormonde Jayne",
+  "name": "Sakura EDP",
+  "top_notes": "lime, mandarin, pink pepper, green accord",
+  "middle_notes": "cherry blossom, almond",
+  "base_notes": "violet, vanilla",
+  "accords": [
+   "Citrus",
+   "Floral",
+   "Powdery",
+   "Vanilla",
+   "Sweet"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Maison Crivelli",
+  "name": "Santal Volcanique EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Spicy",
+   "Smoky",
+   "Warm",
+   "Aromatic"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Montale",
+  "name": "Sensual Instinct",
+  "top_notes": "coffee",
+  "middle_notes": "rose",
+  "base_notes": "praline, chocolate, vanilla",
+  "accords": [
+   "Gourmand",
+   "Sweet",
+   "Warm",
+   "Floral",
+   "Rose"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Giardini di Toscana",
+  "name": "Shabby Chic EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Floral",
+   "Musky",
+   "Powdery",
+   "Soft",
+   "White Floral"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Goldfield & Banks Australia",
+  "name": "Silky Woods Gift Set",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Oud",
+   "Warm",
+   "Vanilla",
+   "Amber"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Vilhelm Parfumerie",
+  "name": "Sparkling Jo EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Citrus",
+   "Fruity",
+   "Green",
+   "Fresh"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Ex Nihilo",
+  "name": "Spiky Muse",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Rose",
+   "Fruity",
+   "Sweet",
+   "Woody",
+   "Gourmand"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Pierre Guillaume Paris",
+  "name": "STÆLIOS",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Leathery",
+   "Spicy",
+   "Floral",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Etat Libre d'Orange",
+  "name": "Story of Your Life",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Floral",
+   "Gourmand",
+   "Warm",
+   "Woody",
+   "Balsamic"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "BORNTOSTANDOUT®",
+  "name": "Sugar Addict",
+  "top_notes": "sugar",
+  "middle_notes": "cocoa, cinnamon, vanilla",
+  "base_notes": "rum, cashmere wood",
+  "accords": [
+   "Gourmand",
+   "Sweet",
+   "Warm",
+   "Vanilla",
+   "Spicy"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Vilhelm Parfumerie",
+  "name": "Sun Cities EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Amber",
+   "Citrus",
+   "Floral",
+   "Leathery",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Goldfield & Banks Australia",
+  "name": "Sunset Hour Gift Set",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Fruity",
+   "Gourmand",
+   "Sweet",
+   "Woody",
+   "Vanilla"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Goldfield & Banks Australia",
+  "name": "Tales of Amber",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Amber",
+   "Powdery",
+   "Oriental",
+   "Resinous",
+   "Woody"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Ormonde Jayne",
+  "name": "Tanger EDP",
+  "top_notes": "bergamot",
+  "middle_notes": "neroli, ylang ylang",
+  "base_notes": "",
+  "accords": [
+   "Citrus",
+   "Floral",
+   "White Floral",
+   "Fresh",
+   "Sweet"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Thameen London",
+  "name": "Blue Heart",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Amber",
+   "Vanilla",
+   "Powdery",
+   "Sweet",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Thameen London",
+  "name": "Carved Oud",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Oud",
+   "Woody",
+   "Earthy",
+   "Spicy",
+   "Amber"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Thameen London",
+  "name": "Cullinan Diamond",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Rose",
+   "Vanilla",
+   "Musky",
+   "Spicy",
+   "Amber"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Thameen London",
+  "name": "Green Pearl",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Citrus",
+   "Green",
+   "Fresh",
+   "Aromatic"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Thameen London",
+  "name": "Patiala",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Amber",
+   "Floral",
+   "Musky",
+   "Warm",
+   "Powdery"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Thameen London",
+  "name": "Peregrina",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Floral",
+   "Rose",
+   "Amber",
+   "Sweet",
+   "Musky"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Thameen London",
+  "name": "Regent Leather",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Leathery",
+   "Vanilla",
+   "Warm",
+   "Floral",
+   "Amber"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Thameen London",
+  "name": "Riviere",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Amber",
+   "Leathery",
+   "Woody",
+   "Citrus",
+   "Rose"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Thameen London",
+  "name": "Royal Sapphire",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Amber",
+   "Citrus",
+   "Floral",
+   "Woody",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Etat Libre d'Orange",
+  "name": "The Ghost In The Shell EDP",
+  "top_notes": "yuzu, aquatic accord",
+  "middle_notes": "peach, pear",
+  "base_notes": "",
+  "accords": [
+   "Citrus",
+   "Aquatic",
+   "Fruity",
+   "Musky",
+   "Floral"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Indult Paris",
+  "name": "Tihota",
+  "top_notes": "vanilla",
+  "middle_notes": "sugar cane, vanilla",
+  "base_notes": "musk, vanilla",
+  "accords": [
+   "Vanilla",
+   "Gourmand",
+   "Sweet",
+   "Musky",
+   "Warm"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "Torino 24",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Woody",
+   "Floral",
+   "Rose",
+   "Spicy",
+   "Amber"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Maison Crivelli",
+  "name": "Tubereuse Astrale Extrait",
+  "top_notes": "cinnamon",
+  "middle_notes": "tuberose, peach",
+  "base_notes": "vanilla, leather, musk",
+  "accords": [
+   "White Floral",
+   "Vanilla",
+   "Musky",
+   "Spicy",
+   "Leathery"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "PARFUMS de MARLY",
+  "name": "Valaya Exclusif",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Floral",
+   "White Floral",
+   "Fruity",
+   "Sweet",
+   "Powdery"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Essential Parfums",
+  "name": "Velvet Iris",
+  "top_notes": "pink pepper, turmeric leaf, buchu leaf",
+  "middle_notes": "iris",
+  "base_notes": "",
+  "accords": [
+   "Iris",
+   "Floral",
+   "Woody",
+   "Spicy",
+   "Powdery"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Ormonde Jayne",
+  "name": "Verano EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Citrus",
+   "Aquatic",
+   "Tobacco",
+   "Woody",
+   "Fresh"
+  ],
+  "accords_source": "known",
+  "notes_source": ""
+ },
+ {
+  "brand": "Vilhelm Parfumerie",
+  "name": "Dear Polly EDP",
+  "top_notes": "black tea",
+  "middle_notes": "",
+  "base_notes": "musk",
+  "accords": [
+   "Amber",
+   "Musky",
+   "Warm",
+   "Fruity",
+   "Soft"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Vilhelm Parfumerie",
+  "name": "Faces of Francis EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Gourmand",
+   "Woody",
+   "Spicy",
+   "Leathery",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Vilhelm Parfumerie",
+  "name": "Moon Carnival EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "White Floral",
+   "Floral",
+   "Fruity",
+   "Musky",
+   "Sweet"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Vilhelm Parfumerie",
+  "name": "Morning Chess EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Green",
+   "Citrus",
+   "Leathery",
+   "Herbal",
+   "Aromatic"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Vilhelm Parfumerie",
+  "name": "Opus Kore EDP",
+  "top_notes": "Sicilian lemon, acai",
+  "middle_notes": "raspberry blossom, pink magnolia, violet leaf",
+  "base_notes": "sandalwood",
+  "accords": [
+   "Floral",
+   "Fruity",
+   "Woody",
+   "Musky",
+   "Green"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Vilhelm Parfumerie",
+  "name": "Poets Of Berlin EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Fruity",
+   "Citrus",
+   "Green",
+   "Woody",
+   "Sweet"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Vilhelm Parfumerie",
+  "name": "Room Service EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Floral",
+   "Fruity",
+   "Citrus",
+   "Sweet",
+   "Woody"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "Blends Tony Iommi Monkey Special Parfum",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Gourmand",
+   "Woody",
+   "Leathery",
+   "Sweet",
+   "Vanilla"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Xerjoff Casamorati",
+  "name": "Italica EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Gourmand",
+   "Sweet",
+   "Musky",
+   "Woody",
+   "Vanilla"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "JTC 40 Knots EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Aquatic",
+   "Marine",
+   "Fresh",
+   "Woody",
+   "Citrus"
+  ],
+  "accords_source": "known",
+  "notes_source": ""
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "JTC More Than Words EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Fruity",
+   "Floral",
+   "Resinous",
+   "Woody",
+   "Smoky"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "Shooting Stars Apollonia",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Floral",
+   "Musky",
+   "Powdery",
+   "Sweet",
+   "Soft"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "Shooting Stars Cruz del Sur II EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Citrus",
+   "Fruity",
+   "Woody",
+   "Musky",
+   "Floral"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "Shooting Stars La Capitale",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Amber",
+   "Fruity",
+   "Gourmand",
+   "Rose",
+   "Vanilla"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "Shooting Stars Nio",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Aromatic",
+   "Fresh",
+   "Woody",
+   "Green",
+   "Citrus"
+  ],
+  "accords_source": "known",
+  "notes_source": ""
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "Shooting Stars Starlight",
+  "top_notes": "bergamot, cardamom",
+  "middle_notes": "almond, cinnamon, clove",
+  "base_notes": "cedarwood, amber",
+  "accords": [
+   "Spicy",
+   "Gourmand",
+   "Woody",
+   "Amber",
+   "Warm"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "Shooting Stars Uden Overdose",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Amber",
+   "Citrus",
+   "Musky",
+   "Smoky",
+   "Aquatic"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "Shooting Stars Uden",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Citrus",
+   "Floral",
+   "Amber",
+   "Woody",
+   "Musky"
+  ],
+  "accords_source": "known",
+  "notes_source": ""
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "Shooting Stars Via Cavour 1",
+  "top_notes": "quince, white peach",
+  "middle_notes": "Moroccan rose, dark chocolate, red berries, patchouli",
+  "base_notes": "oud, caramel, amber, Madagascar vanilla, musk",
+  "accords": [
+   "Gourmand",
+   "Rose",
+   "Sweet",
+   "Amber",
+   "Oud"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "\"V\" Accento EDP",
+  "top_notes": "pineapple, hyacinth, citrus, pink pepper",
+  "middle_notes": "jasmine, iris",
+  "base_notes": "musk, vetiver",
+  "accords": [
+   "Floral",
+   "Fruity",
+   "Musky",
+   "Earthy",
+   "White Floral"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "\"V\" Accento Overdose EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Fruity",
+   "Green",
+   "Balsamic",
+   "Floral",
+   "Musky"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "\"V\" Erba Gold EDP",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Citrus",
+   "Fruity",
+   "Spicy",
+   "Gourmand",
+   "Sweet"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "\"V\" Erba Pura EDP",
+  "top_notes": "Sicilian citrus, Calabrian bergamot, red fruits",
+  "middle_notes": "musk",
+  "base_notes": "amber, vanilla",
+  "accords": [
+   "Citrus",
+   "Fruity",
+   "Amber",
+   "Vanilla",
+   "Musky"
+  ],
+  "accords_source": "known",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "Xerjoff",
+  "name": "\"V\" Ouverture EDP",
+  "top_notes": "cinnamon, citrus",
+  "middle_notes": "ylang ylang, jasmine, rose",
+  "base_notes": "woody amber, incense, vanilla",
+  "accords": [
+   "Oriental",
+   "Floral",
+   "Spicy",
+   "Amber",
+   "Incense"
+  ],
+  "accords_source": "derived",
+  "notes_source": "llm"
+ },
+ {
+  "brand": "House of Bo",
+  "name": "Xuxu",
+  "top_notes": "",
+  "middle_notes": "",
+  "base_notes": "",
+  "accords": [
+   "Musky",
+   "Floral",
+   "Fruity",
+   "Gourmand",
+   "Sweet"
+  ],
+  "accords_source": "derived",
+  "notes_source": ""
+ }
+]

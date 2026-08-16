@@ -72,7 +72,11 @@ function select(flow, value) {
 
 function canProceed(flow) {
   const step = currentStep(flow);
-  if (step.multi) return true; // multi steps are skippable, as in parfbar
+  if (step.multi) {
+    // multi steps are skippable (parfbar behavior) unless the config sets min
+    const n = (flow.sel[step.id] || []).length;
+    return n >= (step.min || 0);
+  }
   const v = flow.sel[step.id];
   return v !== undefined && v !== null;
 }
@@ -141,6 +145,7 @@ const QuizEngine = {
   mount: function (config, opts) {
     this.flow = createFlow(config);
     this.onSubmit = (opts && opts.onSubmit) || function () {};
+    this.onExit = (opts && opts.onExit) || null; // Back on step 1 → leave the quiz
     if (opts && opts.submitLabel) this.submitLabel = opts.submitLabel;
     document.getElementById('btn-back').onclick = QuizEngine.prevQuestion;
     document.getElementById('btn-next').onclick = QuizEngine.nextQuestion;
@@ -200,7 +205,7 @@ const QuizEngine = {
   },
 
   updateNav: function () {
-    document.getElementById('btn-back').disabled = this.flow.idx === 0;
+    document.getElementById('btn-back').disabled = this.flow.idx === 0 && !this.onExit;
     document.getElementById('btn-next').disabled = !canProceed(this.flow);
     document.getElementById('btn-next').textContent =
       isLast(this.flow) ? this.submitLabel : this.nextLabel;
@@ -213,6 +218,7 @@ const QuizEngine = {
 
   prevQuestion: function () {
     if (prev(QuizEngine.flow)) QuizEngine.render();
+    else if (QuizEngine.onExit) QuizEngine.onExit();
   },
 };
 

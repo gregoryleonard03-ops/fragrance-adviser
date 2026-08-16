@@ -115,9 +115,22 @@ def _load_scentrique() -> dict:
         path = DATA_DIR / "fragrances_scentrique.json"
         if path.exists():
             items = json.loads(path.read_text())
+            # LLM enrichment (notes + accords) lives in a separate file so a
+            # scraper re-run never wipes it; overlay at load time
+            enrich_path = DATA_DIR / "scentrique_enrichment.json"
+            enrich = {}
+            if enrich_path.exists():
+                for e in json.loads(enrich_path.read_text()):
+                    enrich[_parfbar_key(e.get("brand", ""), e.get("name", ""))] = e
             _SCENTRIQUE = {}
             for item in items:
                 key = _parfbar_key(item.get("brand", ""), item.get("name", ""))
+                extra = enrich.get(key)
+                if extra:
+                    for f in ("top_notes", "middle_notes", "base_notes"):
+                        if not item.get(f):
+                            item[f] = extra.get(f, "")
+                    item["accords"] = extra.get("accords") or []
                 _SCENTRIQUE[key] = item
         else:
             _SCENTRIQUE = {}
@@ -336,6 +349,10 @@ TAG_ACCORDS: dict[str, list[str]] = {
     "coffee":          ["Gourmand", "Warm"],
     "almond":          ["Gourmand", "Sweet"],
     "coconut":         ["Gourmand", "Sweet", "Tropical"],
+    "caramel":         ["Gourmand", "Sweet", "Warm"],
+    "lactonic":        ["Vanilla", "Musky", "Soft"],
+    "fall/winter":     ["Warm", "Woody", "Spicy"],
+    "spring/summer":   ["Fresh", "Citrus", "Floral"],
 }
 
 
@@ -530,6 +547,7 @@ def _score_catalog_item(catalog_item: dict, db_item, answers: dict):
 
     item_accords = [a.lower() for a in (db_item.get("accords") or [])] if db_item else []
     item_accords += _tag_accords(catalog_item)
+    item_accords += [a.lower() for a in (catalog_item.get("accords") or [])]
     db_notes_str = ""
     if db_item:
         db_notes_str = " ".join([
@@ -787,13 +805,33 @@ def _recommend_catalog(answers: dict, store: str, top_n: int) -> list[dict]:
     store_ranges = BUDGET_RANGES.get(store, {})
     price_filters = [store_ranges[b] for b in budget_vals if b in store_ranges]
 
+    gender = answers.get("gender", "")
+
     scored = []
     for key, catalog_item in catalog.items():
         db_item = db_lookup.get(key)
+        if db_item is None and store == "scentrique":
+            # "Meander EDP M 100ml" → DB key misses; retry without the suffix
+            clean = re.sub(r"\s+(edp|edt|extrait|parfum|eau de parfum)\b.*$", "",
+                           catalog_item.get("name", ""), flags=re.I)
+            db_item = db_lookup.get(_parfbar_key(catalog_item.get("brand", ""), clean))
+        if store == "scentrique" and gender in ("men", "women"):
+            tags_l = {t.lower() for t in (catalog_item.get("tags") or [])}
+            other = "for her" if gender == "men" else "for him"
+            mine = "for him" if gender == "men" else "for her"
+            if other in tags_l and mine not in tags_l and "unisex" not in tags_l:
+                continue
         s, breakdown = _score_catalog_item(catalog_item, db_item, answers)
         scored.append((s, breakdown, catalog_item, db_item))
 
-    scored.sort(key=lambda x: -x[0])
+    if store == "scentrique":
+        # deterministic non-alphabetical tie-break: deep ties are common and
+        # catalog order made alphabetically-early brands monopolize the top-5
+        import hashlib
+        scored.sort(key=lambda x: (-x[0],
+                    hashlib.md5((x[2].get("name", "")).encode()).hexdigest()))
+    else:
+        scored.sort(key=lambda x: -x[0])
 
     results = []
     seen = set()

@@ -210,11 +210,16 @@ function show(id) {
 // ── Screen 1: Instagram ──────────────────────────────────────────────────────
 
 async function analyzeIG() {
-  const input = document.getElementById('ig-input');
   const status = document.getElementById('ig-status');
+  const input = document.getElementById('ig-input');
   const btn = document.getElementById('ig-btn');
   const username = input.value.trim().replace(/^@/, '');
-  if (!username) { gotoChooser(); return; }
+  if (!username) {
+    status.className = 'ig-status soft';
+    status.textContent = 'Type your @username — or use "Skip" below to go straight to the quiz.';
+    input.focus();
+    return;
+  }
 
   btn.disabled = true;
   status.className = 'ig-status';
@@ -250,6 +255,7 @@ async function analyzeIG() {
 const AVAILABLE = {};  // key → config (probed on load)
 
 async function probeQuizzes() {
+  renderChooser(); // show the grid immediately; cards enable as configs load
   await Promise.all(QUIZ_STYLES.map(async s => {
     try {
       const res = await fetch('/static/quiz-engine/quizzes/' + s.key + '.json');
@@ -279,7 +285,11 @@ function gotoChooser() { show('screen-choose'); }
 // ── Screen 3: quiz via engine ────────────────────────────────────────────────
 
 function startQuiz(key) {
-  QuizEngine.mount(AVAILABLE[key], { onSubmit: submitAnswers, submitLabel: 'Show my scents ✦' });
+  QuizEngine.mount(AVAILABLE[key], {
+    onSubmit: submitAnswers,
+    onExit: gotoChooser,           // Back on step 1 → return to quiz-style picker
+    submitLabel: 'Show my scents ✦',
+  });
   show('screen-quiz');
 }
 
@@ -336,6 +346,7 @@ function renderProfileCard(data) {
 
   const quizAns = data.merged_answers || {};
   const quizTraits = [
+    quizAns.gender === 'men' ? 'For him' : quizAns.gender === 'women' ? 'For her' : null,
     LABELS.branch[quizAns.branch],
     ...(quizAns.notes || []).slice(0, 4).map(n => n.charAt(0).toUpperCase() + n.slice(1)),
     ...(quizAns.occasion || []).slice(0, 2).map(o => LABELS.occasion[o]),

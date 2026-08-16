@@ -3,18 +3,78 @@
   "title": "By Mood",
   "steps": [
     {
+      "id": "gender",
+      "title": "Who are we matching?",
+      "hint": "",
+      "multi": false,
+      "cols": 3,
+      "options": [
+        {
+          "value": "women",
+          "emoji": "🌸",
+          "label": "For her"
+        },
+        {
+          "value": "men",
+          "emoji": "🌲",
+          "label": "For him"
+        },
+        {
+          "value": "",
+          "emoji": "✨",
+          "label": "Show me everything"
+        }
+      ]
+    },
+    {
       "id": "branch",
       "title": "Which fragrance vibe feels most like you?",
       "hint": "",
       "multi": false,
       "cols": 3,
       "options": [
-        { "value": "fresh_clean",    "emoji": "🌊", "label": "Fresh & Clean",    "sub": "Light, crisp, effortless", "goto": "fresh_clean" },
-        { "value": "warm_cozy",      "emoji": "🕯️", "label": "Warm & Cozy",      "sub": "Soft, enveloping, comforting", "goto": "warm_cozy" },
-        { "value": "dark_sexy",      "emoji": "🖤", "label": "Dark & Seductive", "sub": "Deep, sensual, powerful", "goto": "dark_sexy" },
-        { "value": "elegant_luxury", "emoji": "👑", "label": "Elegant Luxury",   "sub": "Polished, refined, expensive", "goto": "elegant_luxury" },
-        { "value": "artistic_niche", "emoji": "🎭", "label": "Artistic & Niche", "sub": "Rare, conceptual, one of a kind", "goto": "artistic_niche" },
-        { "value": "soft_skin",      "emoji": "🤍", "label": "Soft Skin Scent",  "sub": "Quiet, intimate, second skin", "goto": "soft_skin" }
+        {
+          "value": "fresh_clean",
+          "emoji": "🌊",
+          "label": "Fresh & Clean",
+          "sub": "Light, crisp, effortless",
+          "goto": "fresh_clean"
+        },
+        {
+          "value": "warm_cozy",
+          "emoji": "🕯️",
+          "label": "Warm & Cozy",
+          "sub": "Soft, enveloping, comforting",
+          "goto": "warm_cozy"
+        },
+        {
+          "value": "dark_sexy",
+          "emoji": "🖤",
+          "label": "Dark & Seductive",
+          "sub": "Deep, sensual, powerful",
+          "goto": "dark_sexy"
+        },
+        {
+          "value": "elegant_luxury",
+          "emoji": "👑",
+          "label": "Elegant Luxury",
+          "sub": "Polished, refined, expensive",
+          "goto": "elegant_luxury"
+        },
+        {
+          "value": "artistic_niche",
+          "emoji": "🎭",
+          "label": "Artistic & Niche",
+          "sub": "Rare, conceptual, one of a kind",
+          "goto": "artistic_niche"
+        },
+        {
+          "value": "soft_skin",
+          "emoji": "🤍",
+          "label": "Soft Skin Scent",
+          "sub": "Quiet, intimate, second skin",
+          "goto": "soft_skin"
+        }
       ]
     }
   ],
@@ -27,11 +87,36 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "marine",   "emoji": "🌊", "label": "Marine",         "sub": "Salt, ocean, sea breeze" },
-          { "value": "citrus",   "emoji": "🍋", "label": "Citrus",         "sub": "Lemon, grapefruit" },
-          { "value": "clean",    "emoji": "🚿", "label": "Fresh shower",   "sub": "Soapy, clean" },
-          { "value": "green",    "emoji": "🌿", "label": "Green",          "sub": "Grass, leaves, vetiver" },
-          { "value": "metallic", "emoji": "❄️", "label": "Icy freshness",  "sub": "Cold, ozonic" }
+          {
+            "value": "marine",
+            "emoji": "🌊",
+            "label": "Marine",
+            "sub": "Salt, ocean, sea breeze"
+          },
+          {
+            "value": "citrus",
+            "emoji": "🍋",
+            "label": "Citrus",
+            "sub": "Lemon, grapefruit"
+          },
+          {
+            "value": "clean",
+            "emoji": "🚿",
+            "label": "Fresh shower",
+            "sub": "Soapy, clean"
+          },
+          {
+            "value": "green",
+            "emoji": "🌿",
+            "label": "Green",
+            "sub": "Grass, leaves, vetiver"
+          },
+          {
+            "value": "metallic",
+            "emoji": "❄️",
+            "label": "Icy freshness",
+            "sub": "Cold, ozonic"
+          }
         ]
       },
       {
@@ -41,11 +126,31 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "luxury_hotel",         "emoji": "🏨", "label": "Luxury hotel lobby" },
-          { "value": "summer_europe",        "emoji": "☀️", "label": "Summer in Europe" },
-          { "value": "sporty_expensive",     "emoji": "⚡", "label": "Sporty luxe" },
-          { "value": "scandinavian_minimal", "emoji": "🪵", "label": "Scandinavian minimalism" },
-          { "value": "rich_clean_person",    "emoji": "✨", "label": "Rich and clean" }
+          {
+            "value": "luxury_hotel",
+            "emoji": "🏨",
+            "label": "Luxury hotel lobby"
+          },
+          {
+            "value": "summer_europe",
+            "emoji": "☀️",
+            "label": "Summer in Europe"
+          },
+          {
+            "value": "sporty_expensive",
+            "emoji": "⚡",
+            "label": "Sporty luxe"
+          },
+          {
+            "value": "scandinavian_minimal",
+            "emoji": "🪵",
+            "label": "Scandinavian minimalism"
+          },
+          {
+            "value": "rich_clean_person",
+            "emoji": "✨",
+            "label": "Rich and clean"
+          }
         ]
       },
       {
@@ -55,12 +160,36 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "citrus",  "emoji": "🍋", "label": "Bergamot / citrus" },
-          { "value": "marine",  "emoji": "🌊", "label": "Sea salt" },
-          { "value": "musk",    "emoji": "🤍", "label": "White musk" },
-          { "value": "woody",   "emoji": "🌲", "label": "Cedar / woods" },
-          { "value": "vetiver", "emoji": "🌿", "label": "Vetiver" },
-          { "value": "spicy",   "emoji": "🌶️", "label": "Pepper / ginger" }
+          {
+            "value": "citrus",
+            "emoji": "🍋",
+            "label": "Bergamot / citrus"
+          },
+          {
+            "value": "marine",
+            "emoji": "🌊",
+            "label": "Sea salt"
+          },
+          {
+            "value": "musk",
+            "emoji": "🤍",
+            "label": "White musk"
+          },
+          {
+            "value": "woody",
+            "emoji": "🌲",
+            "label": "Cedar / woods"
+          },
+          {
+            "value": "vetiver",
+            "emoji": "🌿",
+            "label": "Vetiver"
+          },
+          {
+            "value": "spicy",
+            "emoji": "🌶️",
+            "label": "Pepper / ginger"
+          }
         ]
       },
       {
@@ -70,14 +199,36 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "daily",        "emoji": "☀️", "label": "Every day" },
-          { "value": "office",       "emoji": "💼", "label": "Office" },
-          { "value": "summer_trip",  "emoji": "✈️", "label": "Summer getaway" },
-          { "value": "sport",        "emoji": "🏃", "label": "Workouts" },
-          { "value": "summer_night", "emoji": "🌙", "label": "Summer nights" }
+          {
+            "value": "daily",
+            "emoji": "☀️",
+            "label": "Every day"
+          },
+          {
+            "value": "office",
+            "emoji": "💼",
+            "label": "Office"
+          },
+          {
+            "value": "summer_trip",
+            "emoji": "✈️",
+            "label": "Summer getaway"
+          },
+          {
+            "value": "sport",
+            "emoji": "🏃",
+            "label": "Workouts"
+          },
+          {
+            "value": "summer_night",
+            "emoji": "🌙",
+            "label": "Summer nights"
+          }
         ]
       },
-      { "$ref": "budget" }
+      {
+        "$ref": "budget"
+      }
     ],
     "warm_cozy": [
       {
@@ -87,11 +238,36 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "vanilla_cream",  "emoji": "🍦", "label": "Vanilla & cream", "sub": "Sweet, creamy" },
-          { "value": "spices_warm",    "emoji": "🫖", "label": "Spices",          "sub": "Cinnamon, clove" },
-          { "value": "wood_resin",     "emoji": "🪵", "label": "Woods & resins",  "sub": "Warm, balsamic" },
-          { "value": "gourmand",       "emoji": "🍮", "label": "Sweet gourmand",  "sub": "Caramel, pastry" },
-          { "value": "soft_musk_warm", "emoji": "☁️", "label": "Soft musk",       "sub": "Powdery, tender" }
+          {
+            "value": "vanilla_cream",
+            "emoji": "🍦",
+            "label": "Vanilla & cream",
+            "sub": "Sweet, creamy"
+          },
+          {
+            "value": "spices_warm",
+            "emoji": "🫖",
+            "label": "Spices",
+            "sub": "Cinnamon, clove"
+          },
+          {
+            "value": "wood_resin",
+            "emoji": "🪵",
+            "label": "Woods & resins",
+            "sub": "Warm, balsamic"
+          },
+          {
+            "value": "gourmand",
+            "emoji": "🍮",
+            "label": "Sweet gourmand",
+            "sub": "Caramel, pastry"
+          },
+          {
+            "value": "soft_musk_warm",
+            "emoji": "☁️",
+            "label": "Soft musk",
+            "sub": "Powdery, tender"
+          }
         ]
       },
       {
@@ -101,11 +277,31 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "sunday_morning",     "emoji": "☕", "label": "Sunday morning at home" },
-          { "value": "autumn_coffee",      "emoji": "🍂", "label": "Autumn coffee shop" },
-          { "value": "cashmere_fireplace", "emoji": "🔥", "label": "Cashmere by the fireplace" },
-          { "value": "warm_skin_sun",      "emoji": "🌅", "label": "Warm skin after the sun" },
-          { "value": "nordic_cabin",       "emoji": "🏔️", "label": "Nordic cabin in winter" }
+          {
+            "value": "sunday_morning",
+            "emoji": "☕",
+            "label": "Sunday morning at home"
+          },
+          {
+            "value": "autumn_coffee",
+            "emoji": "🍂",
+            "label": "Autumn coffee shop"
+          },
+          {
+            "value": "cashmere_fireplace",
+            "emoji": "🔥",
+            "label": "Cashmere by the fireplace"
+          },
+          {
+            "value": "warm_skin_sun",
+            "emoji": "🌅",
+            "label": "Warm skin after the sun"
+          },
+          {
+            "value": "nordic_cabin",
+            "emoji": "🏔️",
+            "label": "Nordic cabin in winter"
+          }
         ]
       },
       {
@@ -115,12 +311,36 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "vanilla", "emoji": "🍦", "label": "Vanilla / tonka" },
-          { "value": "spicy",   "emoji": "🫖", "label": "Cinnamon / cardamom" },
-          { "value": "woody",   "emoji": "🪵", "label": "Sandalwood / cedar" },
-          { "value": "vetiver", "emoji": "🍂", "label": "Patchouli" },
-          { "value": "musk",    "emoji": "☁️", "label": "Musk" },
-          { "value": "amber",   "emoji": "🪸", "label": "Amber" }
+          {
+            "value": "vanilla",
+            "emoji": "🍦",
+            "label": "Vanilla / tonka"
+          },
+          {
+            "value": "spicy",
+            "emoji": "🫖",
+            "label": "Cinnamon / cardamom"
+          },
+          {
+            "value": "woody",
+            "emoji": "🪵",
+            "label": "Sandalwood / cedar"
+          },
+          {
+            "value": "vetiver",
+            "emoji": "🍂",
+            "label": "Patchouli"
+          },
+          {
+            "value": "musk",
+            "emoji": "☁️",
+            "label": "Musk"
+          },
+          {
+            "value": "amber",
+            "emoji": "🪸",
+            "label": "Amber"
+          }
         ]
       },
       {
@@ -130,14 +350,36 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "daily",         "emoji": "☀️", "label": "Every day" },
-          { "value": "autumn_winter", "emoji": "🍂", "label": "Fall & winter" },
-          { "value": "cozy_evening",  "emoji": "🕯️", "label": "Cozy evenings" },
-          { "value": "date",          "emoji": "🌹", "label": "Date night" },
-          { "value": "special",       "emoji": "🥂", "label": "Special occasions" }
+          {
+            "value": "daily",
+            "emoji": "☀️",
+            "label": "Every day"
+          },
+          {
+            "value": "autumn_winter",
+            "emoji": "🍂",
+            "label": "Fall & winter"
+          },
+          {
+            "value": "cozy_evening",
+            "emoji": "🕯️",
+            "label": "Cozy evenings"
+          },
+          {
+            "value": "date",
+            "emoji": "🌹",
+            "label": "Date night"
+          },
+          {
+            "value": "special",
+            "emoji": "🥂",
+            "label": "Special occasions"
+          }
         ]
       },
-      { "$ref": "budget" }
+      {
+        "$ref": "budget"
+      }
     ],
     "dark_sexy": [
       {
@@ -147,11 +389,36 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "leather",     "emoji": "🖤", "label": "Leather",       "sub": "Dark, animalic" },
-          { "value": "tobacco",     "emoji": "🚬", "label": "Tobacco",       "sub": "Dry, rich" },
-          { "value": "smoke",       "emoji": "🔥", "label": "Smoke",         "sub": "Bonfire, resin" },
-          { "value": "alcohol",     "emoji": "🥃", "label": "Boozy notes",   "sub": "Rum, whiskey, cognac" },
-          { "value": "spices_dark", "emoji": "🌶️", "label": "Spices",        "sub": "Pepper, incense" }
+          {
+            "value": "leather",
+            "emoji": "🖤",
+            "label": "Leather",
+            "sub": "Dark, animalic"
+          },
+          {
+            "value": "tobacco",
+            "emoji": "🚬",
+            "label": "Tobacco",
+            "sub": "Dry, rich"
+          },
+          {
+            "value": "smoke",
+            "emoji": "🔥",
+            "label": "Smoke",
+            "sub": "Bonfire, resin"
+          },
+          {
+            "value": "alcohol",
+            "emoji": "🥃",
+            "label": "Boozy notes",
+            "sub": "Rum, whiskey, cognac"
+          },
+          {
+            "value": "spices_dark",
+            "emoji": "🌶️",
+            "label": "Spices",
+            "sub": "Pepper, incense"
+          }
         ]
       },
       {
@@ -161,11 +428,31 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "mafia_luxury",  "emoji": "🕴️", "label": "Mafia luxury" },
-          { "value": "dangerous",     "emoji": "⚡", "label": "Dangerous" },
-          { "value": "night_out",     "emoji": "🌙", "label": "Night out" },
-          { "value": "dominant",      "emoji": "👁️", "label": "Dominant energy" },
-          { "value": "dark_elegance", "emoji": "🖤", "label": "Dark elegance" }
+          {
+            "value": "mafia_luxury",
+            "emoji": "🕴️",
+            "label": "Mafia luxury"
+          },
+          {
+            "value": "dangerous",
+            "emoji": "⚡",
+            "label": "Dangerous"
+          },
+          {
+            "value": "night_out",
+            "emoji": "🌙",
+            "label": "Night out"
+          },
+          {
+            "value": "dominant",
+            "emoji": "👁️",
+            "label": "Dominant energy"
+          },
+          {
+            "value": "dark_elegance",
+            "emoji": "🖤",
+            "label": "Dark elegance"
+          }
         ]
       },
       {
@@ -175,12 +462,36 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "leather",  "emoji": "🖤", "label": "Leather" },
-          { "value": "tobacco",  "emoji": "🚬", "label": "Tobacco / rum" },
-          { "value": "oud",      "emoji": "🕌", "label": "Oud / incense" },
-          { "value": "spicy",    "emoji": "🌶️", "label": "Spices / pepper" },
-          { "value": "vetiver",  "emoji": "🌿", "label": "Vetiver / patchouli" },
-          { "value": "vanilla",  "emoji": "🍦", "label": "Vanilla" }
+          {
+            "value": "leather",
+            "emoji": "🖤",
+            "label": "Leather"
+          },
+          {
+            "value": "tobacco",
+            "emoji": "🚬",
+            "label": "Tobacco / rum"
+          },
+          {
+            "value": "oud",
+            "emoji": "🕌",
+            "label": "Oud / incense"
+          },
+          {
+            "value": "spicy",
+            "emoji": "🌶️",
+            "label": "Spices / pepper"
+          },
+          {
+            "value": "vetiver",
+            "emoji": "🌿",
+            "label": "Vetiver / patchouli"
+          },
+          {
+            "value": "vanilla",
+            "emoji": "🍦",
+            "label": "Vanilla"
+          }
         ]
       },
       {
@@ -190,14 +501,36 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "date",          "emoji": "🌹", "label": "Dates" },
-          { "value": "party",         "emoji": "🎉", "label": "Parties" },
-          { "value": "autumn_winter", "emoji": "🍂", "label": "Fall & winter" },
-          { "value": "night_city",    "emoji": "🌃", "label": "City nights" },
-          { "value": "special",       "emoji": "🥂", "label": "Special events" }
+          {
+            "value": "date",
+            "emoji": "🌹",
+            "label": "Dates"
+          },
+          {
+            "value": "party",
+            "emoji": "🎉",
+            "label": "Parties"
+          },
+          {
+            "value": "autumn_winter",
+            "emoji": "🍂",
+            "label": "Fall & winter"
+          },
+          {
+            "value": "night_city",
+            "emoji": "🌃",
+            "label": "City nights"
+          },
+          {
+            "value": "special",
+            "emoji": "🥂",
+            "label": "Special events"
+          }
         ]
       },
-      { "$ref": "budget" }
+      {
+        "$ref": "budget"
+      }
     ],
     "elegant_luxury": [
       {
@@ -207,11 +540,36 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "old_money",    "emoji": "🏛️", "label": "Old money",           "sub": "Classic, heritage, patina" },
-          { "value": "quiet_luxury", "emoji": "🤍", "label": "Quiet luxury",        "sub": "No logos, just quality" },
-          { "value": "ceo",          "emoji": "💼", "label": "CEO energy",          "sub": "Power, confidence" },
-          { "value": "european",     "emoji": "🗼", "label": "European elegance",   "sub": "French charm" },
-          { "value": "hotel",        "emoji": "🏨", "label": "Grand hotel",         "sub": "Five-star lobby" }
+          {
+            "value": "old_money",
+            "emoji": "🏛️",
+            "label": "Old money",
+            "sub": "Classic, heritage, patina"
+          },
+          {
+            "value": "quiet_luxury",
+            "emoji": "🤍",
+            "label": "Quiet luxury",
+            "sub": "No logos, just quality"
+          },
+          {
+            "value": "ceo",
+            "emoji": "💼",
+            "label": "CEO energy",
+            "sub": "Power, confidence"
+          },
+          {
+            "value": "european",
+            "emoji": "🗼",
+            "label": "European elegance",
+            "sub": "French charm"
+          },
+          {
+            "value": "hotel",
+            "emoji": "🏨",
+            "label": "Grand hotel",
+            "sub": "Five-star lobby"
+          }
         ]
       },
       {
@@ -221,11 +579,31 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "expensive_calm",  "emoji": "🧘", "label": "Expensive and calm" },
-          { "value": "clean_status",    "emoji": "✨", "label": "Clean and polished" },
-          { "value": "wealth_no_logos", "emoji": "🤫", "label": "Wealth without logos" },
-          { "value": "luxury_traveler", "emoji": "🌍", "label": "First-class traveler" },
-          { "value": "business_class",  "emoji": "✈️", "label": "Business class" }
+          {
+            "value": "expensive_calm",
+            "emoji": "🧘",
+            "label": "Expensive and calm"
+          },
+          {
+            "value": "clean_status",
+            "emoji": "✨",
+            "label": "Clean and polished"
+          },
+          {
+            "value": "wealth_no_logos",
+            "emoji": "🤫",
+            "label": "Wealth without logos"
+          },
+          {
+            "value": "luxury_traveler",
+            "emoji": "🌍",
+            "label": "First-class traveler"
+          },
+          {
+            "value": "business_class",
+            "emoji": "✈️",
+            "label": "Business class"
+          }
         ]
       },
       {
@@ -235,12 +613,36 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "rose",    "emoji": "🌹", "label": "Rose / jasmine" },
-          { "value": "woody",   "emoji": "🪵", "label": "Sandalwood / cedar" },
-          { "value": "vetiver", "emoji": "🌿", "label": "Vetiver" },
-          { "value": "amber",   "emoji": "🪸", "label": "Amber" },
-          { "value": "musk",    "emoji": "🤍", "label": "Musk" },
-          { "value": "citrus",  "emoji": "🌸", "label": "Neroli / bergamot" }
+          {
+            "value": "rose",
+            "emoji": "🌹",
+            "label": "Rose / jasmine"
+          },
+          {
+            "value": "woody",
+            "emoji": "🪵",
+            "label": "Sandalwood / cedar"
+          },
+          {
+            "value": "vetiver",
+            "emoji": "🌿",
+            "label": "Vetiver"
+          },
+          {
+            "value": "amber",
+            "emoji": "🪸",
+            "label": "Amber"
+          },
+          {
+            "value": "musk",
+            "emoji": "🤍",
+            "label": "Musk"
+          },
+          {
+            "value": "citrus",
+            "emoji": "🌸",
+            "label": "Neroli / bergamot"
+          }
         ]
       },
       {
@@ -250,14 +652,36 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "work",        "emoji": "💼", "label": "Work" },
-          { "value": "daily",       "emoji": "☀️", "label": "Every day" },
-          { "value": "restaurants", "emoji": "🍽️", "label": "Dinners & meetings" },
-          { "value": "travel",      "emoji": "✈️", "label": "Travel" },
-          { "value": "evening",     "emoji": "🎭", "label": "Evening events" }
+          {
+            "value": "work",
+            "emoji": "💼",
+            "label": "Work"
+          },
+          {
+            "value": "daily",
+            "emoji": "☀️",
+            "label": "Every day"
+          },
+          {
+            "value": "restaurants",
+            "emoji": "🍽️",
+            "label": "Dinners & meetings"
+          },
+          {
+            "value": "travel",
+            "emoji": "✈️",
+            "label": "Travel"
+          },
+          {
+            "value": "evening",
+            "emoji": "🎭",
+            "label": "Evening events"
+          }
         ]
       },
-      { "$ref": "budget" }
+      {
+        "$ref": "budget"
+      }
     ],
     "artistic_niche": [
       {
@@ -267,11 +691,36 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "unusual",    "emoji": "🧪", "label": "Unusual ingredients",     "sub": "Nothing mass-market about it" },
-          { "value": "narrative",  "emoji": "📖", "label": "A story to tell",         "sub": "Perfume as narrative" },
-          { "value": "rarity",     "emoji": "💎", "label": "Rarity & exclusivity",    "sub": "Not for everyone" },
-          { "value": "bold",       "emoji": "⚡", "label": "Bold experiments",        "sub": "Edgy, provocative" },
-          { "value": "unexpected", "emoji": "🌀", "label": "Unexpected pairings",     "sub": "Strange chemistry" }
+          {
+            "value": "unusual",
+            "emoji": "🧪",
+            "label": "Unusual ingredients",
+            "sub": "Nothing mass-market about it"
+          },
+          {
+            "value": "narrative",
+            "emoji": "📖",
+            "label": "A story to tell",
+            "sub": "Perfume as narrative"
+          },
+          {
+            "value": "rarity",
+            "emoji": "💎",
+            "label": "Rarity & exclusivity",
+            "sub": "Not for everyone"
+          },
+          {
+            "value": "bold",
+            "emoji": "⚡",
+            "label": "Bold experiments",
+            "sub": "Edgy, provocative"
+          },
+          {
+            "value": "unexpected",
+            "emoji": "🌀",
+            "label": "Unexpected pairings",
+            "sub": "Strange chemistry"
+          }
         ]
       },
       {
@@ -281,11 +730,31 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "art_gallery",       "emoji": "🖼️", "label": "Gallery opening" },
-          { "value": "desert_midnight",   "emoji": "🌑", "label": "Desert at midnight" },
-          { "value": "rain_hot_pavement", "emoji": "🌧️", "label": "Rain on hot pavement" },
-          { "value": "avantgarde",        "emoji": "👗", "label": "Avant-garde fashion" },
-          { "value": "intellectual",      "emoji": "📚", "label": "Intellectual minimalism" }
+          {
+            "value": "art_gallery",
+            "emoji": "🖼️",
+            "label": "Gallery opening"
+          },
+          {
+            "value": "desert_midnight",
+            "emoji": "🌑",
+            "label": "Desert at midnight"
+          },
+          {
+            "value": "rain_hot_pavement",
+            "emoji": "🌧️",
+            "label": "Rain on hot pavement"
+          },
+          {
+            "value": "avantgarde",
+            "emoji": "👗",
+            "label": "Avant-garde fashion"
+          },
+          {
+            "value": "intellectual",
+            "emoji": "📚",
+            "label": "Intellectual minimalism"
+          }
         ]
       },
       {
@@ -295,12 +764,36 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "oud",     "emoji": "🕌", "label": "Oud / incense" },
-          { "value": "vetiver", "emoji": "🌿", "label": "Vetiver / patchouli" },
-          { "value": "amber",   "emoji": "🪸", "label": "Amber" },
-          { "value": "musk",    "emoji": "🤍", "label": "Musk" },
-          { "value": "leather", "emoji": "🖤", "label": "Leather" },
-          { "value": "rose",    "emoji": "🌸", "label": "Iris / florals" }
+          {
+            "value": "oud",
+            "emoji": "🕌",
+            "label": "Oud / incense"
+          },
+          {
+            "value": "vetiver",
+            "emoji": "🌿",
+            "label": "Vetiver / patchouli"
+          },
+          {
+            "value": "amber",
+            "emoji": "🪸",
+            "label": "Amber"
+          },
+          {
+            "value": "musk",
+            "emoji": "🤍",
+            "label": "Musk"
+          },
+          {
+            "value": "leather",
+            "emoji": "🖤",
+            "label": "Leather"
+          },
+          {
+            "value": "rose",
+            "emoji": "🌸",
+            "label": "Iris / florals"
+          }
         ]
       },
       {
@@ -310,14 +803,36 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "collection",   "emoji": "📦", "label": "My own collection" },
-          { "value": "impress",      "emoji": "👀", "label": "To turn heads" },
-          { "value": "daily",        "emoji": "☀️", "label": "Everyday wear" },
-          { "value": "special",      "emoji": "🥂", "label": "Special occasions" },
-          { "value": "connoisseurs", "emoji": "🎓", "label": "For connoisseurs" }
+          {
+            "value": "collection",
+            "emoji": "📦",
+            "label": "My own collection"
+          },
+          {
+            "value": "impress",
+            "emoji": "👀",
+            "label": "To turn heads"
+          },
+          {
+            "value": "daily",
+            "emoji": "☀️",
+            "label": "Everyday wear"
+          },
+          {
+            "value": "special",
+            "emoji": "🥂",
+            "label": "Special occasions"
+          },
+          {
+            "value": "connoisseurs",
+            "emoji": "🎓",
+            "label": "For connoisseurs"
+          }
         ]
       },
-      { "$ref": "budget" }
+      {
+        "$ref": "budget"
+      }
     ],
     "soft_skin": [
       {
@@ -327,11 +842,36 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "clean_musk",   "emoji": "🤍", "label": "Clean musk",      "sub": "Neutral, transparent" },
-          { "value": "powdery",      "emoji": "🌸", "label": "Powdery",         "sub": "Soft, iris-like" },
-          { "value": "milky",        "emoji": "🥛", "label": "Milky / creamy",  "sub": "Warm, gentle" },
-          { "value": "barely_there", "emoji": "🌫️", "label": "Barely there",    "sub": "Almost invisible" },
-          { "value": "warm_skin",    "emoji": "🌅", "label": "Warm skin",       "sub": "Like your skin, but better" }
+          {
+            "value": "clean_musk",
+            "emoji": "🤍",
+            "label": "Clean musk",
+            "sub": "Neutral, transparent"
+          },
+          {
+            "value": "powdery",
+            "emoji": "🌸",
+            "label": "Powdery",
+            "sub": "Soft, iris-like"
+          },
+          {
+            "value": "milky",
+            "emoji": "🥛",
+            "label": "Milky / creamy",
+            "sub": "Warm, gentle"
+          },
+          {
+            "value": "barely_there",
+            "emoji": "🌫️",
+            "label": "Barely there",
+            "sub": "Almost invisible"
+          },
+          {
+            "value": "warm_skin",
+            "emoji": "🌅",
+            "label": "Warm skin",
+            "sub": "Like your skin, but better"
+          }
         ]
       },
       {
@@ -341,11 +881,31 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "second_skin",    "emoji": "🤍", "label": "Second skin" },
-          { "value": "just_showered",  "emoji": "🚿", "label": "Fresh out of the shower" },
-          { "value": "intimate_close", "emoji": "💫", "label": "Intimate and close" },
-          { "value": "clean_luxury",   "emoji": "✨", "label": "Clean luxury" },
-          { "value": "invisible_memo", "emoji": "👻", "label": "Invisible but unforgettable" }
+          {
+            "value": "second_skin",
+            "emoji": "🤍",
+            "label": "Second skin"
+          },
+          {
+            "value": "just_showered",
+            "emoji": "🚿",
+            "label": "Fresh out of the shower"
+          },
+          {
+            "value": "intimate_close",
+            "emoji": "💫",
+            "label": "Intimate and close"
+          },
+          {
+            "value": "clean_luxury",
+            "emoji": "✨",
+            "label": "Clean luxury"
+          },
+          {
+            "value": "invisible_memo",
+            "emoji": "👻",
+            "label": "Invisible but unforgettable"
+          }
         ]
       },
       {
@@ -355,12 +915,36 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "musk",    "emoji": "🤍", "label": "Musk" },
-          { "value": "amber",   "emoji": "🪸", "label": "Ambroxan / amber" },
-          { "value": "woody",   "emoji": "🪵", "label": "Sandalwood" },
-          { "value": "vanilla", "emoji": "🥛", "label": "Vanilla / milky notes" },
-          { "value": "rose",    "emoji": "🌸", "label": "Iris" },
-          { "value": "spicy",   "emoji": "🌶️", "label": "Cardamom" }
+          {
+            "value": "musk",
+            "emoji": "🤍",
+            "label": "Musk"
+          },
+          {
+            "value": "amber",
+            "emoji": "🪸",
+            "label": "Ambroxan / amber"
+          },
+          {
+            "value": "woody",
+            "emoji": "🪵",
+            "label": "Sandalwood"
+          },
+          {
+            "value": "vanilla",
+            "emoji": "🥛",
+            "label": "Vanilla / milky notes"
+          },
+          {
+            "value": "rose",
+            "emoji": "🌸",
+            "label": "Iris"
+          },
+          {
+            "value": "spicy",
+            "emoji": "🌶️",
+            "label": "Cardamom"
+          }
         ]
       },
       {
@@ -370,14 +954,36 @@
         "multi": true,
         "cols": 3,
         "options": [
-          { "value": "daily",        "emoji": "☀️", "label": "Every day" },
-          { "value": "bed_scent",    "emoji": "🛏️", "label": "Bedtime scent" },
-          { "value": "date",         "emoji": "🌹", "label": "Date night" },
-          { "value": "work",         "emoji": "💼", "label": "Work" },
-          { "value": "just_because", "emoji": "💝", "label": "Just because" }
+          {
+            "value": "daily",
+            "emoji": "☀️",
+            "label": "Every day"
+          },
+          {
+            "value": "bed_scent",
+            "emoji": "🛏️",
+            "label": "Bedtime scent"
+          },
+          {
+            "value": "date",
+            "emoji": "🌹",
+            "label": "Date night"
+          },
+          {
+            "value": "work",
+            "emoji": "💼",
+            "label": "Work"
+          },
+          {
+            "value": "just_because",
+            "emoji": "💝",
+            "label": "Just because"
+          }
         ]
       },
-      { "$ref": "budget" }
+      {
+        "$ref": "budget"
+      }
     ]
   },
   "shared": {
@@ -388,10 +994,26 @@
       "multi": true,
       "cols": 4,
       "options": [
-        { "value": "budget_1", "emoji": "💛", "label": "Under $200" },
-        { "value": "budget_2", "emoji": "🥈", "label": "$200 – 300" },
-        { "value": "budget_3", "emoji": "🥇", "label": "$300 – 400" },
-        { "value": "budget_4", "emoji": "💎", "label": "$400+" }
+        {
+          "value": "budget_1",
+          "emoji": "💛",
+          "label": "Under $200"
+        },
+        {
+          "value": "budget_2",
+          "emoji": "🥈",
+          "label": "$200 – 300"
+        },
+        {
+          "value": "budget_3",
+          "emoji": "🥇",
+          "label": "$300 – 400"
+        },
+        {
+          "value": "budget_4",
+          "emoji": "💎",
+          "label": "$400+"
+        }
       ]
     }
   }

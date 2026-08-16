@@ -18,7 +18,7 @@ VALID = {
     "occasion": set(m.OCCASION_ACCORDS),
     "season":   set(m.SEASON_ACCORDS),
     "budget":   {"budget_1", "budget_2", "budget_3", "budget_4"},
-    "gender":   {"self", "unisex", "gift_male", "gift_female", ""},
+    "gender":   {"self", "unisex", "gift_male", "gift_female", "men", "women", ""},
 }
 
 

@@ -82,6 +82,22 @@
     background: #faf6ef; border: 1px solid #e3d5bb; border-radius: 999px;
     padding: 7px 16px; margin: 14px auto 0;
   }
+  /* Scent profile card */
+  .profile-card {
+    max-width: 720px; margin: 26px auto 0; text-align: left;
+    background: #faf6ef; border: 1px solid #e3d5bb; border-radius: 12px;
+    padding: 26px 30px;
+  }
+  .profile-eyebrow { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #81550d; font-weight: 700; }
+  .profile-headline { font-family: "Instrument Sans", sans-serif; font-size: clamp(20px, 3vw, 26px); font-weight: 600; margin: 6px 0 8px; }
+  .profile-summary { font-size: 14.5px; color: #555; line-height: 1.55; }
+  .trait-row { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 14px; }
+  .trait-src { font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: #8a8a8a; margin-right: 3px; }
+  .trait {
+    font-size: 12.5px; color: #1c1c1c; background: #fff; border: 1px solid #ddd;
+    border-radius: 999px; padding: 4px 12px;
+  }
+
   .results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; margin-top: 34px; }
   .result-card { border: 1px solid #ddd; border-radius: 10px; overflow: hidden; background: #fff; display: flex; flex-direction: column; }
   .result-img-wrap { aspect-ratio: 1 / 1; background: #fff; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #eee; }
@@ -168,6 +184,7 @@
     <div class="results-head">
       <h2>Your matches</h2>
       <div id="ig-badge-slot"></div>
+      <div id="profile-card-slot"></div>
     </div>
     <div class="results-grid" id="results-grid"></div>
     <div class="restart-row"><button class="btn btn-ghost" onclick="location.reload()">Start over</button></div>
@@ -293,11 +310,62 @@ async function submitAnswers(answers) {
   }
 }
 
+// Readable labels for profile-card trait chips (internal keys → shopper English)
+const LABELS = {
+  branch: { fresh_clean: 'Fresh & Clean', warm_cozy: 'Warm & Cozy', dark_sexy: 'Dark & Seductive',
+            elegant_luxury: 'Elegant Luxury', artistic_niche: 'Artistic & Niche', soft_skin: 'Soft Skin Scent' },
+  occasion: { daily: 'Everyday', office: 'Office', work: 'Office', date: 'Date nights', party: 'Parties',
+              night_city: 'City nights', travel: 'Travel', cozy_evening: 'Cozy evenings', special: 'Special occasions',
+              bed_scent: 'Bedtime', restaurants: 'Dinners out', summer_trip: 'Summer trips', sport: 'Workouts',
+              collection: 'Collector', impress: 'To impress', connoisseurs: 'Connoisseur',
+              autumn_winter: 'Fall & winter', summer_night: 'Summer nights', just_because: 'Just because', evening: 'Evenings' },
+  aesthetic: { clean_minimal: 'Clean minimal', dark_moody: 'Dark & moody', boho: 'Boho', glam_luxury: 'Glam luxury',
+               sporty_fresh: 'Sporty fresh', artistic: 'Artistic', preppy: 'Preppy' },
+  lifestyle: { fashion: 'Fashion', sport: 'Sport', travel: 'Travel', home_cozy: 'Homebody', food: 'Foodie',
+               art_culture: 'Art & culture', professional: 'Professional', outdoor: 'Outdoors' },
+};
+
+function chips(items) {
+  return items.filter(Boolean).map(t => '<span class="trait">' + t + '</span>').join('');
+}
+
+function renderProfileCard(data) {
+  const slot = document.getElementById('profile-card-slot');
+  const card = data.profile_card;
+  if (!card) { slot.innerHTML = ''; return; }
+
+  const quizAns = data.merged_answers || {};
+  const quizTraits = [
+    LABELS.branch[quizAns.branch],
+    ...(quizAns.notes || []).slice(0, 4).map(n => n.charAt(0).toUpperCase() + n.slice(1)),
+    ...(quizAns.occasion || []).slice(0, 2).map(o => LABELS.occasion[o]),
+  ];
+  let igRow = '';
+  if (data.used_instagram && igResult) {
+    const a = igResult.analysis || {};
+    const igTraits = [
+      LABELS.aesthetic[a.aesthetic],
+      ...(a.lifestyles || []).slice(0, 3).map(l => LABELS.lifestyle[l]),
+    ];
+    igRow = '<div class="trait-row"><span class="trait-src">From Instagram</span>' + chips(igTraits) + '</div>';
+  }
+  slot.innerHTML =
+    '<div class="profile-card">' +
+      '<div class="profile-eyebrow">Your scent profile</div>' +
+      '<div class="profile-headline">' + card.headline + '</div>' +
+      '<div class="profile-summary">' + card.summary + '</div>' +
+      '<div class="trait-row"><span class="trait-src">From your quiz</span>' + chips(quizTraits) + '</div>' +
+      igRow +
+    '</div>';
+}
+
 function showResults(data) {
   const recs = data.recommendations || [];
   const badge = document.getElementById('ig-badge-slot');
-  badge.innerHTML = (data.used_instagram && igResult)
+  // the profile card carries the IG chips; keep the badge only when there's no card
+  badge.innerHTML = (data.used_instagram && igResult && !data.profile_card)
     ? '<span class="ig-badge">✓ We factored in your Instagram aesthetic</span>' : '';
+  renderProfileCard(data);
 
   const grid = document.getElementById('results-grid');
   grid.innerHTML = '';

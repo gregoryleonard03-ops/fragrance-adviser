@@ -224,16 +224,19 @@ class CombinedRequest(BaseModel):
 
 @app.post("/api/recommend/combined")
 def recommend_combined(req: CombinedRequest):
-    from social_analyzer import merge_answers, generate_reasons
+    from social_analyzer import merge_answers, generate_profile_and_reasons
     try:
         merged = merge_answers(req.answers, req.ig_answers)
         results = recommend_from_db(merged, store=req.store, top_n=5)
-        if req.analysis and results:
-            reasons = generate_reasons(req.analysis, results,
-                                       post_captions=req.post_captions, lang="en")
-            for rec, reason in zip(results, reasons):
+        profile_card = None
+        if results:
+            card = generate_profile_and_reasons(req.analysis, req.answers, results,
+                                                post_captions=req.post_captions)
+            for rec, reason in zip(results, card["reasons"]):
                 rec["reason"] = reason
+            profile_card = {"headline": card["headline"], "summary": card["summary"]}
         return {"recommendations": results, "merged_answers": merged,
+                "profile_card": profile_card,
                 "used_instagram": bool(req.ig_answers)}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

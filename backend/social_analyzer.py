@@ -515,6 +515,81 @@ def generate_reasons(analysis: dict, recs: list[dict], post_captions: list[str] 
     return [_fallback_reason(analysis, r, lang) for r in recs]
 
 
+def generate_profile_and_reasons(analysis: dict, quiz_answers: dict, recs: list[dict],
+                                 post_captions: list[str] | None = None) -> dict:
+    """One Claude call → scent-profile card (headline + summary) and a unique
+    reason per fragrance. English only — used by /match. Works with or without
+    IG analysis; falls back to templates without an API key."""
+    import anthropic
+
+    _load_env()
+    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
+
+    def fallback():
+        branch = (quiz_answers or {}).get("branch", "")
+        headline = {
+            "fresh_clean": "The Fresh Minimalist", "warm_cozy": "The Warm Soul",
+            "dark_sexy": "The Night Presence", "elegant_luxury": "The Quiet Luxe",
+            "artistic_niche": "The Original", "soft_skin": "The Second Skin",
+        }.get(branch, "Your Scent Profile")
+        return {
+            "headline": headline,
+            "summary": "Matched from your quiz answers across scent direction, "
+                       "favorite notes and the moments you dress for.",
+            "reasons": [_fallback_reason(analysis or {}, r, "en") for r in recs],
+        }
+
+    if not api_key:
+        return fallback()
+
+    ig_ctx = ""
+    if analysis:
+        ig_ctx = (
+            f"From their Instagram: {analysis.get('aesthetic')} aesthetic, "
+            f"{analysis.get('dominant_vibe')} vibe, lifestyle: {', '.join(analysis.get('lifestyles', []))}. "
+            f"Analysis note: {analysis.get('reasoning', '')}\n"
+        )
+        if post_captions:
+            ig_ctx += "Post captions: " + "; ".join(post_captions) + ".\n"
+
+    frags = "\n".join([
+        f"{i+1}. {r['brand']} — {r['name']} ({', '.join((r.get('accords') or [])[:3])})"
+        for i, r in enumerate(recs)
+    ])
+
+    prompt = (
+        f"You are a perfume expert writing a personal scent profile for a client.\n\n"
+        f"{ig_ctx}"
+        f"From their quiz: scent direction '{quiz_answers.get('branch', '')}', "
+        f"vibes {quiz_answers.get('vibe', [])}, favorite notes {quiz_answers.get('notes', [])}, "
+        f"occasions {quiz_answers.get('occasion', [])}.\n\n"
+        f"Their matched fragrances:\n{frags}\n\n"
+        f"Return ONLY valid JSON:\n"
+        f'{{"headline": "a 2-4 word archetype name for this person (e.g. \'The Midnight Minimalist\')",\n'
+        f' "summary": "2 sentences in English: who this person is scent-wise and why these picks fit; '
+        f'mention a concrete detail from their Instagram if provided",\n'
+        f' "reasons": [{len(recs)} unique one-sentence explanations, one per fragrance in order]}}'
+    )
+
+    try:
+        client = anthropic.Anthropic(api_key=api_key)
+        msg = client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=700,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        raw = (msg.content[0].text or "").strip()
+        m = re.search(r"\{.*\}", raw, re.DOTALL)
+        if m:
+            data = json.loads(m.group(0))
+            if (isinstance(data.get("reasons"), list) and len(data["reasons"]) == len(recs)
+                    and data.get("headline") and data.get("summary")):
+                return data
+    except Exception:
+        pass
+    return fallback()
+
+
 _VIBE_TO_BMOOD: dict[str, str] = {
     "fresh":     "fresh_energy",
     "clean":     "fresh_energy",

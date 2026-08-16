@@ -8,3 +8,4 @@ venv/
 .DS_Store
 tmp/
 fragrances_combined.json
+backend/data/scentrique_cache/

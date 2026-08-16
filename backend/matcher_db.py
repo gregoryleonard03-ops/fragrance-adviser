@@ -12,6 +12,7 @@ _PARFBAR = None
 _PROFUMUM = None
 _GENERIC = None
 _BIBLIOTEKA_LIST = None
+_SCENTRIQUE = None
 
 DATA_DIR = Path(__file__).parent / "data"
 
@@ -33,6 +34,14 @@ BUDGET_RANGES = {
         "budget_2": (15000, 30000),
         "budget_3": (30000, 50000),
         "budget_4": (50000, float("inf")),
+    },
+    # USD, full-bottle price; samples ($4–15) are shown alongside, not filtered.
+    # Tiers ≈ catalog quartiles: p25=$195, median=$240, p75=$345
+    "scentrique": {
+        "budget_1": (0,     200),
+        "budget_2": (200,   300),
+        "budget_3": (300,   400),
+        "budget_4": (400,   float("inf")),
     },
 }
 
@@ -98,6 +107,21 @@ def _load_profumum() -> dict:
         else:
             _PROFUMUM = {}
     return _PROFUMUM
+
+
+def _load_scentrique() -> dict:
+    global _SCENTRIQUE
+    if _SCENTRIQUE is None:
+        path = DATA_DIR / "fragrances_scentrique.json"
+        if path.exists():
+            items = json.loads(path.read_text())
+            _SCENTRIQUE = {}
+            for item in items:
+                key = _parfbar_key(item.get("brand", ""), item.get("name", ""))
+                _SCENTRIQUE[key] = item
+        else:
+            _SCENTRIQUE = {}
+    return _SCENTRIQUE
 
 
 def _load_generic() -> dict:
@@ -274,6 +298,57 @@ BRANCH_ACCORDS: dict[str, list[str]] = {
     "artistic_niche": ["Aromatic", "Earthy", "Incense", "Animal", "Herbal"],
     "soft_skin":      ["Musky", "Powdery", "Clean", "White Floral", "Soapy"],
 }
+
+# Scentrique (Shopify) tags → accords. Tags carry olfactory families and notes;
+# this lets catalog items score even without a match in the 76k DB.
+TAG_ACCORDS: dict[str, list[str]] = {
+    "floral":          ["Floral"],
+    "white florals":   ["White Floral", "Floral"],
+    "rose":            ["Rose", "Floral"],
+    "jasmine":         ["White Floral", "Floral"],
+    "tuberose":        ["White Floral", "Floral"],
+    "neroli":          ["Citrus", "White Floral"],
+    "iris":            ["Iris", "Powdery"],
+    "fruity":          ["Fruity", "Sweet"],
+    "citrus":          ["Citrus", "Fresh"],
+    "aquatic":         ["Aquatic", "Marine", "Fresh"],
+    "green":           ["Green"],
+    "fig":             ["Green", "Woody"],
+    "tea":             ["Aromatic", "Green"],
+    "lavender":        ["Aromatic", "Herbal"],
+    "oud & woody":     ["Oud", "Woody"],
+    "sandalwood":      ["Woody"],
+    "cedarwood":       ["Woody"],
+    "vetiver":         ["Woody", "Green", "Earthy"],
+    "patchouli":       ["Earthy", "Woody"],
+    "amber":           ["Amber", "Warm", "Oriental"],
+    "incense":         ["Incense", "Resinous", "Smoky"],
+    "leather":         ["Leather", "Leathery"],
+    "tobacco":         ["Tobacco", "Smoky"],
+    "tobacco & smoky": ["Tobacco", "Smoky"],
+    "liquor":          ["Warm", "Spicy"],
+    "spicy":           ["Spicy"],
+    "musk":            ["Musky"],
+    "gourmand":        ["Gourmand", "Sweet"],
+    "vanilla":         ["Vanilla", "Sweet"],
+    "tonka bean":      ["Vanilla", "Sweet", "Warm"],
+    "chocolate":       ["Gourmand", "Sweet"],
+    "coffee":          ["Gourmand", "Warm"],
+    "almond":          ["Gourmand", "Sweet"],
+    "coconut":         ["Gourmand", "Sweet", "Tropical"],
+}
+
+
+def _tag_accords(catalog_item: dict) -> list[str]:
+    """Accords derived from a catalog item's own tags/product_type (lowercased)."""
+    tags = list(catalog_item.get("tags") or [])
+    if catalog_item.get("product_type"):
+        tags.append(catalog_item["product_type"])
+    out = []
+    for t in tags:
+        out += TAG_ACCORDS.get(t.lower().strip(), [])
+    return [a.lower() for a in out]
+
 
 GENDER_MAP = {
     "self":        None,
@@ -454,6 +529,7 @@ def _score_catalog_item(catalog_item: dict, db_item, answers: dict):
     bd_occasion = {"score": 0, "max_possible": 0, "occasion_values": [], "matched_accords": []}
 
     item_accords = [a.lower() for a in (db_item.get("accords") or [])] if db_item else []
+    item_accords += _tag_accords(catalog_item)
     db_notes_str = ""
     if db_item:
         db_notes_str = " ".join([
@@ -466,7 +542,10 @@ def _score_catalog_item(catalog_item: dict, db_item, answers: dict):
         catalog_item.get("middle_notes", ""),
         catalog_item.get("base_notes", ""),
     ])
-    all_notes = (db_notes_str + " " + catalog_notes).lower()
+    # tags often carry note names (Jasmine, Sandalwood, Tonka Bean…) — let
+    # NOTE_KEYWORDS match against them too
+    tags_text = " ".join(catalog_item.get("tags") or [])
+    all_notes = (db_notes_str + " " + catalog_notes + " " + tags_text).lower()
 
     # Notes match (EN + RU)
     selected_notes = answers.get("notes") or []
@@ -619,6 +698,7 @@ def _build_reason(item: dict, answers: dict, store: str, catalog_item=None) -> s
         "sephora": "Найти на Sephora",
         "parfbar": "Купить на Parfbar",
         "profumum": "Купить на Profumum.ru",
+        "scentrique": "Available at Scentrique",
     }
     parts.append(store_label.get(store, "Найти в магазине") + ".")
     return " ".join(parts[:3])
@@ -627,7 +707,7 @@ def _build_reason(item: dict, answers: dict, store: str, catalog_item=None) -> s
 def recommend_from_db(answers: dict, store: str = "sephora", top_n: int = 5) -> list[dict]:
     if store == "biblioteka":
         return _recommend_biblioteka(answers, top_n)
-    if store in ("parfbar", "profumum", "generic"):
+    if store in ("parfbar", "profumum", "generic", "scentrique"):
         return _recommend_catalog(answers, store, top_n)
 
     db = _load_db()
@@ -684,6 +764,8 @@ def _recommend_catalog(answers: dict, store: str, top_n: int) -> list[dict]:
         catalog = _load_parfbar()
     elif store == "generic":
         catalog = _load_generic()
+    elif store == "scentrique":
+        catalog = _load_scentrique()
     else:
         catalog = _load_profumum()
     db_lookup = _load_db_lookup()
@@ -734,6 +816,8 @@ def _recommend_catalog(answers: dict, store: str, top_n: int) -> list[dict]:
             "name":         name,
             "brand":        brand,
             "price":        price,
+            "sample_price": catalog_item.get("sample_price"),
+            "sample_size":  catalog_item.get("sample_size"),
             "image_url":    catalog_item.get("image_url", ""),
             "url":          url,
             "score":        s,
@@ -765,6 +849,8 @@ def _recommend_catalog(answers: dict, store: str, top_n: int) -> list[dict]:
             reason = _build_reason(source_item, answers, store, catalog_item)
             results.append({
                 "name": name, "brand": brand, "price": price,
+                "sample_price": catalog_item.get("sample_price"),
+                "sample_size": catalog_item.get("sample_size"),
                 "image_url": catalog_item.get("image_url", ""),
                 "url": url, "score": s,
                 "accords": (db_item.get("accords") or []) if db_item else [],

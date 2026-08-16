@@ -196,6 +196,49 @@ async def analyze_instagram_endpoint(req: InstagramRequest):
         return {"success": False, "error": f"Не удалось получить профиль: {str(e)}"}
 
 
+# ── Scentrique /match: IG (optional) + quiz → one combined scoring pass ───────
+
+@app.get("/match")
+def match_page():
+    return FileResponse(str(FRONTEND / "match" / "index.html"), headers=NO_CACHE)
+
+
+@app.post("/api/analyze-instagram-light")
+async def analyze_instagram_light_endpoint(req: InstagramRequest):
+    import asyncio
+    try:
+        from social_analyzer import analyze_instagram_light
+        return await asyncio.to_thread(analyze_instagram_light, req.url, "en")
+    except Exception as e:
+        # login-wall / private profile is a routine path for /match, not an error state
+        return {"success": False, "error": str(e)}
+
+
+class CombinedRequest(BaseModel):
+    answers: dict = {}          # from the quiz engine
+    ig_answers: dict = {}       # from analyze-instagram-light (may be empty)
+    analysis: dict = {}         # IG analysis for personalized reasons (optional)
+    post_captions: list[str] = []
+    store: str = "scentrique"
+
+
+@app.post("/api/recommend/combined")
+def recommend_combined(req: CombinedRequest):
+    from social_analyzer import merge_answers, generate_reasons
+    try:
+        merged = merge_answers(req.answers, req.ig_answers)
+        results = recommend_from_db(merged, store=req.store, top_n=5)
+        if req.analysis and results:
+            reasons = generate_reasons(req.analysis, results,
+                                       post_captions=req.post_captions, lang="en")
+            for rec, reason in zip(results, reasons):
+                rec["reason"] = reason
+        return {"recommendations": results, "merged_answers": merged,
+                "used_instagram": bool(req.ig_answers)}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.post("/api/recommend/biblioteka")
 def recommend_biblioteka(answers: Answers):
     try:

@@ -1,0 +1,55 @@
+/* Quiz engine UI — Scentrique brand: white, #1c1c1c text, bronze accent,
+   Instrument Sans headings / Nunito body. Used by /match (and any future
+   engine-based quiz page). */
+
+.quiz-shell { max-width: 860px; margin: 0 auto; padding: 24px 20px 60px; }
+
+.progress-row { display: flex; align-items: center; gap: 14px; margin-bottom: 34px; }
+.progress-track { flex: 1; height: 3px; background: #e7e2d9; border-radius: 2px; overflow: hidden; }
+#progress-fill { height: 100%; width: 0; background: #81550d; transition: width .3s ease; }
+#progress-text { font-size: 12px; color: #8a8a8a; letter-spacing: .08em; white-space: nowrap; }
+
+#question-title {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: clamp(22px, 3.4vw, 30px); font-weight: 600; letter-spacing: -0.01em;
+  color: #1c1c1c; margin: 0 0 6px; text-align: center;
+}
+#question-hint { font-size: 14px; color: #8a8a8a; text-align: center; min-height: 20px; margin-bottom: 26px; }
+
+.cards-grid { display: grid; gap: 12px; }
+.cards-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.cards-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.cards-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+.card {
+  background: #fff; border: 1px solid #ddd; border-radius: 10px;
+  padding: 20px 14px 18px; text-align: center; cursor: pointer;
+  transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+.card:hover { border-color: #81550d; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(28, 28, 28, .07); }
+.card.selected { border-color: #81550d; box-shadow: inset 0 0 0 1px #81550d; background: #faf6ef; }
+.card-emoji { font-size: 30px; margin-bottom: 10px; }
+.card-label { font-family: "Instrument Sans", sans-serif; font-size: 15px; font-weight: 600; color: #1c1c1c; }
+.card-sub { font-size: 12.5px; color: #8a8a8a; margin-top: 4px; line-height: 1.35; }
+
+.nav-row { display: flex; justify-content: space-between; gap: 12px; margin-top: 34px; }
+.btn {
+  font-family: "Instrument Sans", sans-serif; font-size: 14px; font-weight: 600;
+  letter-spacing: .04em; border-radius: 999px; padding: 13px 30px; cursor: pointer;
+  transition: opacity .15s ease, background .15s ease;
+}
+.btn:disabled { opacity: .35; cursor: default; }
+.btn-primary { background: #81550d; color: #fff; border: 1px solid #81550d; }
+.btn-primary:hover:not(:disabled) { background: #6d470b; }
+.btn-ghost { background: transparent; color: #1c1c1c; border: 1px solid #ddd; }
+.btn-ghost:hover:not(:disabled) { border-color: #1c1c1c; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 640px) {
+  .cards-grid.cols-3, .cards-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+  .card-emoji { font-size: 26px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card, #progress-fill { transition: none; }
+}

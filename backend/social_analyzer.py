@@ -315,7 +315,8 @@ _LIFESTYLE_OCCASION: dict[str, str] = {
 
 def social_to_answers(analysis: dict) -> dict:
     vibes = list(_DOMINANT_VIBE_MAP.get(analysis.get("dominant_vibe", ""), []))
-    vibes += _AESTHETIC_VIBES.get(analysis.get("aesthetic", ""), [])
+    vibes += [v for v in _AESTHETIC_VIBES.get(analysis.get("aesthetic", ""), [])
+              if v not in vibes]
 
     notes = []
     for note in analysis.get("notes_hint", []):
@@ -347,6 +348,31 @@ def social_to_answers(analysis: dict) -> dict:
         "budget":   [],
         "season":   [],
     }
+
+
+# How many IG-derived vibes survive the merge with quiz answers. social_to_answers
+# returns up to 4, a quiz gives 1-2 — unclamped, IG would shout the quiz down.
+# ponytail: calibrated by eye on 2; retune on live /match runs with real profiles.
+IG_MAX_VIBES = 2
+
+
+def merge_answers(quiz: dict, ig: dict) -> dict:
+    """Combine quiz + Instagram answers for one scoring pass.
+    Lists → union (quiz values first), strings → quiz wins if non-empty."""
+    ig = dict(ig or {})
+    if ig.get("vibe"):
+        ig["vibe"] = ig["vibe"][:IG_MAX_VIBES]
+    merged = dict(ig)
+    for k, v in (quiz or {}).items():
+        if isinstance(v, list):
+            base = [x for x in v]
+            for x in (ig.get(k) or []):
+                if x not in base:
+                    base.append(x)
+            merged[k] = base
+        elif v:
+            merged[k] = v
+    return merged
 
 
 _ACCORD_DESC: dict[str, str] = {
@@ -569,11 +595,32 @@ def analyze_instagram(url: str) -> dict:
     return {
         "profile": profile,
         "analysis": analysis,
+        "answers": answers,
         "recommendations": recs,
         "biblioteka": {
             "fragrances": bib_recs,
             "box": bib_box,
         },
+        "success": True,
+    }
+
+
+def analyze_instagram_light(url: str, lang: str = "en") -> dict:
+    """Profile → analysis → answers, no recommendations. Used by /match,
+    where scoring happens later in /api/recommend/combined."""
+    profile = fetch_instagram_profile(url)
+    # Login-wall / nonexistent / empty profile: the scraper "succeeds" on the
+    # error page (its text lands in bio!) and the LLM hallucinates an aesthetic
+    # out of nothing. Real signal = followers/posts/captions/highlights, not bio.
+    if not (profile.get("followers") or profile.get("posts")
+            or profile.get("post_captions") or profile.get("highlights")):
+        return {"success": False, "error": "profile unavailable or empty"}
+    analysis = analyze_with_claude(profile, lang=lang)
+    return {
+        "analysis": analysis,
+        "answers": social_to_answers(analysis),
+        "post_captions": profile.get("post_captions", []),
+        "username": profile.get("username", ""),
         "success": True,
     }
 

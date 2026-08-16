@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Find Your Scent — Scentrique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/quiz-engine/style.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Nunito", sans-serif; background: #fff; color: #1c1c1c; min-height: 100vh; }
+
+  .site-header {
+    border-bottom: 1px solid #ddd; padding: 18px 24px; text-align: center;
+  }
+  .site-header .brand {
+    font-family: "Instrument Sans", sans-serif; font-weight: 700; font-size: 18px;
+    letter-spacing: .32em; text-transform: uppercase; color: #1c1c1c; text-decoration: none;
+  }
+  .site-header .tagline { font-size: 11.5px; color: #8a8a8a; letter-spacing: .14em; text-transform: uppercase; margin-top: 5px; }
+
+  .screen { display: none; }
+  .screen.active { display: block; animation: fadeUp .3s ease; }
+
+  /* Screen 1 — Instagram */
+  .ig-wrap { max-width: 460px; margin: 0 auto; padding: 70px 20px 60px; text-align: center; }
+  .ig-wrap h1 {
+    font-family: "Instrument Sans", sans-serif; font-size: clamp(26px, 4.5vw, 36px);
+    font-weight: 600; letter-spacing: -0.01em; margin-bottom: 12px;
+  }
+  .ig-wrap .lead { font-size: 15.5px; color: #555; line-height: 1.55; margin-bottom: 34px; }
+  .ig-field { display: flex; gap: 8px; margin-bottom: 14px; }
+  .ig-field input {
+    flex: 1; font-family: "Nunito", sans-serif; font-size: 15px; padding: 13px 16px;
+    border: 1px solid #ddd; border-radius: 999px; outline: none; color: #1c1c1c;
+  }
+  .ig-field input:focus { border-color: #81550d; }
+  .ig-note { font-size: 12.5px; color: #8a8a8a; margin-bottom: 26px; }
+  .skip-link {
+    display: inline-block; font-size: 14px; color: #1c1c1c; text-decoration: underline;
+    text-underline-offset: 3px; cursor: pointer; background: none; border: none;
+    font-family: "Nunito", sans-serif;
+  }
+  .skip-link:hover { color: #81550d; }
+  .ig-status { font-size: 14px; margin-top: 18px; min-height: 22px; }
+  .ig-status.soft { color: #8a6d3b; }
+  .ig-status.ok { color: #4a7c46; }
+
+  /* Screen 2 — quiz style chooser */
+  .choose-wrap { max-width: 760px; margin: 0 auto; padding: 60px 20px; text-align: center; }
+  .choose-wrap h2 { font-family: "Instrument Sans", sans-serif; font-size: clamp(22px, 3.4vw, 30px); font-weight: 600; margin-bottom: 8px; }
+  .choose-wrap .sub { font-size: 14.5px; color: #8a8a8a; margin-bottom: 32px; }
+  .style-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .style-card {
+    border: 1px solid #ddd; border-radius: 10px; padding: 26px 14px; cursor: pointer;
+    transition: border-color .15s, transform .15s, box-shadow .15s; background: #fff;
+  }
+  .style-card:hover { border-color: #81550d; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(28,28,28,.07); }
+  .style-card .s-emoji { font-size: 30px; margin-bottom: 10px; }
+  .style-card .s-name { font-family: "Instrument Sans", sans-serif; font-size: 15px; font-weight: 600; }
+  .style-card .s-sub { font-size: 12.5px; color: #8a8a8a; margin-top: 4px; }
+  .style-card.soon { opacity: .45; cursor: default; }
+  .style-card.soon:hover { border-color: #ddd; transform: none; box-shadow: none; }
+  .style-card.soon .s-sub::after { content: "Coming soon"; display: block; margin-top: 6px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #81550d; }
+
+  /* Loading */
+  .loading-wrap { text-align: center; padding: 110px 20px; }
+  .spinner {
+    width: 34px; height: 34px; border: 3px solid #e7e2d9; border-top-color: #81550d;
+    border-radius: 50%; margin: 0 auto 20px; animation: spin .8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-wrap p { color: #8a8a8a; font-size: 15px; }
+
+  /* Screen 4 — results */
+  .results-wrap { max-width: 1060px; margin: 0 auto; padding: 46px 20px 80px; }
+  .results-head { text-align: center; margin-bottom: 12px; }
+  .results-head h2 { font-family: "Instrument Sans", sans-serif; font-size: clamp(24px, 3.6vw, 32px); font-weight: 600; }
+  .ig-badge {
+    display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: #81550d;
+    background: #faf6ef; border: 1px solid #e3d5bb; border-radius: 999px;
+    padding: 7px 16px; margin: 14px auto 0;
+  }
+  .results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; margin-top: 34px; }
+  .result-card { border: 1px solid #ddd; border-radius: 10px; overflow: hidden; background: #fff; display: flex; flex-direction: column; }
+  .result-img-wrap { aspect-ratio: 1 / 1; background: #fff; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #eee; }
+  .result-img { width: 100%; height: 100%; object-fit: contain; }
+  .result-img-placeholder { font-size: 54px; }
+  .result-body { padding: 18px 20px 22px; display: flex; flex-direction: column; flex: 1; }
+  .result-pick { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #8a8a8a; margin-bottom: 7px; }
+  .result-brand { font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; color: #81550d; font-weight: 700; }
+  .result-name { font-family: "Instrument Sans", sans-serif; font-size: 18px; font-weight: 600; margin: 3px 0 10px; }
+  .result-prices { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline; margin-bottom: 12px; }
+  .price-sample { font-weight: 700; font-size: 15.5px; color: #1c1c1c; }
+  .price-full { font-size: 13.5px; color: #8a8a8a; }
+  .result-reason { font-size: 14px; color: #555; line-height: 1.5; flex: 1; }
+  .result-link {
+    display: block; text-align: center; margin-top: 16px; padding: 12px;
+    background: #81550d; color: #fff; text-decoration: none; border-radius: 999px;
+    font-family: "Instrument Sans", sans-serif; font-size: 14px; font-weight: 600; letter-spacing: .04em;
+  }
+  .result-link:hover { background: #6d470b; }
+  .restart-row { text-align: center; margin-top: 36px; }
+
+  @media (max-width: 720px) { .style-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="https://www.scentrique.us" target="_blank" rel="noopener">Scentrique</a>
+  <div class="tagline">Niche Perfume · Denver, CO</div>
+</header>
+
+<!-- Screen 1: Instagram (optional) -->
+<section id="screen-ig" class="screen active">
+  <div class="ig-wrap">
+    <h1>Find your signature scent</h1>
+    <p class="lead">Share your Instagram and we'll read your aesthetic to sharpen the match — or skip straight to the quiz.</p>
+    <div class="ig-field">
+      <input id="ig-input" type="text" placeholder="@username" autocomplete="off"
+             onkeydown="if(event.key==='Enter')analyzeIG()">
+      <button class="btn btn-primary" id="ig-btn" onclick="analyzeIG()">Analyze</button>
+    </div>
+    <p class="ig-note">Public profiles only. We look at style, not personal data.</p>
+    <button class="skip-link" onclick="gotoChooser()">Skip — take the quiz only →</button>
+    <div class="ig-status" id="ig-status"></div>
+  </div>
+</section>
+
+<!-- Screen 2: choose your quiz -->
+<section id="screen-choose" class="screen">
+  <div class="choose-wrap">
+    <h2>How would you like to be matched?</h2>
+    <p class="sub">Four ways in — same personal result.</p>
+    <div class="style-grid" id="style-grid"></div>
+  </div>
+</section>
+
+<!-- Screen 3: quiz -->
+<section id="screen-quiz" class="screen">
+  <div class="quiz-shell">
+    <div class="progress-row">
+      <div class="progress-track"><div id="progress-fill"></div></div>
+      <span id="progress-text"></span>
+    </div>
+    <div id="question-wrap">
+      <h2 id="question-title"></h2>
+      <p id="question-hint"></p>
+      <div id="cards-grid" class="cards-grid cols-3"></div>
+    </div>
+    <div class="nav-row">
+      <button class="btn btn-ghost" id="btn-back">← Back</button>
+      <button class="btn btn-primary" id="btn-next">Next →</button>
+    </div>
+  </div>
+</section>
+
+<!-- Loading -->
+<section id="screen-loading" class="screen">
+  <div class="loading-wrap"><div class="spinner"></div><p id="loading-text">Matching you with the collection…</p></div>
+</section>
+
+<!-- Screen 4: results -->
+<section id="screen-results" class="screen">
+  <div class="results-wrap">
+    <div class="results-head">
+      <h2>Your matches</h2>
+      <div id="ig-badge-slot"></div>
+    </div>
+    <div class="results-grid" id="results-grid"></div>
+    <div class="restart-row"><button class="btn btn-ghost" onclick="location.reload()">Start over</button></div>
+  </div>
+</section>
+
+<script src="/static/quiz-engine/engine.js"></script>
+<script>
+const QUIZ_STYLES = [
+  { key: 'mood',       emoji: '🌊', name: 'By Mood',        sub: 'Pick the vibe you live in' },
+  { key: 'characters', emoji: '🎭', name: 'By Character',   sub: 'Choose your alter ego' },
+  { key: 'moodboard',  emoji: '🖼️', name: 'By Moodboard',   sub: 'Pick 3 images you feel' },
+  { key: 'places',     emoji: '🗺️', name: 'By Place',       sub: 'Where you feel most yourself' },
+];
+
+let igResult = null;   // {analysis, answers, post_captions} when IG worked
+
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// ── Screen 1: Instagram ──────────────────────────────────────────────────────
+
+async function analyzeIG() {
+  const input = document.getElementById('ig-input');
+  const status = document.getElementById('ig-status');
+  const btn = document.getElementById('ig-btn');
+  const username = input.value.trim().replace(/^@/, '');
+  if (!username) { gotoChooser(); return; }
+
+  btn.disabled = true;
+  status.className = 'ig-status';
+  status.textContent = 'Reading your aesthetic…';
+  try {
+    const res = await fetch('/api/analyze-instagram-light', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url: 'https://www.instagram.com/' + username + '/' }),
+    });
+    const data = await res.json();
+    if (data.success) {
+      igResult = data;
+      status.className = 'ig-status ok';
+      status.textContent = '✓ Got it — your feed is in the mix. On to the quiz.';
+      setTimeout(gotoChooser, 900);
+      return;
+    }
+    throw new Error(data.error || 'profile unavailable');
+  } catch (e) {
+    // Login-wall / private profile is a routine path — soft continue, no error modal
+    igResult = null;
+    status.className = 'ig-status soft';
+    status.textContent = "Couldn't read that profile — we'll match you by quiz instead.";
+    setTimeout(gotoChooser, 1600);
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+// ── Screen 2: quiz style chooser ─────────────────────────────────────────────
+
+const AVAILABLE = {};  // key → config (probed on load)
+
+async function probeQuizzes() {
+  await Promise.all(QUIZ_STYLES.map(async s => {
+    try {
+      const res = await fetch('/static/quiz-engine/quizzes/' + s.key + '.json');
+      if (res.ok) AVAILABLE[s.key] = await res.json();
+    } catch (e) { /* stays unavailable */ }
+  }));
+  renderChooser();
+}
+
+function renderChooser() {
+  const grid = document.getElementById('style-grid');
+  grid.innerHTML = '';
+  QUIZ_STYLES.forEach(s => {
+    const card = document.createElement('div');
+    const ready = !!AVAILABLE[s.key];
+    card.className = 'style-card' + (ready ? '' : ' soon');
+    card.innerHTML = '<div class="s-emoji">' + s.emoji + '</div>' +
+                     '<div class="s-name">' + s.name + '</div>' +
+                     '<div class="s-sub">' + s.sub + '</div>';
+    if (ready) card.onclick = () => startQuiz(s.key);
+    grid.appendChild(card);
+  });
+}
+
+function gotoChooser() { show('screen-choose'); }
+
+// ── Screen 3: quiz via engine ────────────────────────────────────────────────
+
+function startQuiz(key) {
+  QuizEngine.mount(AVAILABLE[key], { onSubmit: submitAnswers, submitLabel: 'Show my scents ✦' });
+  show('screen-quiz');
+}
+
+// ── Submit + results ─────────────────────────────────────────────────────────
+
+async function submitAnswers(answers) {
+  show('screen-loading');
+  try {
+    const res = await fetch('/api/recommend/combined', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        answers: answers,
+        ig_answers: igResult ? igResult.answers : {},
+        analysis: igResult ? igResult.analysis : {},
+        post_captions: igResult ? igResult.post_captions : [],
+        store: 'scentrique',
+      }),
+    });
+    if (!res.ok) throw new Error('Server error ' + res.status);
+    const data = await res.json();
+    showResults(data);
+  } catch (e) {
+    document.getElementById('results-grid').innerHTML =
+      '<p style="grid-column:1/-1;text-align:center;color:#8a8a8a;padding:40px">' +
+      'Something went wrong on our side. Please try again.</p>';
+    show('screen-results');
+  }
+}
+
+function showResults(data) {
+  const recs = data.recommendations || [];
+  const badge = document.getElementById('ig-badge-slot');
+  badge.innerHTML = (data.used_instagram && igResult)
+    ? '<span class="ig-badge">✓ We factored in your Instagram aesthetic</span>' : '';
+
+  const grid = document.getElementById('results-grid');
+  grid.innerHTML = '';
+  if (!recs.length) {
+    grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#8a8a8a;padding:40px">' +
+      'No matches found — try different answers.</p>';
+    show('screen-results');
+    return;
+  }
+
+  recs.forEach((r, i) => {
+    const card = document.createElement('div');
+    card.className = 'result-card';
+    const img = r.image_url
+      ? '<div class="result-img-wrap"><img class="result-img" loading="lazy" src="' + r.image_url +
+        '" alt="' + r.name + '" onerror="this.parentElement.innerHTML=\'<div class=result-img-placeholder>🌿</div>\'"></div>'
+      : '<div class="result-img-wrap"><div class="result-img-placeholder">🌿</div></div>';
+    const sample = r.sample_price != null
+      ? '<span class="price-sample">Try it — $' + r.sample_price + (r.sample_size ? ' (' + r.sample_size + ')' : '') + '</span>' : '';
+    const full = r.price != null
+      ? '<span class="price-full">Full bottle — $' + Math.round(r.price) + '</span>' : '';
+    card.innerHTML = img +
+      '<div class="result-body">' +
+        '<div class="result-pick">Match No. ' + (i + 1) + '</div>' +
+        '<div class="result-brand">' + r.brand + '</div>' +
+        '<div class="result-name">' + r.name + '</div>' +
+        '<div class="result-prices">' + sample + full + '</div>' +
+        '<div class="result-reason">' + (r.reason || '') + '</div>' +
+        '<a class="result-link" href="' + r.url + '" target="_blank" rel="noopener">View at Scentrique</a>' +
+      '</div>';
+    grid.appendChild(card);
+  });
+  show('screen-results');
+}
+
+probeQuizzes();
+</script>
+</body>
+</html>

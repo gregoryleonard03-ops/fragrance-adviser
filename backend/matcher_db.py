@@ -641,6 +641,11 @@ def _score_catalog_item(catalog_item: dict, db_item, answers: dict):
 
 
 def _build_reason(item: dict, answers: dict, store: str, catalog_item=None) -> str:
+    en = store == "scentrique"
+    lbl_notes, lbl_vibe, lbl_accords, lbl_brand = (
+        ("Notes: ", "Vibe: ", "Accords: ", "Your brand.") if en
+        else ("Ноты: ", "Вайб: ", "Аккорды: ", "Твой бренд.")
+    )
     parts = []
 
     db_notes = " ".join([
@@ -663,7 +668,7 @@ def _build_reason(item: dict, answers: dict, store: str, catalog_item=None) -> s
     matched_notes = [kw for nk in selected_notes
                      for kw in NOTE_KEYWORDS.get(nk, []) if kw in all_notes]
     if matched_notes:
-        parts.append(f"Ноты: {', '.join(matched_notes[:3])}.")
+        parts.append(f"{lbl_notes}{', '.join(matched_notes[:3])}.")
 
     item_accords = [a.lower() for a in (item.get("accords") or [])]
 
@@ -678,21 +683,26 @@ def _build_reason(item: dict, answers: dict, store: str, catalog_item=None) -> s
                    or BRANCH_ACCORDS.get(key) or [])
         matched_accords = [a for a in accords if a.lower() in item_accords]
         if matched_accords:
-            parts.append(f"Вайб: {', '.join(matched_accords[:2])}.")
+            parts.append(f"{lbl_vibe}{', '.join(matched_accords[:2])}.")
             break
 
     if not parts and item.get("accords"):
-        parts.append(f"Аккорды: {', '.join(item['accords'][:3])}.")
+        parts.append(f"{lbl_accords}{', '.join(item['accords'][:3])}.")
     elif not parts and catalog_item:
-        # For items without DB data, use catalog notes snippet
-        top = catalog_item.get("top_notes", "")
+        # For items without DB data, use catalog notes snippet (or scent tags for scentrique)
+        service = {"for him", "for her", "unisex", "spring/summer", "fall/winter"}
+        brand_l = (catalog_item.get("brand") or "").lower()
+        scent_tags = [t for t in (catalog_item.get("tags") or [])
+                      if t.lower() not in service
+                      and not (brand_l and brand_l.split()[0] in t.lower())]
+        top = catalog_item.get("top_notes", "") or ", ".join(scent_tags[:3])
         if top:
-            parts.append(f"Ноты: {top[:40]}.")
+            parts.append(f"{lbl_notes}{top[:40]}.")
 
     brands = answers.get("brands") or []
     if any(b.lower() in (item.get("brand") or catalog_item.get("brand") if catalog_item else "").lower()
            for b in brands):
-        parts.append("Твой бренд.")
+        parts.append(lbl_brand)
 
     store_label = {
         "sephora": "Найти на Sephora",

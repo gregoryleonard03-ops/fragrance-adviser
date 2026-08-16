@@ -34,7 +34,7 @@ OUT_PATH = DATA_DIR / "fragrances_scentrique.json"
 # tags that are navigation/marketing, not scent signal — dropped from output
 NOISE_TAGS = re.compile(
     r"^(all products|fragrances|best sellers|new arrivals?|gifts? .*|vday|"
-    r"father's day.*|mother's day.*|.*promo.*|sale|discovery.*|sample.*)$",
+    r"father's day.*|mother's day.*|.*promo.*|.*sale.*|discovery.*|sample.*)$",
     re.I,
 )
 

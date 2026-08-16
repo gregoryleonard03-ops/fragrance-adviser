@@ -157,7 +157,7 @@ def _parse_instagram_text(text: str, url: str) -> dict:
     }
 
 
-def analyze_with_claude(profile: dict) -> dict:
+def analyze_with_claude(profile: dict, lang: str = "ru") -> dict:
     import anthropic
 
     _load_env()
@@ -191,8 +191,11 @@ def analyze_with_claude(profile: dict) -> dict:
             images_loaded += 1
 
     # Ask for post_descriptions only when images actually loaded (avoids hallucinations)
+    out_lang = "Russian" if lang == "ru" else "English"
+    notes_example = '"бергамот", "белый мускус", "пион"' if lang == "ru" \
+        else '"bergamot", "white musk", "peony"'
     desc_field = (
-        ',\n  "post_descriptions": array of 1 short Russian sentence per loaded image '
+        f',\n  "post_descriptions": array of 1 short {out_lang} sentence per loaded image '
         '— what you actually see (outfit, setting, mood). Only describe what is visible.'
         if images_loaded > 0 else ""
     )
@@ -208,8 +211,8 @@ Return ONLY valid JSON with these exact fields. Always pick the closest matching
   "aesthetic": one of exactly: "clean_minimal", "dark_moody", "boho", "glam_luxury", "sporty_fresh", "artistic", "preppy",
   "lifestyles": array of 1-3 items from exactly: ["fashion", "sport", "travel", "home_cozy", "food", "art_culture", "professional", "outdoor"],
   "dominant_vibe": one of exactly: "fresh", "warm_cozy", "sweet", "woody", "floral", "oriental", "clean",
-  "notes_hint": array of 3-5 specific fragrance notes in Russian (e.g. "бергамот", "белый мускус", "пион"),
-  "reasoning": one sentence in Russian explaining the fragrance choice{desc_field}
+  "notes_hint": array of 3-5 specific fragrance notes in {out_lang} (e.g. {notes_example}),
+  "reasoning": one sentence in {out_lang} explaining the fragrance choice{desc_field}
 }}"""
 
     content.append({"type": "text", "text": prompt})
@@ -240,23 +243,42 @@ Return ONLY valid JSON with these exact fields. Always pick the closest matching
     raise ValueError(f"Не удалось получить анализ после 2 попыток — попробуй ещё раз ({last_err})")
 
 
+# RU + EN keys merged: the LLM answers in the profile language (lang param),
+# and lookup works either way — no silent misses when the language switches
 _NOTES_REVERSE: dict[str, str] = {
     "бергамот": "citrus", "лимон": "citrus", "грейпфрут": "citrus",
     "апельсин": "citrus", "мандарин": "citrus", "юзу": "citrus", "цитрус": "citrus",
+    "bergamot": "citrus", "lemon": "citrus", "grapefruit": "citrus",
+    "orange": "citrus", "mandarin": "citrus", "yuzu": "citrus", "citrus": "citrus",
     "роза": "rose", "жасмин": "rose", "пион": "rose", "тубероза": "rose",
     "нероли": "rose", "флоральные ноты": "rose",
+    "rose": "rose", "jasmine": "rose", "peony": "rose", "tuberose": "rose",
+    "neroli": "rose", "floral notes": "rose",
     "уд": "oud", "ладан": "oud", "мирра": "oud",
+    "oud": "oud", "incense": "oud", "myrrh": "oud", "frankincense": "oud", "agarwood": "oud",
     "ваниль": "vanilla", "бобы тонка": "vanilla", "тонка": "vanilla",
+    "vanilla": "vanilla", "tonka bean": "vanilla", "tonka": "vanilla",
     "ветивер": "vetiver", "пачули": "vetiver",
+    "vetiver": "vetiver", "patchouli": "vetiver", "oakmoss": "vetiver",
     "амбра": "amber", "серая амбра": "amber", "амброксан": "amber",
+    "amber": "amber", "ambergris": "amber", "ambroxan": "amber", "labdanum": "amber",
     "персик": "fruits", "груша": "fruits", "малина": "fruits", "вишня": "fruits",
+    "peach": "fruits", "pear": "fruits", "raspberry": "fruits", "cherry": "fruits",
+    "apple": "fruits", "plum": "fruits", "blackcurrant": "fruits",
     "морской": "marine", "морская соль": "marine", "океан": "marine",
+    "marine": "marine", "sea salt": "marine", "ocean": "marine", "aquatic": "marine",
     "шафран": "spicy", "перец": "spicy", "розовый перец": "spicy",
     "кардамон": "spicy", "корица": "spicy", "имбирь": "spicy",
+    "saffron": "spicy", "pepper": "spicy", "pink pepper": "spicy",
+    "cardamom": "spicy", "cinnamon": "spicy", "ginger": "spicy",
     "кедр": "woody", "сандал": "woody", "сандалвуд": "woody", "сандаловое дерево": "woody",
+    "cedar": "woody", "cedarwood": "woody", "sandalwood": "woody",
     "кожа": "leather", "замша": "leather",
+    "leather": "leather", "suede": "leather",
     "табак": "tobacco",
+    "tobacco": "tobacco",
     "мускус": "musk", "белый мускус": "musk", "зелёный чай": "musk",
+    "musk": "musk", "white musk": "musk", "green tea": "musk",
 }
 
 _DOMINANT_VIBE_MAP: dict[str, list[str]] = {
@@ -358,48 +380,95 @@ _LIFESTYLE_CONTEXT: dict[str, str] = {
     "outdoor":      "дышит на свежем воздухе",
 }
 
+_ACCORD_DESC_EN: dict[str, str] = {
+    "citrus":    "citrusy and light",
+    "fresh":     "fresh and clean",
+    "clean":     "clean, almost invisible",
+    "aquatic":   "marine and refreshing",
+    "aromatic":  "aromatic and confident",
+    "powdery":   "soft and powdery",
+    "floral":    "floral and refined",
+    "woody":     "woody and understated",
+    "musky":     "musky and magnetic",
+    "amber":     "warm and sensual",
+    "warm":      "enveloping and cozy",
+    "spicy":     "spicy and memorable",
+    "oriental":  "oriental and deep",
+    "vanilla":   "sweet and enveloping",
+    "green":     "green and alive",
+    "leathery":  "leathery and bold",
+    "gourmand":  "gourmand and seductive",
+}
 
-def _fallback_reason(analysis: dict, rec: dict) -> str:
+_LIFESTYLE_CONTEXT_EN: dict[str, str] = {
+    "professional": "made for a confident business presence",
+    "travel":       "a companion for every trip",
+    "fashion":      "underlines a personal sense of style",
+    "sport":        "energizing and effortless",
+    "home_cozy":    "brings warmth and comfort",
+    "art_culture":  "for a creative, open-minded person",
+    "food":         "sensual — for special evenings",
+    "outdoor":      "breathes in the open air",
+}
+
+
+def _fallback_reason(analysis: dict, rec: dict, lang: str = "ru") -> str:
     accords = [a.lower() for a in (rec.get("accords") or [])]
     lifestyles = analysis.get("lifestyles", [])
     priority = ["citrus", "fresh", "clean", "aquatic", "aromatic", "floral",
                 "powdery", "woody", "musky", "amber", "warm", "spicy", "vanilla",
                 "oriental", "green", "leathery", "gourmand"]
     key = next((a for a in priority if a in accords), accords[0] if accords else "")
-    desc = _ACCORD_DESC.get(key, "изысканный аромат")
-    context = _LIFESTYLE_CONTEXT.get(lifestyles[0] if lifestyles else "", "к любому поводу")
+    if lang == "en":
+        desc = _ACCORD_DESC_EN.get(key, "a refined fragrance")
+        context = _LIFESTYLE_CONTEXT_EN.get(lifestyles[0] if lifestyles else "", "for any occasion")
+    else:
+        desc = _ACCORD_DESC.get(key, "изысканный аромат")
+        context = _LIFESTYLE_CONTEXT.get(lifestyles[0] if lifestyles else "", "к любому поводу")
     return f"{desc[0].upper()}{desc[1:]} — {context}."
 
 
-def generate_reasons(analysis: dict, recs: list[dict], post_captions: list[str] | None = None) -> list[str]:
+def generate_reasons(analysis: dict, recs: list[dict], post_captions: list[str] | None = None,
+                     lang: str = "ru") -> list[str]:
     """One Claude call → unique personalized reason for each fragrance."""
     import anthropic
 
     _load_env()
     api_key = os.environ.get("ANTHROPIC_API_KEY", "")
     if not api_key:
-        return [_fallback_reason(analysis, r) for r in recs]
+        return [_fallback_reason(analysis, r, lang) for r in recs]
 
-    post_ctx = ""
     captions = post_captions or []
-    if captions:
-        post_ctx = "Подписи к постам: " + "; ".join(captions) + "."
 
     frags = "\n".join([
         f"{i+1}. {r['brand']} — {r['name']} ({', '.join((r.get('accords') or [])[:3])})"
         for i, r in enumerate(recs)
     ])
 
-    prompt = (
-        f"Ты эксперт по парфюмерии. Напиши для каждого аромата уникальное объяснение "
-        f"(1 предложение, по-русски) — почему он подходит именно этому человеку.\n\n"
-        f"Профиль: {analysis.get('aesthetic')} стиль, {analysis.get('dominant_vibe')} вайб, "
-        f"образ жизни: {', '.join(analysis.get('lifestyles', []))}.\n"
-        f"{post_ctx}\n\n"
-        f"Ароматы:\n{frags}\n\n"
-        f"Верни ТОЛЬКО JSON массив из {len(recs)} строк: [\"причина1\", \"причина2\", ...]\n"
-        f"Каждая причина уникальна. Упоминай конкретные детали из постов или образа жизни."
-    )
+    if lang == "en":
+        post_ctx = ("Post captions: " + "; ".join(captions) + ".") if captions else ""
+        prompt = (
+            f"You are a perfume expert. For each fragrance write a unique one-sentence "
+            f"explanation in English — why it suits this specific person.\n\n"
+            f"Profile: {analysis.get('aesthetic')} style, {analysis.get('dominant_vibe')} vibe, "
+            f"lifestyle: {', '.join(analysis.get('lifestyles', []))}.\n"
+            f"{post_ctx}\n\n"
+            f"Fragrances:\n{frags}\n\n"
+            f"Return ONLY a JSON array of {len(recs)} strings: [\"reason1\", \"reason2\", ...]\n"
+            f"Each reason must be unique. Mention concrete details from the posts or lifestyle."
+        )
+    else:
+        post_ctx = ("Подписи к постам: " + "; ".join(captions) + ".") if captions else ""
+        prompt = (
+            f"Ты эксперт по парфюмерии. Напиши для каждого аромата уникальное объяснение "
+            f"(1 предложение, по-русски) — почему он подходит именно этому человеку.\n\n"
+            f"Профиль: {analysis.get('aesthetic')} стиль, {analysis.get('dominant_vibe')} вайб, "
+            f"образ жизни: {', '.join(analysis.get('lifestyles', []))}.\n"
+            f"{post_ctx}\n\n"
+            f"Ароматы:\n{frags}\n\n"
+            f"Верни ТОЛЬКО JSON массив из {len(recs)} строк: [\"причина1\", \"причина2\", ...]\n"
+            f"Каждая причина уникальна. Упоминай конкретные детали из постов или образа жизни."
+        )
 
     try:
         client = anthropic.Anthropic(api_key=api_key)
@@ -417,7 +486,7 @@ def generate_reasons(analysis: dict, recs: list[dict], post_captions: list[str] 
     except Exception:
         pass
 
-    return [_fallback_reason(analysis, r) for r in recs]
+    return [_fallback_reason(analysis, r, lang) for r in recs]
 
 
 _VIBE_TO_BMOOD: dict[str, str] = {

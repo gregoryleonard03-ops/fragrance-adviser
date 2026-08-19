@@ -208,6 +208,7 @@ const QUIZ_STYLES = [
 ];
 
 let igResult = null;   // {analysis, answers, post_captions} when IG worked
+let igAttempted = false; // user tried Analyze (to explain a quiz-only result)
 
 function show(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -229,6 +230,7 @@ async function analyzeIG() {
   }
 
   btn.disabled = true;
+  igAttempted = true;
   status.className = 'ig-status';
   status.textContent = 'Reading your aesthetic…';
   try {
@@ -399,8 +401,13 @@ function showResults(data) {
   const recs = data.recommendations || [];
   const badge = document.getElementById('ig-badge-slot');
   // the profile card carries the IG chips; keep the badge only when there's no card
-  badge.innerHTML = (data.used_instagram && igResult && !data.profile_card)
-    ? '<span class="ig-badge">✓ We factored in your Instagram aesthetic</span>' : '';
+  if (data.used_instagram && igResult && !data.profile_card) {
+    badge.innerHTML = '<span class="ig-badge">✓ We factored in your Instagram aesthetic</span>';
+  } else if (igAttempted && !igResult) {
+    badge.innerHTML = '<span class="ig-badge">Instagram profile couldn\'t be read — matched by quiz</span>';
+  } else {
+    badge.innerHTML = '';
+  }
   renderProfileCard(data);
 
   const grid = document.getElementById('results-grid');

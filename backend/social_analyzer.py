@@ -561,8 +561,7 @@ def generate_profile_and_reasons(analysis: dict, quiz_answers: dict, recs: list[
         for i, r in enumerate(recs)
     ])
 
-    # what_we_saw / scent_logic only make sense when there is real IG data
-    profile_fields = ""
+    # what_we_saw needs real IG data; scent_logic works from the quiz alone
     if analysis:
         profile_fields = (
             ' "what_we_saw": [3-4 short bullets about this person taken ONLY from the Instagram data '
@@ -571,6 +570,12 @@ def generate_profile_and_reasons(analysis: dict, quiz_answers: dict, recs: list[
             ' "scent_logic": [2-3 items {"because": "an observed style/interest trait", '
             '"notes": ["2-4 fragrance notes that suit it"]} — connect their style to concrete notes '
             'that actually appear in the matched fragrances],\n'
+        )
+    else:
+        profile_fields = (
+            ' "scent_logic": [2-3 items {"because": "a preference they expressed in the quiz, in plain '
+            'words", "notes": ["2-4 fragrance notes that suit it"]} — connect their quiz choices to '
+            'concrete notes that actually appear in the matched fragrances],\n'
         )
 
     prompt = (
@@ -611,8 +616,9 @@ def generate_profile_and_reasons(analysis: dict, quiz_answers: dict, recs: list[
                     if isinstance(s, dict) and s.get("because") and isinstance(s.get("notes"), list)
                 ]
                 return data
-    except Exception:
-        pass
+        print(f"[profile_card] LLM output rejected, using fallback: {raw[:200]}")
+    except Exception as e:
+        print(f"[profile_card] LLM call failed, using fallback: {e}")
     return fallback()
 
 

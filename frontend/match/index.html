@@ -221,7 +221,10 @@ async function analyzeIG() {
   const status = document.getElementById('ig-status');
   const input = document.getElementById('ig-input');
   const btn = document.getElementById('ig-btn');
-  const username = input.value.trim().replace(/^@/, '');
+  // accept anything: @name, name, full profile URL, trailing slashes
+  let username = input.value.trim();
+  const m = username.match(/instagram\.com\/([A-Za-z0-9._]+)/i);
+  username = (m ? m[1] : username).replace(/^@/, '').replace(/[\/\s]+$/, '');
   if (!username) {
     status.className = 'ig-status soft';
     status.textContent = 'Type your @username — or use "Skip" below to go straight to the quiz.';

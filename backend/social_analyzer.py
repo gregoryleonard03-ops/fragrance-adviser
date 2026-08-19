@@ -716,11 +716,15 @@ def analyze_instagram_light(url: str, lang: str = "en") -> dict:
     """Profile → analysis → answers, no recommendations. Used by /match,
     where scoring happens later in /api/recommend/combined."""
     profile = fetch_instagram_profile(url)
+    print(f"[ig-light] {url} → followers={profile.get('followers')} posts={profile.get('posts')} "
+          f"captions={len(profile.get('post_captions') or [])} highlights={len(profile.get('highlights') or [])} "
+          f"name={profile.get('name', '')[:40]!r}")
     # Login-wall / nonexistent / empty profile: the scraper "succeeds" on the
     # error page (its text lands in bio!) and the LLM hallucinates an aesthetic
     # out of nothing. Real signal = followers/posts/captions/highlights, not bio.
     if not (profile.get("followers") or profile.get("posts")
             or profile.get("post_captions") or profile.get("highlights")):
+        print(f"[ig-light] {url} → rejected as empty/unavailable")
         return {"success": False, "error": "profile unavailable or empty"}
     analysis = analyze_with_claude(profile, lang=lang)
     return {

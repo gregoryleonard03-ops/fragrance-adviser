@@ -97,6 +97,13 @@
     font-size: 12.5px; color: #1c1c1c; background: #fff; border: 1px solid #ddd;
     border-radius: 999px; padding: 4px 12px;
   }
+  .profile-section { margin-top: 18px; padding-top: 16px; border-top: 1px solid #e3d5bb; }
+  .profile-section-title { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #81550d; font-weight: 700; margin-bottom: 9px; }
+  .saw-list { margin: 0; padding-left: 18px; font-size: 14px; color: #444; line-height: 1.65; }
+  .logic-row { display: flex; align-items: baseline; gap: 10px; font-size: 13.5px; margin-bottom: 7px; flex-wrap: wrap; }
+  .logic-because { color: #444; }
+  .logic-arrow { color: #81550d; font-weight: 700; }
+  .logic-notes { color: #81550d; font-weight: 600; }
 
   .results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; margin-top: 34px; }
   .result-card { border: 1px solid #ddd; border-radius: 10px; overflow: hidden; background: #fff; display: flex; flex-direction: column; }
@@ -360,11 +367,29 @@ function renderProfileCard(data) {
     ];
     igRow = '<div class="trait-row"><span class="trait-src">From Instagram</span>' + chips(igTraits) + '</div>';
   }
+  let sawBlock = '';
+  if ((card.what_we_saw || []).length) {
+    sawBlock = '<div class="profile-section">' +
+      '<div class="profile-section-title">What we read from your profile</div>' +
+      '<ul class="saw-list">' + card.what_we_saw.map(s => '<li>' + s + '</li>').join('') + '</ul></div>';
+  }
+  let logicBlock = '';
+  if ((card.scent_logic || []).length) {
+    logicBlock = '<div class="profile-section">' +
+      '<div class="profile-section-title">Your style → your notes</div>' +
+      card.scent_logic.map(s =>
+        '<div class="logic-row"><span class="logic-because">' + s.because + '</span>' +
+        '<span class="logic-arrow">→</span>' +
+        '<span class="logic-notes">' + s.notes.join(', ') + '</span></div>').join('') +
+      '</div>';
+  }
   slot.innerHTML =
     '<div class="profile-card">' +
       '<div class="profile-eyebrow">Your scent profile</div>' +
       '<div class="profile-headline">' + card.headline + '</div>' +
       '<div class="profile-summary">' + card.summary + '</div>' +
+      sawBlock +
+      logicBlock +
       '<div class="trait-row"><span class="trait-src">From your quiz</span>' + chips(quizTraits) + '</div>' +
       igRow +
     '</div>';

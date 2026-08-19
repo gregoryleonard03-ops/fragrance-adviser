@@ -234,7 +234,9 @@ def recommend_combined(req: CombinedRequest):
                                                 post_captions=req.post_captions)
             for rec, reason in zip(results, card["reasons"]):
                 rec["reason"] = reason
-            profile_card = {"headline": card["headline"], "summary": card["summary"]}
+            profile_card = {"headline": card["headline"], "summary": card["summary"],
+                            "what_we_saw": card.get("what_we_saw", []),
+                            "scent_logic": card.get("scent_logic", [])}
         return {"recommendations": results, "merged_answers": merged,
                 "profile_card": profile_card,
                 "used_instagram": bool(req.ig_answers)}

@@ -536,6 +536,8 @@ def generate_profile_and_reasons(analysis: dict, quiz_answers: dict, recs: list[
             "headline": headline,
             "summary": "Matched from your quiz answers across scent direction, "
                        "favorite notes and the moments you dress for.",
+            "what_we_saw": [],
+            "scent_logic": [],
             "reasons": [_fallback_reason(analysis or {}, r, "en") for r in recs],
         }
 
@@ -549,6 +551,8 @@ def generate_profile_and_reasons(analysis: dict, quiz_answers: dict, recs: list[
             f"{analysis.get('dominant_vibe')} vibe, lifestyle: {', '.join(analysis.get('lifestyles', []))}. "
             f"Analysis note: {analysis.get('reasoning', '')}\n"
         )
+        if analysis.get("post_descriptions"):
+            ig_ctx += "What is visible in their photos: " + "; ".join(analysis["post_descriptions"]) + ".\n"
         if post_captions:
             ig_ctx += "Post captions: " + "; ".join(post_captions) + ".\n"
 
@@ -557,6 +561,18 @@ def generate_profile_and_reasons(analysis: dict, quiz_answers: dict, recs: list[
         for i, r in enumerate(recs)
     ])
 
+    # what_we_saw / scent_logic only make sense when there is real IG data
+    profile_fields = ""
+    if analysis:
+        profile_fields = (
+            ' "what_we_saw": [3-4 short bullets about this person taken ONLY from the Instagram data '
+            'above — interests, clothing style, settings they appear in. No inventions: if the data is '
+            'thin, write fewer bullets],\n'
+            ' "scent_logic": [2-3 items {"because": "an observed style/interest trait", '
+            '"notes": ["2-4 fragrance notes that suit it"]} — connect their style to concrete notes '
+            'that actually appear in the matched fragrances],\n'
+        )
+
     prompt = (
         f"You are a perfume expert writing a personal scent profile for a client.\n\n"
         f"{ig_ctx}"
@@ -564,10 +580,13 @@ def generate_profile_and_reasons(analysis: dict, quiz_answers: dict, recs: list[
         f"vibes {quiz_answers.get('vibe', [])}, favorite notes {quiz_answers.get('notes', [])}, "
         f"occasions {quiz_answers.get('occasion', [])}.\n\n"
         f"Their matched fragrances:\n{frags}\n\n"
+        f"Write for the client, in plain shopper English — NEVER echo internal keys "
+        f"like 'soft_skin' or 'dark_sexy'; say 'skin scents', 'dark and seductive' instead.\n"
         f"Return ONLY valid JSON:\n"
         f'{{"headline": "a 2-4 word archetype name for this person (e.g. \'The Midnight Minimalist\')",\n'
         f' "summary": "2 sentences in English: who this person is scent-wise and why these picks fit; '
         f'mention a concrete detail from their Instagram if provided",\n'
+        f'{profile_fields}'
         f' "reasons": [{len(recs)} unique one-sentence explanations, one per fragrance in order]}}'
     )
 
@@ -584,6 +603,13 @@ def generate_profile_and_reasons(analysis: dict, quiz_answers: dict, recs: list[
             data = json.loads(m.group(0))
             if (isinstance(data.get("reasons"), list) and len(data["reasons"]) == len(recs)
                     and data.get("headline") and data.get("summary")):
+                data.setdefault("what_we_saw", [])
+                data.setdefault("scent_logic", [])
+                # scent_logic entries must be well-formed for the frontend
+                data["scent_logic"] = [
+                    s for s in data["scent_logic"]
+                    if isinstance(s, dict) and s.get("because") and isinstance(s.get("notes"), list)
+                ]
                 return data
     except Exception:
         pass

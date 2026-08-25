@@ -142,8 +142,11 @@
     <h1>Find your signature scent</h1>
     <p class="lead">Share your Instagram and we'll read your aesthetic to sharpen the match — or skip straight to the quiz.</p>
     <div class="ig-field">
-      <input id="ig-input" type="text" placeholder="@username" autocomplete="off"
-             onkeydown="if(event.key==='Enter')analyzeIG()">
+      <!-- type=search + no "username" wording anywhere: keeps iOS from
+           offering the password manager on what looks like a login field -->
+      <input id="ig-input" type="search" name="ig-handle" placeholder="@yourhandle or profile link"
+             autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"
+             enterkeyhint="go" onkeydown="if(event.key==='Enter')analyzeIG()">
       <button class="btn btn-primary" id="ig-btn" onclick="analyzeIG()">Analyze</button>
     </div>
     <p class="ig-note">Public profiles only. We look at style, not personal data.</p>
@@ -200,11 +203,10 @@
 
 <script src="/static/quiz-engine/engine.js"></script>
 <script>
+// ponytail: characters/moodboard/places скрыты до доводки контента — раскрыть,
+// добавив обратно в этот список (конфиги и движок их уже умеют)
 const QUIZ_STYLES = [
-  { key: 'mood',       emoji: '🌊', name: 'By Mood',        sub: 'Pick the vibe you live in' },
-  { key: 'characters', emoji: '🎭', name: 'By Character',   sub: 'Choose your alter ego' },
-  { key: 'moodboard',  emoji: '🖼️', name: 'By Moodboard',   sub: 'Pick 3 images you feel' },
-  { key: 'places',     emoji: '🗺️', name: 'By Place',       sub: 'Where you feel most yourself' },
+  { key: 'mood', emoji: '🌊', name: 'By Mood', sub: 'Pick the vibe you live in' },
 ];
 
 let igResult = null;   // {analysis, answers, post_captions} when IG worked
@@ -292,14 +294,20 @@ function renderChooser() {
   });
 }
 
-function gotoChooser() { show('screen-choose'); }
+function gotoChooser() {
+  // single quiz style → no point in a chooser screen, jump straight in
+  const ready = QUIZ_STYLES.filter(s => AVAILABLE[s.key]);
+  if (QUIZ_STYLES.length === 1 && ready.length === 1) { startQuiz(ready[0].key); return; }
+  show('screen-choose');
+}
 
 // ── Screen 3: quiz via engine ────────────────────────────────────────────────
 
 function startQuiz(key) {
   QuizEngine.mount(AVAILABLE[key], {
     onSubmit: submitAnswers,
-    onExit: gotoChooser,           // Back on step 1 → return to quiz-style picker
+    // Back on step 1: picker if there are several styles, else the IG screen
+    onExit: () => QUIZ_STYLES.length > 1 ? show('screen-choose') : show('screen-ig'),
     submitLabel: 'Show my scents ✦',
   });
   show('screen-quiz');
